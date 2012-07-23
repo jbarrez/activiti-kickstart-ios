@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FEEC7F6215BD94870063D7B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6115BD94870063D7B2 /* UIKit.framework */; };
+		FEEC7F6415BD94870063D7B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6315BD94870063D7B2 /* Foundation.framework */; };
+		FEEC7F6615BD94870063D7B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6515BD94870063D7B2 /* CoreGraphics.framework */; };
+		FEEC7F6C15BD94870063D7B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEEC7F6A15BD94870063D7B2 /* InfoPlist.strings */; };
+		FEEC7F6E15BD94870063D7B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F6D15BD94870063D7B2 /* main.m */; };
+		FEEC7F7215BD94870063D7B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F7115BD94870063D7B2 /* AppDelegate.m */; };
+		FEEC7F7515BD94870063D7B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F7415BD94870063D7B2 /* ViewController.m */; };
+		FEEC7F7815BD94870063D7B2 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEEC7F7615BD94870063D7B2 /* ViewController_iPhone.xib */; };
+		FEEC7F7B15BD94870063D7B2 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEEC7F7915BD94870063D7B2 /* ViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FEEC7F5D15BD94870063D7B2 /* Activiti Kickstart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Activiti Kickstart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEEC7F6115BD94870063D7B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FEEC7F6315BD94870063D7B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FEEC7F6515BD94870063D7B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FEEC7F6915BD94870063D7B2 /* Activiti Kickstart-Info.plist */ = {isa = PBXFileReference; path = "Activiti Kickstart-Info.plist"; sourceTree = "<group>"; };
+		FEEC7F6B15BD94870063D7B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FEEC7F6D15BD94870063D7B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FEEC7F6F15BD94870063D7B2 /* Activiti Kickstart-Prefix.pch */ = {isa = PBXFileReference; path = "Activiti Kickstart-Prefix.pch"; sourceTree = "<group>"; };
+		FEEC7F7015BD94870063D7B2 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		FEEC7F7115BD94870063D7B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FEEC7F7315BD94870063D7B2 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		FEEC7F7415BD94870063D7B2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FEEC7F7715BD94870063D7B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		FEEC7F7A15BD94870063D7B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FEEC7F5A15BD94870063D7B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEEC7F6215BD94870063D7B2 /* UIKit.framework in Frameworks */,
+				FEEC7F6415BD94870063D7B2 /* Foundation.framework in Frameworks */,
+				FEEC7F6615BD94870063D7B2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FEEC7F5215BD94870063D7B2 = {
+			isa = PBXGroup;
+			children = (
+				FEEC7F6715BD94870063D7B2 /* Activiti Kickstart */,
+				FEEC7F6015BD94870063D7B2 /* Frameworks */,
+				FEEC7F5E15BD94870063D7B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FEEC7F5E15BD94870063D7B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FEEC7F5D15BD94870063D7B2 /* Activiti Kickstart.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FEEC7F6015BD94870063D7B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FEEC7F6115BD94870063D7B2 /* UIKit.framework */,
+				FEEC7F6315BD94870063D7B2 /* Foundation.framework */,
+				FEEC7F6515BD94870063D7B2 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FEEC7F6715BD94870063D7B2 /* Activiti Kickstart */ = {
+			isa = PBXGroup;
+			children = (
+				FEEC7F7015BD94870063D7B2 /* AppDelegate.h */,
+				FEEC7F7115BD94870063D7B2 /* AppDelegate.m */,
+				FEEC7F7315BD94870063D7B2 /* ViewController.h */,
+				FEEC7F7415BD94870063D7B2 /* ViewController.m */,
+				FEEC7F7615BD94870063D7B2 /* ViewController_iPhone.xib */,
+				FEEC7F7915BD94870063D7B2 /* ViewController_iPad.xib */,
+				FEEC7F6815BD94870063D7B2 /* Supporting Files */,
+			);
+			path = "Activiti Kickstart";
+			sourceTree = "<group>";
+		};
+		FEEC7F6815BD94870063D7B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEEC7F6915BD94870063D7B2 /* Activiti Kickstart-Info.plist */,
+				FEEC7F6A15BD94870063D7B2 /* InfoPlist.strings */,
+				FEEC7F6D15BD94870063D7B2 /* main.m */,
+				FEEC7F6F15BD94870063D7B2 /* Activiti Kickstart-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FEEC7F5C15BD94870063D7B2 /* Activiti Kickstart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEEC7F7E15BD94870063D7B2 /* Build configuration list for PBXNativeTarget "Activiti Kickstart" */;
+			buildPhases = (
+				FEEC7F5915BD94870063D7B2 /* Sources */,
+				FEEC7F5A15BD94870063D7B2 /* Frameworks */,
+				FEEC7F5B15BD94870063D7B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Activiti Kickstart";
+			productName = "Activiti Kickstart";
+			productReference = FEEC7F5D15BD94870063D7B2 /* Activiti Kickstart.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FEEC7F5415BD94870063D7B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Alfresco;
+			};
+			buildConfigurationList = FEEC7F5715BD94870063D7B2 /* Build configuration list for PBXProject "Activiti Kickstart" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FEEC7F5215BD94870063D7B2;
+			productRefGroup = FEEC7F5E15BD94870063D7B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FEEC7F5C15BD94870063D7B2 /* Activiti Kickstart */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FEEC7F5B15BD94870063D7B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEEC7F6C15BD94870063D7B2 /* InfoPlist.strings in Resources */,
+				FEEC7F7815BD94870063D7B2 /* ViewController_iPhone.xib in Resources */,
+				FEEC7F7B15BD94870063D7B2 /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FEEC7F5915BD94870063D7B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEEC7F6E15BD94870063D7B2 /* main.m in Sources */,
+				FEEC7F7215BD94870063D7B2 /* AppDelegate.m in Sources */,
+				FEEC7F7515BD94870063D7B2 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FEEC7F6A15BD94870063D7B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEEC7F6B15BD94870063D7B2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FEEC7F7615BD94870063D7B2 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEEC7F7715BD94870063D7B2 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		FEEC7F7915BD94870063D7B2 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEEC7F7A15BD94870063D7B2 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FEEC7F7C15BD94870063D7B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FEEC7F7D15BD94870063D7B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FEEC7F7F15BD94870063D7B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Activiti Kickstart/Activiti Kickstart-Prefix.pch";
+				INFOPLIST_FILE = "Activiti Kickstart/Activiti Kickstart-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FEEC7F8015BD94870063D7B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Activiti Kickstart/Activiti Kickstart-Prefix.pch";
+				INFOPLIST_FILE = "Activiti Kickstart/Activiti Kickstart-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FEEC7F5715BD94870063D7B2 /* Build configuration list for PBXProject "Activiti Kickstart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEEC7F7C15BD94870063D7B2 /* Debug */,
+				FEEC7F7D15BD94870063D7B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEEC7F7E15BD94870063D7B2 /* Build configuration list for PBXNativeTarget "Activiti Kickstart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEEC7F7F15BD94870063D7B2 /* Debug */,
+				FEEC7F8015BD94870063D7B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FEEC7F5415BD94870063D7B2 /* Project object */;
+}
