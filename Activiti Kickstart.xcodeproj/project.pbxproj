@@ -13,9 +13,14 @@
 		FEEC7F6C15BD94870063D7B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEEC7F6A15BD94870063D7B2 /* InfoPlist.strings */; };
 		FEEC7F6E15BD94870063D7B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F6D15BD94870063D7B2 /* main.m */; };
 		FEEC7F7215BD94870063D7B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F7115BD94870063D7B2 /* AppDelegate.m */; };
-		FEEC7F7515BD94870063D7B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F7415BD94870063D7B2 /* ViewController.m */; };
-		FEEC7F7815BD94870063D7B2 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEEC7F7615BD94870063D7B2 /* ViewController_iPhone.xib */; };
-		FEEC7F7B15BD94870063D7B2 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEEC7F7915BD94870063D7B2 /* ViewController_iPad.xib */; };
+		FEEC7F7515BD94870063D7B2 /* RootTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F7415BD94870063D7B2 /* RootTabBarViewController.m */; };
+		FEEC7F8015BD94870063D7B4 /* CreateWorkflowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F8015BD94870063D7B3 /* CreateWorkflowViewController.m */; };
+		FEEC7F8015BD94870063D7B7 /* WorkflowStepsTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F8015BD94870063D7B6 /* WorkflowStepsTableDelegate.m */; };
+		FEEC7F8015BD94870063D7BB /* WorkflowStepTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F8015BD94870063D7BA /* WorkflowStepTableCell.m */; };
+		FEEC7F8015BD94870063D7C2 /* KickstartRestService.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F8015BD94870063D7C1 /* KickstartRestService.m */; };
+		FEEC7F8015BD94870063D7C5 /* JsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F8015BD94870063D7C4 /* JsonUtil.m */; };
+		FEF5D09015C0222200734667 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D08F15C0222200734667 /* Settings.bundle */; };
+		FEF5D09015C0222200734669 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C0222200734668 /* HttpUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +28,27 @@
 		FEEC7F6115BD94870063D7B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FEEC7F6315BD94870063D7B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FEEC7F6515BD94870063D7B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		FEEC7F6915BD94870063D7B2 /* Activiti Kickstart-Info.plist */ = {isa = PBXFileReference; path = "Activiti Kickstart-Info.plist"; sourceTree = "<group>"; };
+		FEEC7F6915BD94870063D7B2 /* Activiti Kickstart-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Activiti Kickstart-Info.plist"; sourceTree = "<group>"; };
 		FEEC7F6B15BD94870063D7B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FEEC7F6D15BD94870063D7B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FEEC7F6F15BD94870063D7B2 /* Activiti Kickstart-Prefix.pch */ = {isa = PBXFileReference; path = "Activiti Kickstart-Prefix.pch"; sourceTree = "<group>"; };
-		FEEC7F7015BD94870063D7B2 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		FEEC7F6F15BD94870063D7B2 /* Activiti Kickstart-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Activiti Kickstart-Prefix.pch"; sourceTree = "<group>"; };
+		FEEC7F7015BD94870063D7B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FEEC7F7115BD94870063D7B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FEEC7F7315BD94870063D7B2 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
-		FEEC7F7415BD94870063D7B2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FEEC7F7715BD94870063D7B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		FEEC7F7A15BD94870063D7B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		FEEC7F7315BD94870063D7B2 /* RootTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootTabBarViewController.h; sourceTree = "<group>"; };
+		FEEC7F7415BD94870063D7B2 /* RootTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootTabBarViewController.m; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7B3 /* CreateWorkflowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWorkflowViewController.m; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7B5 /* CreateWorkflowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWorkflowViewController.h; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7B6 /* WorkflowStepsTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkflowStepsTableDelegate.m; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7B8 /* WorkflowStepsTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowStepsTableDelegate.h; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7BA /* WorkflowStepTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkflowStepTableCell.m; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7BC /* WorkflowStepTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowStepTableCell.h; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7C1 /* KickstartRestService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickstartRestService.m; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7C3 /* KickstartRestService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickstartRestService.h; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7C4 /* JsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtil.m; sourceTree = "<group>"; };
+		FEEC7F8015BD94870063D7C6 /* JsonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtil.h; sourceTree = "<group>"; };
+		FEF5D08F15C0222200734667 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		FEF5D09015C0222200734668 /* HttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
+		FEF5D09015C022220073466A /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +97,11 @@
 			children = (
 				FEEC7F7015BD94870063D7B2 /* AppDelegate.h */,
 				FEEC7F7115BD94870063D7B2 /* AppDelegate.m */,
-				FEEC7F7315BD94870063D7B2 /* ViewController.h */,
-				FEEC7F7415BD94870063D7B2 /* ViewController.m */,
-				FEEC7F7615BD94870063D7B2 /* ViewController_iPhone.xib */,
-				FEEC7F7915BD94870063D7B2 /* ViewController_iPad.xib */,
+				FEEC7F7315BD94870063D7B2 /* RootTabBarViewController.h */,
+				FEEC7F7415BD94870063D7B2 /* RootTabBarViewController.m */,
 				FEEC7F6815BD94870063D7B2 /* Supporting Files */,
+				FEEC7F8015BD94870063D7B9 /* workflow-creation */,
+				FEEC7F8015BD94870063D7BD /* services */,
 			);
 			path = "Activiti Kickstart";
 			sourceTree = "<group>";
@@ -93,12 +109,39 @@
 		FEEC7F6815BD94870063D7B2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FEF5D08F15C0222200734667 /* Settings.bundle */,
 				FEEC7F6915BD94870063D7B2 /* Activiti Kickstart-Info.plist */,
 				FEEC7F6A15BD94870063D7B2 /* InfoPlist.strings */,
 				FEEC7F6D15BD94870063D7B2 /* main.m */,
 				FEEC7F6F15BD94870063D7B2 /* Activiti Kickstart-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEEC7F8015BD94870063D7B9 /* workflow-creation */ = {
+			isa = PBXGroup;
+			children = (
+				FEEC7F8015BD94870063D7BC /* WorkflowStepTableCell.h */,
+				FEEC7F8015BD94870063D7BA /* WorkflowStepTableCell.m */,
+				FEEC7F8015BD94870063D7B6 /* WorkflowStepsTableDelegate.m */,
+				FEEC7F8015BD94870063D7B8 /* WorkflowStepsTableDelegate.h */,
+				FEEC7F8015BD94870063D7B3 /* CreateWorkflowViewController.m */,
+				FEEC7F8015BD94870063D7B5 /* CreateWorkflowViewController.h */,
+			);
+			path = "workflow-creation";
+			sourceTree = "<group>";
+		};
+		FEEC7F8015BD94870063D7BD /* services */ = {
+			isa = PBXGroup;
+			children = (
+				FEF5D09015C022220073466A /* HttpUtil.h */,
+				FEF5D09015C0222200734668 /* HttpUtil.m */,
+				FEEC7F8015BD94870063D7C6 /* JsonUtil.h */,
+				FEEC7F8015BD94870063D7C4 /* JsonUtil.m */,
+				FEEC7F8015BD94870063D7C3 /* KickstartRestService.h */,
+				FEEC7F8015BD94870063D7C1 /* KickstartRestService.m */,
+			);
+			path = services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,8 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEEC7F6C15BD94870063D7B2 /* InfoPlist.strings in Resources */,
-				FEEC7F7815BD94870063D7B2 /* ViewController_iPhone.xib in Resources */,
-				FEEC7F7B15BD94870063D7B2 /* ViewController_iPad.xib in Resources */,
+				FEF5D09015C0222200734667 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +209,13 @@
 			files = (
 				FEEC7F6E15BD94870063D7B2 /* main.m in Sources */,
 				FEEC7F7215BD94870063D7B2 /* AppDelegate.m in Sources */,
-				FEEC7F7515BD94870063D7B2 /* ViewController.m in Sources */,
+				FEEC7F7515BD94870063D7B2 /* RootTabBarViewController.m in Sources */,
+				FEEC7F8015BD94870063D7B4 /* CreateWorkflowViewController.m in Sources */,
+				FEEC7F8015BD94870063D7B7 /* WorkflowStepsTableDelegate.m in Sources */,
+				FEEC7F8015BD94870063D7BB /* WorkflowStepTableCell.m in Sources */,
+				FEEC7F8015BD94870063D7C2 /* KickstartRestService.m in Sources */,
+				FEEC7F8015BD94870063D7C5 /* JsonUtil.m in Sources */,
+				FEF5D09015C0222200734669 /* HttpUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,22 +228,6 @@
 				FEEC7F6B15BD94870063D7B2 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		FEEC7F7615BD94870063D7B2 /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FEEC7F7715BD94870063D7B2 /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		FEEC7F7915BD94870063D7B2 /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FEEC7F7A15BD94870063D7B2 /* en */,
-			);
-			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -255,6 +287,7 @@
 				GCC_PREFIX_HEADER = "Activiti Kickstart/Activiti Kickstart-Prefix.pch";
 				INFOPLIST_FILE = "Activiti Kickstart/Activiti Kickstart-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -266,6 +299,7 @@
 				GCC_PREFIX_HEADER = "Activiti Kickstart/Activiti Kickstart-Prefix.pch";
 				INFOPLIST_FILE = "Activiti Kickstart/Activiti Kickstart-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -289,6 +323,7 @@
 				FEEC7F8015BD94870063D7B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
