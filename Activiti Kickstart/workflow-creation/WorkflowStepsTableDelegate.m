@@ -5,11 +5,14 @@
 
 #import "WorkflowStepsTableDelegate.h"
 #import "WorkflowStepTableCell.h"
+#import "WorkflowCreationDelegate.h"
 
 
 @implementation WorkflowStepsTableDelegate
 
 @synthesize workflowSteps = _workflowSteps;
+@synthesize workflowCreationDelegate = _workflowCreationDelegate;
+
 
 #pragma mark UITableView delegate and datasource
 
@@ -39,17 +42,11 @@
         cell = [[WorkflowStepTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    // Adding a tag to the name text field such that the text field delegate can easily know which value changed
-    cell.nameTextField.tag = indexPath.section;
-    cell.nameTextField.delegate = self;
-
     if (indexPath.section < self.workflowSteps.count)
     {
-        cell.nameTextField.text = [self.workflowSteps objectAtIndex:indexPath.section];
-        cell.nameTextField.enabled = YES;
+        cell.nameLabel.text = [self.workflowSteps objectAtIndex:indexPath.section];
     } else if (indexPath.section == self.workflowSteps.count) {
-        cell.nameTextField.text = @"Click to create new task";
-        cell.nameTextField.enabled = NO;
+        cell.nameLabel.text = @"Click to create new task";
     }
 
     return cell;
@@ -61,29 +58,13 @@
     if (indexPath.section == self.workflowSteps.count) {
         [self.workflowSteps addObject:@"New workflow step"];
         [tableView reloadData];
+
+        [self.workflowCreationDelegate workflowStepCreated:indexPath.section];
     }
-
-    // Select the newly created step
-    WorkflowStepTableCell *newCell = (WorkflowStepTableCell *) [tableView cellForRowAtIndexPath:indexPath];
-    [newCell.nameTextField becomeFirstResponder];
-    [newCell.nameTextField selectAll:self];
-}
-
-#pragma mark UITextField delegate
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    if (textField.text == nil || [textField.text isEqualToString:@""])
+    else
     {
-        return NO;
+        [self.workflowCreationDelegate workflowStepSelected:indexPath.section];
     }
-    return YES;
 }
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [self.workflowSteps replaceObjectAtIndex:textField.tag withObject:textField.text];
-}
-
 
 @end

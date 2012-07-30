@@ -4,9 +4,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WorkflowCreationDelegate.h"
 
 
-@interface CreateWorkflowViewController : UIViewController
+@interface CreateWorkflowViewController : UIViewController <WorkflowCreationDelegate>
 
 
 @end

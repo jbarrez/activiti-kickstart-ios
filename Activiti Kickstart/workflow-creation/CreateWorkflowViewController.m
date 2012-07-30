@@ -4,9 +4,11 @@
 //
 
 #import <CoreGraphics/CoreGraphics.h>
+#import <QuartzCore/QuartzCore.h>
 #import "CreateWorkflowViewController.h"
 #import "WorkflowStepsTableDelegate.h"
 #import "KickstartRestService.h"
+#import "WorkflowStepNameTextFieldHandler.h"
 
 
 @interface CreateWorkflowViewController ()
@@ -14,11 +16,17 @@
     // Model
     @property (nonatomic, strong) NSMutableArray *workflowSteps;
 
-    // Views
+    // Workflow steps table
     @property (nonatomic, strong) UITableView *workflowStepsTable;
     @property (nonatomic, strong) WorkflowStepsTableDelegate *workflowStepsTableDelegate;
 
     @property (nonatomic, strong) UIButton *launchButton;
+
+    // Task detail
+    @property NSUInteger currentSelectedStepIndex;
+    @property (nonatomic, strong) UIView *taskDetailsView;
+    @property (nonatomic, strong) UITextField *nameTextField;
+    @property (nonatomic, strong) WorkflowStepNameTextFieldHandler *nameTextFieldDelegate;
 
 @end
 
@@ -28,6 +36,10 @@
 @synthesize workflowStepsTable = _workflowStepsTable;
 @synthesize workflowStepsTableDelegate = _workflowStepsTableDelegate;
 @synthesize launchButton = _launchButton;
+@synthesize taskDetailsView = _taskDetailsView;
+@synthesize nameTextField = _nameTextField;
+@synthesize nameTextFieldDelegate = _nameTextFieldDelegate;
+@synthesize currentSelectedStepIndex = _currentSelectedStepIndex;
 
 
 - (id)init
@@ -44,11 +56,17 @@
 {
     [super loadView];
 
-    // Temporary, to check if all is set correctly
+    self.title = @"My Workflow";
     self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 
+    [self createWorkflowStepsTable];
+//    [self createLaunchButton];
+}
+
+- (void)createWorkflowStepsTable
+{
     // Workflow steps table view
-    self.workflowStepsTable = [[UITableView alloc] initWithFrame:CGRectMake(25, 50, 400, 600) style:UITableViewStyleGrouped];
+    self.workflowStepsTable = [[UITableView alloc] initWithFrame:CGRectMake(25, 20, 400, 600) style:UITableViewStyleGrouped];
     self.workflowStepsTable.backgroundColor = [UIColor clearColor];
     self.workflowStepsTable.backgroundView = nil; // Otherwise always gray background on ipad
     self.workflowStepsTable.separatorColor = [UIColor clearColor];
@@ -63,7 +81,47 @@
     self.workflowStepsTable.dataSource = self.workflowStepsTableDelegate;
     self.workflowStepsTable.delegate = self.workflowStepsTableDelegate;
 
-    // Launch button
+    // Set controller as delegate of workflow events originating from table
+    self.workflowStepsTableDelegate.workflowCreationDelegate = self;
+}
+
+- (void)showDetailsForWorkflowStep:(NSUInteger)stepIndex
+{
+    self.currentSelectedStepIndex = stepIndex;
+
+    CGFloat detailX = 450;
+    CGFloat detailY = 25;
+
+    // Background
+    self.taskDetailsView = [[UIView alloc] initWithFrame:CGRectMake(detailX, detailY, 540, 610)];
+    self.taskDetailsView.backgroundColor = [UIColor whiteColor];
+    self.taskDetailsView.layer.cornerRadius = 30.f;
+    self.taskDetailsView.layer.masksToBounds = YES;
+    [self.view addSubview:self.taskDetailsView];
+
+    // Name Label
+    CGFloat margin = 20;
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(detailX + margin, detailY + margin,
+            self.taskDetailsView.frame.size.width - 2*margin, 20)];
+    nameLabel.font = [UIFont systemFontOfSize:18];
+    nameLabel.text = @"Name";
+    [self.view addSubview:nameLabel];
+
+    // Name text field
+    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
+            nameLabel.frame.origin.y + nameLabel.frame.size.height + 4, nameLabel.frame.size.width - margin, 30)];
+    self.nameTextField.text = [self.workflowSteps objectAtIndex:stepIndex];
+    self.nameTextField.borderStyle = UITextBorderStyleRoundedRect;
+
+    self.nameTextFieldDelegate = [[WorkflowStepNameTextFieldHandler alloc] init];
+    self.nameTextField.delegate = self.nameTextFieldDelegate;
+    [self.nameTextField addTarget:self action:@selector(workflowStepNameChanged) forControlEvents:UIControlEventEditingChanged];
+
+    [self.view addSubview:self.nameTextField];
+}
+
+- (void)createLaunchButton
+{
     self.launchButton = [[UIButton alloc] initWithFrame:CGRectMake(450, 300, 100, 100)];
     [self.launchButton setTitle:@"Launch" forState:UIControlStateNormal];
     [self.launchButton addTarget:self action:@selector(launchWorkflow) forControlEvents:UIControlEventTouchUpInside];
@@ -107,6 +165,34 @@
             // TODO: nice error handling
             NSLog(@"Error while deploying workflow: %@", error.localizedDescription);
         }];
+}
+
+#pragma mark WorkflowCreationDelegate
+
+- (void)workflowStepCreated:(NSUInteger)stepIndex
+{
+    // Show task detail view for the selected step
+    [self showDetailsForWorkflowStep:stepIndex];
+
+    // Make the name textfield the first responder
+    [self.nameTextField becomeFirstResponder];
+    [self.nameTextField selectAll:self];
+}
+
+- (void)workflowStepSelected:(NSUInteger)stepIndex
+{
+    // Show task detail view for the selected step
+    [self showDetailsForWorkflowStep:stepIndex];
+}
+
+- (void)workflowStepNameChanged
+{
+    // Update the model
+    [self.workflowSteps replaceObjectAtIndex:self.currentSelectedStepIndex withObject:self.nameTextField.text];
+
+    // Update the name of the workflow step in the steps table
+    [self.workflowStepsTable reloadSections:[NSIndexSet indexSetWithIndex:self.currentSelectedStepIndex]
+            withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

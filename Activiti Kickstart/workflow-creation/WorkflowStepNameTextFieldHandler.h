@@ -5,9 +5,9 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol WorkflowCreationDelegate;
 
-@interface WorkflowStepTableCell : UITableViewCell
 
-    @property (nonatomic, strong) UILabel *nameLabel;
+@interface WorkflowStepNameTextFieldHandler : NSObject <UITextFieldDelegate>
 
 @end

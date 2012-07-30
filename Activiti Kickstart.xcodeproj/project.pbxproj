@@ -21,6 +21,7 @@
 		FEEC7F8015BD94870063D7C5 /* JsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FEEC7F8015BD94870063D7C4 /* JsonUtil.m */; };
 		FEF5D09015C0222200734667 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D08F15C0222200734667 /* Settings.bundle */; };
 		FEF5D09015C0222200734669 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C0222200734668 /* HttpUtil.m */; };
+		FEF5D09015C022220073466C /* WorkflowStepNameTextFieldHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C022220073466B /* WorkflowStepNameTextFieldHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,9 @@
 		FEF5D08F15C0222200734667 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FEF5D09015C0222200734668 /* HttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
 		FEF5D09015C022220073466A /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
+		FEF5D09015C022220073466B /* WorkflowStepNameTextFieldHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkflowStepNameTextFieldHandler.m; sourceTree = "<group>"; };
+		FEF5D09015C022220073466D /* WorkflowStepNameTextFieldHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowStepNameTextFieldHandler.h; sourceTree = "<group>"; };
+		FEF5D09015C022220073466F /* WorkflowCreationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowCreationDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,9 @@
 		FEEC7F8015BD94870063D7B9 /* workflow-creation */ = {
 			isa = PBXGroup;
 			children = (
+				FEF5D09015C022220073466F /* WorkflowCreationDelegate.h */,
+				FEF5D09015C022220073466D /* WorkflowStepNameTextFieldHandler.h */,
+				FEF5D09015C022220073466B /* WorkflowStepNameTextFieldHandler.m */,
 				FEEC7F8015BD94870063D7BC /* WorkflowStepTableCell.h */,
 				FEEC7F8015BD94870063D7BA /* WorkflowStepTableCell.m */,
 				FEEC7F8015BD94870063D7B6 /* WorkflowStepsTableDelegate.m */,
@@ -216,6 +223,7 @@
 				FEEC7F8015BD94870063D7C2 /* KickstartRestService.m in Sources */,
 				FEEC7F8015BD94870063D7C5 /* JsonUtil.m in Sources */,
 				FEF5D09015C0222200734669 /* HttpUtil.m in Sources */,
+				FEF5D09015C022220073466C /* WorkflowStepNameTextFieldHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

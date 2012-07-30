@@ -8,7 +8,8 @@
 
 @implementation WorkflowStepTableCell
 
-@synthesize nameTextField = _nameTextField;
+@synthesize nameLabel = _nameLabel;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -16,14 +17,15 @@
     if (self)
     {
         // Workflow step name
-        self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, self.frame.size.width, 20)];
+        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.frame.size.width, 20)];
     }
     return self;
 }
 
 - (void)layoutSubviews
 {
-    [self.contentView addSubview:self.nameTextField];
+    self.nameLabel.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:self.nameLabel];
 }
 
 

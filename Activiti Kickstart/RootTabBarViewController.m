@@ -10,11 +10,15 @@
 #import "RootTabBarViewController.h"
 #import "CreateWorkflowViewController.h"
 
+#define TAG_HOME 0
+#define TAG_TASKS 1
+#define TAG_CREATE_WORKFLOW 2
+
 @interface RootTabBarViewController ()
 
     @property (nonatomic, strong) UIViewController *homeViewController;
     @property (nonatomic, strong) UIViewController *tasksViewController;
-    @property (nonatomic, strong) CreateWorkflowViewController *createWorkflowViewController;
+    @property (nonatomic, strong) UINavigationController *createWorkflowNavigationController;
 
 @end
 
@@ -22,27 +26,43 @@
 
 @synthesize homeViewController = _homeViewController;
 @synthesize tasksViewController = _tasksViewController;
-@synthesize createWorkflowViewController = _createWorkflowViewController;
+@synthesize createWorkflowNavigationController = _createWorkflowNavigationController;
 
 - (void)loadView
 {
     [super loadView];
 
+    self.delegate = self;
+
+    // Home
     self.homeViewController = [[UIViewController alloc] init];
     self.homeViewController.title = @"Home";
-    self.homeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:nil tag:0];
+    self.homeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:nil tag:TAG_HOME];
 
+    // Tasks
     self.tasksViewController = [[UIViewController alloc] init];
     self.tasksViewController.title = @"Tasks";
-    self.tasksViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tasks" image:nil tag:1];
+    self.tasksViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tasks" image:nil tag:TAG_TASKS];
     self.tasksViewController.tabBarItem.badgeValue = @"4";
 
-    self.createWorkflowViewController = [[CreateWorkflowViewController alloc] init];
-    self.createWorkflowViewController.title = @"Create Workflow";
-    self.createWorkflowViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Create workflow" image:nil tag:2];
+    // Create workflow
+    self.createWorkflowNavigationController = [[UINavigationController alloc] init];
+    self.createWorkflowNavigationController.title = @"Create Workflow";
+    self.createWorkflowNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Create workflow" image:nil tag:TAG_CREATE_WORKFLOW];
+    self.createWorkflowNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 
+    // Configure Tab bar to contain all view controllers
     [self setViewControllers:[NSArray arrayWithObjects:self.homeViewController,
-                    self.tasksViewController, self.createWorkflowViewController, nil] animated:NO];
+                    self.tasksViewController, self.createWorkflowNavigationController, nil] animated:NO];
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if (viewController.tabBarItem.tag == TAG_CREATE_WORKFLOW)
+    {
+        CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] init];
+        [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
