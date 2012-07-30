@@ -6,11 +6,12 @@
 #import <Foundation/Foundation.h>
 
 @protocol WorkflowCreationDelegate;
+@class Workflow;
 
 
 @interface WorkflowStepsTableDelegate : NSObject <UITableViewDelegate, UITableViewDataSource>
 
     @property (nonatomic, weak) id<WorkflowCreationDelegate> workflowCreationDelegate;
-    @property (nonatomic, strong) NSMutableArray *workflowSteps;
+    @property (nonatomic, strong) Workflow *workflow;
 
 @end

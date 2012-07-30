@@ -9,12 +9,14 @@
 #import "WorkflowStepsTableDelegate.h"
 #import "KickstartRestService.h"
 #import "WorkflowStepNameTextFieldHandler.h"
+#import "Workflow.h"
+#import "WorkflowTask.h"
 
 
 @interface CreateWorkflowViewController ()
 
     // Model
-    @property (nonatomic, strong) NSMutableArray *workflowSteps;
+    @property (nonatomic, strong) Workflow *workflow;
 
     // Workflow steps table
     @property (nonatomic, strong) UITableView *workflowStepsTable;
@@ -32,7 +34,8 @@
 
 @implementation CreateWorkflowViewController
 
-@synthesize workflowSteps = _workflowSteps;
+
+@synthesize workflow = _workflow;
 @synthesize workflowStepsTable = _workflowStepsTable;
 @synthesize workflowStepsTableDelegate = _workflowStepsTableDelegate;
 @synthesize launchButton = _launchButton;
@@ -47,7 +50,7 @@
     self = [super init];
     if (self)
     {
-        self.workflowSteps = [[NSMutableArray alloc] init];
+        self.workflow = [[Workflow alloc] init];
     }
     return self;
 }
@@ -77,7 +80,7 @@
 
     // Workflow steps table delegate
     self.workflowStepsTableDelegate = [[WorkflowStepsTableDelegate alloc] init];
-    self.workflowStepsTableDelegate.workflowSteps = self.workflowSteps;
+    self.workflowStepsTableDelegate.workflow = self.workflow;
     self.workflowStepsTable.dataSource = self.workflowStepsTableDelegate;
     self.workflowStepsTable.delegate = self.workflowStepsTableDelegate;
 
@@ -89,35 +92,41 @@
 {
     self.currentSelectedStepIndex = stepIndex;
 
-    CGFloat detailX = 450;
-    CGFloat detailY = 25;
+    // Create view if not yet created
+    if (self.taskDetailsView == nil)
+    {
+        CGFloat detailX = 450;
+        CGFloat detailY = 25;
 
-    // Background
-    self.taskDetailsView = [[UIView alloc] initWithFrame:CGRectMake(detailX, detailY, 540, 610)];
-    self.taskDetailsView.backgroundColor = [UIColor whiteColor];
-    self.taskDetailsView.layer.cornerRadius = 30.f;
-    self.taskDetailsView.layer.masksToBounds = YES;
-    [self.view addSubview:self.taskDetailsView];
+        // Background
+        self.taskDetailsView = [[UIView alloc] initWithFrame:CGRectMake(detailX, detailY, 540, 610)];
+        self.taskDetailsView.backgroundColor = [UIColor whiteColor];
+        self.taskDetailsView.layer.cornerRadius = 30.f;
+        self.taskDetailsView.layer.masksToBounds = YES;
+        [self.view addSubview:self.taskDetailsView];
 
-    // Name Label
-    CGFloat margin = 20;
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(detailX + margin, detailY + margin,
-            self.taskDetailsView.frame.size.width - 2*margin, 20)];
-    nameLabel.font = [UIFont systemFontOfSize:18];
-    nameLabel.text = @"Name";
-    [self.view addSubview:nameLabel];
+        // Name Label
+        CGFloat margin = 20;
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(detailX + margin, detailY + margin,
+                self.taskDetailsView.frame.size.width - 2*margin, 20)];
+        nameLabel.font = [UIFont systemFontOfSize:18];
+        nameLabel.text = @"Name";
+        [self.view addSubview:nameLabel];
 
-    // Name text field
-    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
-            nameLabel.frame.origin.y + nameLabel.frame.size.height + 4, nameLabel.frame.size.width - margin, 30)];
-    self.nameTextField.text = [self.workflowSteps objectAtIndex:stepIndex];
-    self.nameTextField.borderStyle = UITextBorderStyleRoundedRect;
+        // Name text field
+        self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
+                nameLabel.frame.origin.y + nameLabel.frame.size.height + 4, nameLabel.frame.size.width - margin, 30)];
+        self.nameTextField.borderStyle = UITextBorderStyleRoundedRect;
 
-    self.nameTextFieldDelegate = [[WorkflowStepNameTextFieldHandler alloc] init];
-    self.nameTextField.delegate = self.nameTextFieldDelegate;
-    [self.nameTextField addTarget:self action:@selector(workflowStepNameChanged) forControlEvents:UIControlEventEditingChanged];
+        self.nameTextFieldDelegate = [[WorkflowStepNameTextFieldHandler alloc] init];
+        self.nameTextField.delegate = self.nameTextFieldDelegate;
+        [self.nameTextField addTarget:self action:@selector(workflowStepNameChanged) forControlEvents:UIControlEventEditingChanged];
 
-    [self.view addSubview:self.nameTextField];
+        [self.view addSubview:self.nameTextField];
+    }
+
+    // Change to details of selected task
+    self.nameTextField.text = [self.workflow taskAtIndex:stepIndex].name;
 }
 
 - (void)createLaunchButton
@@ -140,9 +149,9 @@
 
     NSMutableArray *tasks = [[NSMutableArray alloc] init];
     [workflowDict setObject:tasks forKey:@"tasks"];
-    for (uint i = 0; i < self.workflowSteps.count; i++)
+    for (uint i = 0; i < self.workflow.tasks.count; i++)
     {
-        NSString *workflowStep = [self.workflowSteps objectAtIndex:i];
+        NSString *workflowStep = [self.workflow.tasks objectAtIndex:i];
         NSMutableDictionary *task = [[NSMutableDictionary alloc] init];
         [task setObject:workflowStep forKey:@"name"];
         [task setObject:@"Test description" forKey:@"description"];
@@ -188,7 +197,8 @@
 - (void)workflowStepNameChanged
 {
     // Update the model
-    [self.workflowSteps replaceObjectAtIndex:self.currentSelectedStepIndex withObject:self.nameTextField.text];
+    WorkflowTask *workflowTask = [self.workflow taskAtIndex:self.currentSelectedStepIndex];
+    workflowTask.name = self.nameTextField.text;
 
     // Update the name of the workflow step in the steps table
     [self.workflowStepsTable reloadSections:[NSIndexSet indexSetWithIndex:self.currentSelectedStepIndex]

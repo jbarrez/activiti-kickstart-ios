@@ -22,6 +22,8 @@
 		FEF5D09015C0222200734667 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D08F15C0222200734667 /* Settings.bundle */; };
 		FEF5D09015C0222200734669 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C0222200734668 /* HttpUtil.m */; };
 		FEF5D09015C022220073466C /* WorkflowStepNameTextFieldHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C022220073466B /* WorkflowStepNameTextFieldHandler.m */; };
+		FEF5D09015C0222200734674 /* Workflow.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C0222200734673 /* Workflow.m */; };
+		FEF5D09015C0222200734677 /* WorkflowTask.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C0222200734676 /* WorkflowTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,10 @@
 		FEF5D09015C022220073466B /* WorkflowStepNameTextFieldHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkflowStepNameTextFieldHandler.m; sourceTree = "<group>"; };
 		FEF5D09015C022220073466D /* WorkflowStepNameTextFieldHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowStepNameTextFieldHandler.h; sourceTree = "<group>"; };
 		FEF5D09015C022220073466F /* WorkflowCreationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowCreationDelegate.h; sourceTree = "<group>"; };
+		FEF5D09015C0222200734673 /* Workflow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workflow.m; sourceTree = "<group>"; };
+		FEF5D09015C0222200734675 /* Workflow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workflow.h; sourceTree = "<group>"; };
+		FEF5D09015C0222200734676 /* WorkflowTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkflowTask.m; sourceTree = "<group>"; };
+		FEF5D09015C0222200734678 /* WorkflowTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowTask.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,10 @@
 		FEEC7F8015BD94870063D7B9 /* workflow-creation */ = {
 			isa = PBXGroup;
 			children = (
+				FEF5D09015C0222200734678 /* WorkflowTask.h */,
+				FEF5D09015C0222200734676 /* WorkflowTask.m */,
+				FEF5D09015C0222200734675 /* Workflow.h */,
+				FEF5D09015C0222200734673 /* Workflow.m */,
 				FEF5D09015C022220073466F /* WorkflowCreationDelegate.h */,
 				FEF5D09015C022220073466D /* WorkflowStepNameTextFieldHandler.h */,
 				FEF5D09015C022220073466B /* WorkflowStepNameTextFieldHandler.m */,
@@ -224,6 +234,8 @@
 				FEEC7F8015BD94870063D7C5 /* JsonUtil.m in Sources */,
 				FEF5D09015C0222200734669 /* HttpUtil.m in Sources */,
 				FEF5D09015C022220073466C /* WorkflowStepNameTextFieldHandler.m in Sources */,
+				FEF5D09015C0222200734674 /* Workflow.m in Sources */,
+				FEF5D09015C0222200734677 /* WorkflowTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
