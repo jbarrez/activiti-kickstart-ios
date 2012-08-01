@@ -14,7 +14,9 @@
 @property (nonatomic, strong) NSArray *tasks;
 
 - (void)addTask:(WorkflowTask *)workflowTask;
+
 - (WorkflowTask *)taskAtIndex:(NSUInteger)index;
 
+- (void)moveTaskFromIndex:(NSUInteger)srcIndex afterTaskAtIndex:(NSUInteger)dstIndex;
 
 @end

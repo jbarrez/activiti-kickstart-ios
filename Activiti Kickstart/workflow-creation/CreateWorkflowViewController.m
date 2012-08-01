@@ -11,6 +11,7 @@
 #import "WorkflowStepNameTextFieldHandler.h"
 #import "Workflow.h"
 #import "WorkflowTask.h"
+#import "WorkflowStepTableCell.h"
 
 
 @interface CreateWorkflowViewController ()
@@ -63,7 +64,6 @@
     self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 
     [self createWorkflowStepsTable];
-//    [self createLaunchButton];
 }
 
 - (void)createWorkflowStepsTable
@@ -76,6 +76,9 @@
     self.workflowStepsTable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.workflowStepsTable.sectionHeaderHeight = 5.0;
     self.workflowStepsTable.sectionFooterHeight = 5.0;
+    self.workflowStepsTable.editing = YES; // Required to see reorder icons
+    self.workflowStepsTable.allowsSelection = YES;
+    self.workflowStepsTable.allowsSelectionDuringEditing = YES;
     [self.view addSubview:self.workflowStepsTable];
 
     // Workflow steps table delegate
@@ -84,8 +87,66 @@
     self.workflowStepsTable.dataSource = self.workflowStepsTableDelegate;
     self.workflowStepsTable.delegate = self.workflowStepsTableDelegate;
 
+    // Swipe gesture recognizer
+    UISwipeGestureRecognizer *leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleWorkflowStepsTableSwipeLeft:)];
+    [leftSwipeRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [self.workflowStepsTable addGestureRecognizer:leftSwipeRecognizer];
+
+    UISwipeGestureRecognizer *rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleWorkflowStepsTableSwipeRight:)];
+    [rightSwipeRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.workflowStepsTable addGestureRecognizer:rightSwipeRecognizer];
+
     // Set controller as delegate of workflow events originating from table
     self.workflowStepsTableDelegate.workflowCreationDelegate = self;
+}
+
+- (void)handleWorkflowStepsTableSwipeRight:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    // Only possible starting from two steps
+    if (self.workflow.tasks.count >= 2)
+    {
+         // Get location of the swipe
+        CGPoint location = [gestureRecognizer locationInView:self.workflowStepsTable];
+
+        // Get the corresponding index path within the table view
+        NSIndexPath *indexPath = [self.workflowStepsTable indexPathForRowAtPoint:location];
+
+        // Check if index path is valid
+        if(indexPath != nil && indexPath.section < self.workflow.tasks.count)
+        {
+            // Update model
+            [self makeTaskParallel:indexPath];
+
+            if (indexPath.section != (self.workflow.tasks.count - 1))
+            {
+                [self makeTaskParallel:[NSIndexPath indexPathForRow:0 inSection:(indexPath.section + 1)]];
+            }
+            else // If it's the last step, make the previous one parallel
+            {
+                [self makeTaskParallel:[NSIndexPath indexPathForRow:0 inSection:(indexPath.section - 1)]];
+            }
+
+            // Reload the table
+            [self.workflowStepsTable reloadData];
+
+        }
+    }
+}
+
+- (void)makeTaskParallel:(NSIndexPath *)indexPath
+{
+    WorkflowTask *task = (WorkflowTask *) [self.workflow.tasks objectAtIndex:indexPath.section];
+    task.startsWithPrevious = YES;
+
+    // Update cell
+    WorkflowStepTableCell *taskCell = (WorkflowStepTableCell *) [self.workflowStepsTable cellForRowAtIndexPath:indexPath];
+    taskCell.indentationLevel = 1;
+    taskCell.indentationWidth = 40;
+}
+
+- (void)handleWorkflowStepsTableSwipeLeft:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    NSLog(@"Swipe Right!");
 }
 
 - (void)showDetailsForWorkflowStep:(NSUInteger)stepIndex

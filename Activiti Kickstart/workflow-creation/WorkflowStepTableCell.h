@@ -8,6 +8,6 @@
 
 @interface WorkflowStepTableCell : UITableViewCell
 
-    @property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *nameLabel;
 
 @end

@@ -1,14 +1,21 @@
-//
 //  Created by Joram Barrez
 //  Copyright (c) 2012 Alfresco. All rights reserved.
 //
 
 #import <CoreGraphics/CoreGraphics.h>
+#import <QuartzCore/QuartzCore.h>
 #import "WorkflowStepTableCell.h"
+
+@interface WorkflowStepTableCell()
+
+@property (nonatomic, strong) UIView *whiteBackground;
+
+@end
 
 @implementation WorkflowStepTableCell
 
 @synthesize nameLabel = _nameLabel;
+@synthesize whiteBackground = _whiteBackground;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -16,16 +23,36 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        // Workflow step name
+        self.editing = YES;
+        self.showsReorderControl = YES;
+
+        // Name
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.frame.size.width, 20)];
+        self.nameLabel.backgroundColor = [UIColor clearColor];
+        [self.contentView addSubview:self.nameLabel];
     }
     return self;
 }
 
 - (void)layoutSubviews
 {
-    self.nameLabel.backgroundColor = [UIColor clearColor];
-    [self.contentView addSubview:self.nameLabel];
+    [super layoutSubviews];
+
+    float indentPoints = self.indentationLevel * self.indentationWidth;
+
+        self.contentView.frame = CGRectMake(
+            indentPoints,
+            self.contentView.frame.origin.y,
+            self.contentView.frame.size.width - indentPoints,
+            self.contentView.frame.size.height
+        );
+
+    self.backgroundView.frame = CGRectMake(
+                    indentPoints,
+                    self.backgroundView.frame.origin.y,
+                    self.backgroundView.frame.size.width - indentPoints,
+                    self.backgroundView.frame.size.height
+                );
 }
 
 

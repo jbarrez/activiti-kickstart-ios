@@ -28,7 +28,6 @@
     return self.workflow.tasks.count + 1;
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
@@ -38,16 +37,17 @@
 {
     static NSString *CellIdentifier = @"Cell";
     WorkflowStepTableCell *cell = (WorkflowStepTableCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
     if (cell == nil)
     {
         cell = [[WorkflowStepTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    if (indexPath.section < self.workflow.tasks.count)
+    if ([self isWorkflowStep:indexPath]) // workflow step
     {
         cell.nameLabel.text = [self.workflow taskAtIndex:indexPath.section].name;
-    } else if (indexPath.section == self.workflow.tasks.count) {
+    }
+    else if ([self isLastCell:indexPath]) // Cell to create new step
+    {
         cell.nameLabel.text = @"Click to create new task";
     }
 
@@ -56,8 +56,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Add a new workflow step
-    if (indexPath.section == self.workflow.tasks.count) {
+    if (![self isWorkflowStep:indexPath]) {
+        // Add a new workflow step
         WorkflowTask *workflowTask = [[WorkflowTask alloc] init];
         workflowTask.name = @"New workflow step";
         [self.workflow addTask:workflowTask];
@@ -70,5 +70,50 @@
         [self.workflowCreationDelegate workflowStepSelected:indexPath.section];
     }
 }
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self isWorkflowStep:indexPath];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self isWorkflowStep:indexPath];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+      toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [self.workflow moveTaskFromIndex:sourceIndexPath.section afterTaskAtIndex:destinationIndexPath.section];
+    [tableView reloadData];
+}
+
+#pragma mark Helper Methods
+
+
+- (BOOL)isWorkflowStep:(NSIndexPath *)indexPath
+{
+    return ![self isLastCell:indexPath];
+}
+
+- (BOOL)isLastCell:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == self.workflow.tasks.count)
+    {
+          return YES;
+    }
+    return NO;
+}
+
 
 @end

@@ -26,4 +26,23 @@
     return [self.tasks objectAtIndex:index];
 }
 
+- (void)moveTaskFromIndex:(NSUInteger)srcIndex afterTaskAtIndex:(NSUInteger)dstIndex;
+{
+    if (srcIndex != dstIndex)
+    {
+        WorkflowTask *srcTask = [self.tasks objectAtIndex:srcIndex];
+
+        if (srcIndex < dstIndex && (dstIndex != self.tasks.count) ) // Moving to the end of row
+        {
+            [((NSMutableArray *)self.tasks) insertObject:srcTask atIndex:(dstIndex + 1)];
+            [((NSMutableArray *)self.tasks) removeObjectAtIndex:srcIndex];
+        }
+        else if (dstIndex != self.tasks.count)// Moving to the front of the row
+        {
+            [((NSMutableArray *)self.tasks) insertObject:srcTask atIndex:dstIndex];
+            [((NSMutableArray *)self.tasks) removeObjectAtIndex:(srcIndex + 1)];
+        }
+    }
+}
+
 @end

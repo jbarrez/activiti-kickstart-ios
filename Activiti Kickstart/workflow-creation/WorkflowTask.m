@@ -10,5 +10,6 @@
 
 @synthesize name = _name;
 @synthesize description = _description;
+@synthesize startsWithPrevious = _startsWithPrevious;
 
 @end
