@@ -106,6 +106,7 @@
       toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     [self.workflow moveTaskFromIndex:sourceIndexPath.section afterTaskAtIndex:destinationIndexPath.section];
+    [self.workflow verifyAndFixTaskConcurrency];
     [tableView reloadData];
 }
 
