@@ -119,7 +119,11 @@
 
             if (indexPath.section != (self.workflow.tasks.count - 1))
             {
-                [self makeTaskParallel:[NSIndexPath indexPathForRow:0 inSection:(indexPath.section + 1)]];
+                // Make the next one concurrent, unless the previous one is concurrent already. Sounds complicated, I know.
+                if (![self.workflow isConcurrentTaskAtIndex:(indexPath.section - 1)])
+                {
+                    [self makeTaskParallel:[NSIndexPath indexPathForRow:0 inSection:(indexPath.section + 1)]];
+                }
             }
             else // If it's the last step, make the previous one parallel
             {
@@ -128,7 +132,6 @@
 
             // Reload the table
             [self.workflowStepsTable reloadData];
-
         }
     }
 }
@@ -136,17 +139,33 @@
 - (void)makeTaskParallel:(NSIndexPath *)indexPath
 {
     WorkflowTask *task = (WorkflowTask *) [self.workflow.tasks objectAtIndex:indexPath.section];
-    task.startsWithPrevious = YES;
-
-    // Update cell
-    WorkflowStepTableCell *taskCell = (WorkflowStepTableCell *) [self.workflowStepsTable cellForRowAtIndexPath:indexPath];
-    taskCell.indentationLevel = 1;
-    taskCell.indentationWidth = 40;
+    task.isConcurrent = YES;
 }
 
 - (void)handleWorkflowStepsTableSwipeLeft:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-    NSLog(@"Swipe Right!");
+         // Get location of the swipe
+        CGPoint location = [gestureRecognizer locationInView:self.workflowStepsTable];
+
+        // Get the corresponding index path within the table view
+        NSIndexPath *indexPath = [self.workflowStepsTable indexPathForRowAtPoint:location];
+
+        // Check if index path is valid
+        if(indexPath != nil && indexPath.section < self.workflow.tasks.count)
+        {
+            // Update model
+            [self makeTaskNormal:indexPath];
+            [self.workflow verifyAndFixTaskConcurrency];
+
+            // Reload the table
+            [self.workflowStepsTable reloadData];
+        }
+}
+
+- (void)makeTaskNormal:(NSIndexPath *)indexPath
+{
+    WorkflowTask *task = (WorkflowTask *) [self.workflow.tasks objectAtIndex:indexPath.section];
+    task.isConcurrent = NO;
 }
 
 - (void)showDetailsForWorkflowStep:(NSUInteger)stepIndex

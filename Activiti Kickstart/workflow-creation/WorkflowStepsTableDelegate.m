@@ -42,9 +42,20 @@
         cell = [[WorkflowStepTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
+    // Common stuff
+    cell.indentationLevel = 0;
+    cell.indentationWidth = 40;
+
+    // Specific stuff
     if ([self isWorkflowStep:indexPath]) // workflow step
     {
-        cell.nameLabel.text = [self.workflow taskAtIndex:indexPath.section].name;
+        WorkflowTask *task = [self.workflow taskAtIndex:indexPath.section];
+        cell.nameLabel.text = task.name;
+
+        if (task.isConcurrent)
+        {
+            cell.indentationLevel = 1;
+        }
     }
     else if ([self isLastCell:indexPath]) // Cell to create new step
     {

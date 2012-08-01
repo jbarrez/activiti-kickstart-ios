@@ -10,6 +10,6 @@
 
     @property (nonatomic, strong) NSString *name;
     @property (nonatomic, strong) NSString *description;
-    @property BOOL startsWithPrevious;
+    @property BOOL isConcurrent;
 
 @end

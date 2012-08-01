@@ -17,6 +17,10 @@
 
 - (WorkflowTask *)taskAtIndex:(NSUInteger)index;
 
+- (BOOL)isConcurrentTaskAtIndex:(NSUInteger)taskIndex;
+
+- (void)verifyAndFixTaskConcurrency;
+
 - (void)moveTaskFromIndex:(NSUInteger)srcIndex afterTaskAtIndex:(NSUInteger)dstIndex;
 
 @end
