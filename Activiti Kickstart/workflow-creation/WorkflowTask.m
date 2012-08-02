@@ -11,5 +11,6 @@
 @synthesize name = _name;
 @synthesize description = _description;
 @synthesize isConcurrent = isConcurrent;
+@synthesize concurrencyType = _concurrencyType;
 
 @end

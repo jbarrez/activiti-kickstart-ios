@@ -30,6 +30,7 @@
     @property (nonatomic, strong) UIView *taskDetailsView;
     @property (nonatomic, strong) UITextField *nameTextField;
     @property (nonatomic, strong) WorkflowStepNameTextFieldHandler *nameTextFieldDelegate;
+    @property (nonatomic, strong) UITextView *descriptionTextView;
 
 @end
 
@@ -44,6 +45,7 @@
 @synthesize nameTextField = _nameTextField;
 @synthesize nameTextFieldDelegate = _nameTextFieldDelegate;
 @synthesize currentSelectedStepIndex = _currentSelectedStepIndex;
+@synthesize descriptionTextView = _descriptionTextView;
 
 
 - (id)init
@@ -131,6 +133,7 @@
             }
 
             // Reload the table
+            [self.workflow verifyAndFixTaskConcurrency];
             [self.workflowStepsTable reloadData];
         }
     }
@@ -196,18 +199,52 @@
         // Name text field
         self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
                 nameLabel.frame.origin.y + nameLabel.frame.size.height + 4, nameLabel.frame.size.width - margin, 30)];
-        self.nameTextField.borderStyle = UITextBorderStyleRoundedRect;
+        self.nameTextField.layer.cornerRadius = 5;
+        self.nameTextField.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
+        self.nameTextField.layer.borderWidth = 1.0;
 
         self.nameTextFieldDelegate = [[WorkflowStepNameTextFieldHandler alloc] init];
         self.nameTextField.delegate = self.nameTextFieldDelegate;
         [self.nameTextField addTarget:self action:@selector(workflowStepNameChanged) forControlEvents:UIControlEventEditingChanged];
 
         [self.view addSubview:self.nameTextField];
+
+        // Description label
+        UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
+                self.nameTextField.frame.origin.y + self.nameTextField.frame.size.height + 10, nameLabel.frame.size.width, 20)];
+        descriptionLabel.font = nameLabel.font;
+        descriptionLabel.text = @"Description";
+        [self.view addSubview:descriptionLabel];
+
+        // Description text view
+        self.descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(descriptionLabel.frame.origin.x,
+                descriptionLabel.frame.origin.y + descriptionLabel.frame.size.height + 4, self.nameTextField.frame.size.width, 80)];
+        self.descriptionTextView.layer.masksToBounds = YES;
+        self.descriptionTextView.layer.cornerRadius = 5;
+        self.descriptionTextView.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
+        self.descriptionTextView.layer.borderWidth = 1.0;
+        self.descriptionTextView.delegate = self;
+        [self.view addSubview:self.descriptionTextView];
+
+        // Form label
+        UILabel *formLabel = [[UILabel alloc] initWithFrame:CGRectMake(descriptionLabel.frame.origin.x,
+                self.descriptionTextView.frame.origin.y + self.descriptionTextView.frame.size.height + 10, nameLabel.frame.size.width, 20)];
+        formLabel.font = nameLabel.font;
+        formLabel.text = @"Form";
+        [self.view addSubview:formLabel];
     }
 
     // Change to details of selected task
     self.nameTextField.text = [self.workflow taskAtIndex:stepIndex].name;
+    self.descriptionTextView.text = [self.workflow taskAtIndex:stepIndex].description;
 }
+
+// Handling of description input field
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    [self.workflow taskAtIndex:self.currentSelectedStepIndex].description = textView.text;
+}
+
 
 - (void)createLaunchButton
 {

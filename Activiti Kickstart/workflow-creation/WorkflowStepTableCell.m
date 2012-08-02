@@ -16,6 +16,7 @@
 
 @synthesize nameLabel = _nameLabel;
 @synthesize whiteBackground = _whiteBackground;
+@synthesize concurrencyType = _concurrencyType;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -40,19 +41,63 @@
 
     float indentPoints = self.indentationLevel * self.indentationWidth;
 
-        self.contentView.frame = CGRectMake(
-            indentPoints,
-            self.contentView.frame.origin.y,
-            self.contentView.frame.size.width - indentPoints,
-            self.contentView.frame.size.height
-        );
+    self.contentView.frame = CGRectMake(
+        indentPoints,
+        self.contentView.frame.origin.y,
+        self.contentView.frame.size.width - indentPoints,
+        self.contentView.frame.size.height
+    );
 
     self.backgroundView.frame = CGRectMake(
-                    indentPoints,
-                    self.backgroundView.frame.origin.y,
-                    self.backgroundView.frame.size.width - indentPoints,
-                    self.backgroundView.frame.size.height
-                );
+        indentPoints,
+        self.backgroundView.frame.origin.y,
+        self.backgroundView.frame.size.width - indentPoints,
+        self.backgroundView.frame.size.height
+    );
+
+    // A bit hacky we need to call this manually ... but it works
+    [self setNeedsDisplay];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+
+    if (self.indentationLevel > 0)
+    {
+        float indentPoints = self.indentationLevel * self.indentationWidth;
+
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetLineWidth(context, 2.0);
+        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+
+        if (self.concurrencyType == CONCURRENCY_TYPE_NORMAL)
+        {
+            CGContextMoveToPoint(context, indentPoints/2, 0);
+            CGContextAddLineToPoint(context, indentPoints/2, 60);
+            CGContextStrokePath(context);
+        }
+        else if (self.concurrencyType == CONCURRENCY_TYPE_FIRST)
+        {
+            CGContextMoveToPoint(context, indentPoints/2, 30);
+            CGContextAddLineToPoint(context, indentPoints/2, 60);
+            CGContextStrokePath(context);
+
+            CGContextMoveToPoint(context, indentPoints/2, 30);
+            CGContextAddLineToPoint(context, indentPoints, 30);
+            CGContextStrokePath(context);
+        }
+        else
+        {
+            CGContextMoveToPoint(context, indentPoints / 2, 0);
+            CGContextAddLineToPoint(context, indentPoints / 2, 30);
+            CGContextStrokePath(context);
+
+            CGContextMoveToPoint(context, indentPoints / 2, 30);
+            CGContextAddLineToPoint(context, indentPoints, 30);
+            CGContextStrokePath(context);
+        }
+    }
 }
 
 

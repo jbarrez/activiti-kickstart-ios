@@ -5,8 +5,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class WorkflowTask;
 
+typedef enum {
+    CONCURRENCY_TYPE_FIRST,
+    CONCURRENCY_TYPE_NORMAL,
+    CONCURRENCY_TYPE_LAST
+} ConcurrencyType;
+
+@class WorkflowTask;
 
 @interface Workflow : NSObject
 
@@ -18,6 +24,8 @@
 - (WorkflowTask *)taskAtIndex:(NSUInteger)index;
 
 - (BOOL)isConcurrentTaskAtIndex:(NSUInteger)taskIndex;
+
+- (ConcurrencyType)concurrencyTypeForTaskAtIndex:(NSUInteger)taskIndex;
 
 - (void)verifyAndFixTaskConcurrency;
 

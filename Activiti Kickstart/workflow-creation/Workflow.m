@@ -28,7 +28,7 @@
 
 - (BOOL)isConcurrentTaskAtIndex:(NSUInteger)taskIndex
 {
-    if (taskIndex > 0 && taskIndex < self.tasks.count)
+    if (taskIndex < self.tasks.count)
     {
         WorkflowTask *task = [self.tasks objectAtIndex:taskIndex];
         return task.isConcurrent;
@@ -36,14 +36,31 @@
     return NO;
 }
 
+- (ConcurrencyType)concurrencyTypeForTaskAtIndex:(NSUInteger)taskIndex
+{
+    if ((taskIndex == 0 && [self isConcurrentTaskAtIndex:taskIndex]) || ![self isConcurrentTaskAtIndex:(taskIndex - 1)])
+    {
+        return CONCURRENCY_TYPE_FIRST;
+    }
+    else if (![self isConcurrentTaskAtIndex:(taskIndex + 1)])
+    {
+        return CONCURRENCY_TYPE_LAST;
+    }
+    else
+    {
+        return CONCURRENCY_TYPE_NORMAL;
+    }
+}
 
 - (void)verifyAndFixTaskConcurrency
 {
-    for (int i = 0; i < self.tasks.count; i++)
+    for (uint i = 0; i < self.tasks.count; i++)
     {
         WorkflowTask *task = [self.tasks objectAtIndex:i];
         if (task.isConcurrent)
         {
+            task.concurrencyType = [self concurrencyTypeForTaskAtIndex:i];
+
             WorkflowTask *previousTask = (i > 0) ? (WorkflowTask *) [self.tasks objectAtIndex:(i-1)] : nil;
             WorkflowTask *nextTask = (i < self.tasks.count - 1) ? (WorkflowTask *) [self.tasks objectAtIndex:(i+1)] : nil;
 

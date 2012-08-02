@@ -4,10 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Workflow.h"
 
 @interface WorkflowStepTableCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *nameLabel;
+@property ConcurrencyType concurrencyType;
 
 @end
