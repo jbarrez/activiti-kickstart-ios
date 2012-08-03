@@ -7,10 +7,17 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
 
+@interface UserView ()
+
+@property UIView *userImageShadowView;
+
+@end
 
 @implementation UserView
 
 @synthesize userPicture = _userPicture;
+@synthesize userImageShadowView = _userImageShadowView;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -18,25 +25,35 @@
     if (self)
     {
         // Can't do shadow and rounding at the same time, so we wrap it in a separate view beneath the image
-        UIView *userImageShadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        userImageShadowView.backgroundColor = [UIColor whiteColor];
-        CGFloat borderWidth = 1.0;
-        userImageShadowView.layer.borderWidth = borderWidth;
-        userImageShadowView.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
-        userImageShadowView.layer.cornerRadius = 10.f;
-        [self addSubview:userImageShadowView];
+        self.userImageShadowView = [[UIView alloc] init];
+        self.userImageShadowView.backgroundColor = [UIColor whiteColor];
+        self.userImageShadowView.layer.borderWidth = 1.0;
+        self.userImageShadowView.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
+        self.userImageShadowView.layer.cornerRadius = 10.f;
+        [self addSubview:self.userImageShadowView];
 
         // User image contains the image
-        self.userPicture = [[UIImageView alloc] initWithFrame:CGRectMake(userImageShadowView.frame.origin.x + borderWidth,
-                userImageShadowView.frame.origin.y + borderWidth,
-                userImageShadowView.frame.size.width - 2*borderWidth,
-                userImageShadowView.frame.size.height - 2*borderWidth)];
+        self.userPicture = [[UIImageView alloc] init];
         [self.userPicture setContentMode:UIViewContentModeScaleToFill];
         [self.userPicture.layer setMasksToBounds:YES];
         [self.userPicture.layer setCornerRadius:10];
         [self addSubview:self.userPicture];
     }
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    self.userImageShadowView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+
+    CGFloat borderWidth = 1.0;
+    self.userPicture.frame = CGRectMake(
+                    self.userImageShadowView.frame.origin.x + borderWidth,
+                    self.userImageShadowView.frame.origin.y + borderWidth,
+                    self.userImageShadowView.frame.size.width - 2*borderWidth,
+                    self.userImageShadowView.frame.size.height - 2*borderWidth);
 }
 
 

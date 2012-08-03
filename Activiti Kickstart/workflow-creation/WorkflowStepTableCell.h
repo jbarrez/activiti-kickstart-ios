@@ -13,5 +13,6 @@
 @property (nonatomic, strong) UserView *userView;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property ConcurrencyType concurrencyType;
+@property BOOL isLastStep;
 
 @end

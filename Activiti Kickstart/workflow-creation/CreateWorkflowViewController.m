@@ -237,7 +237,8 @@
         [self.view addSubview:self.nameTextField];
 
         // User picture
-        UserView *userView = [[UserView alloc] initWithFrame:CGRectMake(self.nameTextField.frame.origin.x + self.nameTextField.frame.size.width + 2*margin,
+        UserView *userView = [[UserView alloc] initWithFrame:CGRectMake(
+                self.nameTextField.frame.origin.x + self.nameTextField.frame.size.width + 2*margin - 5,
                 nameLabel.frame.origin.y - 8, 70, 70)];
         userView.userPicture.image = [UIImage imageNamed:@"joram.jpg"];
         userView.transform = CGAffineTransformMakeRotation(10.0 / 180.0 * M_PI);
@@ -245,7 +246,7 @@
 
         // Paperclip
         UIImageView *paperclipImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paperclip.png"]];
-        paperclipImageView.frame = CGRectMake(906, 19, paperclipImageView.image.size.width, paperclipImageView.image.size.height);
+        paperclipImageView.frame = CGRectMake(900, 19, paperclipImageView.image.size.width, paperclipImageView.image.size.height);
         [self.view addSubview:paperclipImageView];
 
         // Description label

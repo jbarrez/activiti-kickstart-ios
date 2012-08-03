@@ -45,6 +45,7 @@
     if ([self isWorkflowStep:indexPath]) // workflow step
     {
         WorkflowTask *task = [self.workflow taskAtIndex:indexPath.section];
+        cell.isLastStep = NO;
         cell.nameLabel.text = task.name;
         cell.userView.userPicture.image = [UIImage imageNamed:@"joram.jpg"];
 
@@ -59,6 +60,7 @@
     }
     else if ([self isLastCell:indexPath]) // Cell to create new step
     {
+        cell.isLastStep = YES;
         cell.nameLabel.text = @"Tap to create new task";
     }
 

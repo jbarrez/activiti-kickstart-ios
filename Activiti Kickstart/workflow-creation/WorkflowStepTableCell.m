@@ -18,6 +18,7 @@
 @synthesize nameLabel = _nameLabel;
 @synthesize whiteBackground = _whiteBackground;
 @synthesize concurrencyType = _concurrencyType;
+@synthesize isLastStep = _isLastStep;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -44,33 +45,49 @@
 {
     [super layoutSubviews];
 
-//    self.userView.frame = CGRectMake(20, 10, 40, 40);
-
-    self.nameLabel.frame = CGRectMake(80, 15, 220, 30);
-    self.nameLabel.font = [UIFont boldSystemFontOfSize:20];
-    self.nameLabel.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-
-    if (self.indentationLevel > 0)
+    if (self.isLastStep)
     {
+        self.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4];
+        self.userView.hidden = YES;
 
-        float indentPoints = self.indentationLevel * self.indentationWidth;
+        self.nameLabel.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
+        self.nameLabel.font = [UIFont boldSystemFontOfSize:20];
+        self.nameLabel.textAlignment = UITextAlignmentCenter;
+        self.nameLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+    }
+    else
+    {
+        self.backgroundColor = [UIColor whiteColor];
+        self.userView.hidden = NO;
 
-        self.contentView.frame = CGRectMake(
-            indentPoints,
-            self.contentView.frame.origin.y,
-            self.contentView.frame.size.width - indentPoints,
-            self.contentView.frame.size.height
-        );
+        self.nameLabel.frame = CGRectMake(80, 15, 220, 30);
+        self.nameLabel.textAlignment = UITextAlignmentLeft;
+        self.nameLabel.font = [UIFont boldSystemFontOfSize:20];
+        self.nameLabel.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
 
-        self.backgroundView.frame = CGRectMake(
-            indentPoints,
-            self.backgroundView.frame.origin.y,
-            self.backgroundView.frame.size.width - indentPoints/2,
-            self.backgroundView.frame.size.height
-        );
+        if (self.indentationLevel > 0)
+        {
 
-        // A bit hacky we need to call this manually ... but it works
-        [self setNeedsDisplay];
+            float indentPoints = self.indentationLevel * self.indentationWidth;
+
+            self.contentView.frame = CGRectMake(
+                    indentPoints,
+                    self.contentView.frame.origin.y,
+                    self.contentView.frame.size.width - indentPoints,
+                    self.contentView.frame.size.height
+            );
+
+            self.backgroundView.frame = CGRectMake(
+                    indentPoints,
+                    self.backgroundView.frame.origin.y,
+                    self.backgroundView.frame.size.width - indentPoints / 2,
+                    self.backgroundView.frame.size.height
+            );
+
+            // A bit hacky we need to call this manually ... but it works
+            [self setNeedsDisplay];
+        }
+
     }
 }
 
