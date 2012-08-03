@@ -5,6 +5,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
 #import "WorkflowStepTableCell.h"
+#import "UserView.h"
 
 @interface WorkflowStepTableCell()
 
@@ -27,8 +28,12 @@
         self.editing = YES;
         self.showsReorderControl = YES;
 
+        // User picture
+        self.userView = [[UserView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
+        [self.contentView addSubview:self.userView];
+
         // Name
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.frame.size.width, 20)];
+        self.nameLabel = [[UILabel alloc] init];
         self.nameLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:self.nameLabel];
     }
@@ -39,24 +44,34 @@
 {
     [super layoutSubviews];
 
-    float indentPoints = self.indentationLevel * self.indentationWidth;
+//    self.userView.frame = CGRectMake(20, 10, 40, 40);
 
-    self.contentView.frame = CGRectMake(
-        indentPoints,
-        self.contentView.frame.origin.y,
-        self.contentView.frame.size.width - indentPoints,
-        self.contentView.frame.size.height
-    );
+    self.nameLabel.frame = CGRectMake(80, 15, 220, 30);
+    self.nameLabel.font = [UIFont boldSystemFontOfSize:20];
+    self.nameLabel.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
 
-    self.backgroundView.frame = CGRectMake(
-        indentPoints,
-        self.backgroundView.frame.origin.y,
-        self.backgroundView.frame.size.width - indentPoints,
-        self.backgroundView.frame.size.height
-    );
+    if (self.indentationLevel > 0)
+    {
 
-    // A bit hacky we need to call this manually ... but it works
-    [self setNeedsDisplay];
+        float indentPoints = self.indentationLevel * self.indentationWidth;
+
+        self.contentView.frame = CGRectMake(
+            indentPoints,
+            self.contentView.frame.origin.y,
+            self.contentView.frame.size.width - indentPoints,
+            self.contentView.frame.size.height
+        );
+
+        self.backgroundView.frame = CGRectMake(
+            indentPoints,
+            self.backgroundView.frame.origin.y,
+            self.backgroundView.frame.size.width - indentPoints/2,
+            self.backgroundView.frame.size.height
+        );
+
+        // A bit hacky we need to call this manually ... but it works
+        [self setNeedsDisplay];
+    }
 }
 
 - (void)drawRect:(CGRect)rect

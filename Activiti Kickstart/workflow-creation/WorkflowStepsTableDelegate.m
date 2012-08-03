@@ -7,6 +7,7 @@
 #import "WorkflowStepTableCell.h"
 #import "WorkflowCreationDelegate.h"
 #import "WorkflowTask.h"
+#import "UserView.h"
 
 
 @implementation WorkflowStepsTableDelegate
@@ -45,6 +46,7 @@
     {
         WorkflowTask *task = [self.workflow taskAtIndex:indexPath.section];
         cell.nameLabel.text = task.name;
+        cell.userView.userPicture.image = [UIImage imageNamed:@"joram.jpg"];
 
         cell.indentationLevel = 0;
         cell.indentationWidth = 40;

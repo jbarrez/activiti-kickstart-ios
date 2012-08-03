@@ -6,8 +6,11 @@
 #import <Foundation/Foundation.h>
 #import "Workflow.h"
 
+@class UserView;
+
 @interface WorkflowStepTableCell : UITableViewCell
 
+@property (nonatomic, strong) UserView *userView;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property ConcurrencyType concurrencyType;
 

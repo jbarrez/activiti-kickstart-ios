@@ -274,7 +274,7 @@
 
         // Add icon
         UIImage *createFormEntryImage = [UIImage imageNamed:@"add.png"];
-        self.createFormEntryButton = [[UIButton alloc] initWithFrame:CGRectMake(formLabel.frame.origin.x + 455,
+        self.createFormEntryButton = [[UIButton alloc] initWithFrame:CGRectMake(formLabel.frame.origin.x + 475,
                 formLabel.frame.origin.y, createFormEntryImage.size.width, createFormEntryImage.size.height)];
         [self.createFormEntryButton setImage:createFormEntryImage forState:UIControlStateNormal];
         [self.createFormEntryButton addTarget:self action:@selector(createFormEntryButtonTapped) forControlEvents:UIControlEventTouchUpInside];
