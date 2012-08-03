@@ -40,6 +40,7 @@
 @property(nonatomic, strong) UIPopoverController *formPopoverController;
 @property(nonatomic, strong) UITableView *formTable;
 @property(nonatomic, strong) FormTableDelegate *formTableDelegate;
+@property(nonatomic, strong) UILabel *swipeHelpLabel;
 
 @end
 
@@ -61,6 +62,7 @@
 @synthesize formController = _formController;
 @synthesize formTable = _formTable;
 @synthesize formTableDelegate = _formTableDelegate;
+@synthesize swipeHelpLabel = _swipeHelpLabel;
 
 
 - (id)init
@@ -162,22 +164,22 @@
 
 - (void)handleWorkflowStepsTableSwipeLeft:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-         // Get location of the swipe
-        CGPoint location = [gestureRecognizer locationInView:self.workflowStepsTable];
+    // Get location of the swipe
+    CGPoint location = [gestureRecognizer locationInView:self.workflowStepsTable];
 
-        // Get the corresponding index path within the table view
-        NSIndexPath *indexPath = [self.workflowStepsTable indexPathForRowAtPoint:location];
+    // Get the corresponding index path within the table view
+    NSIndexPath *indexPath = [self.workflowStepsTable indexPathForRowAtPoint:location];
 
-        // Check if index path is valid
-        if(indexPath != nil && indexPath.section < self.workflow.tasks.count)
-        {
-            // Update model
-            [self makeTaskNormal:indexPath];
-            [self.workflow verifyAndFixTaskConcurrency];
+    // Check if index path is valid
+    if (indexPath != nil && indexPath.section < self.workflow.tasks.count)
+    {
+        // Update model
+        [self makeTaskNormal:indexPath];
+        [self.workflow verifyAndFixTaskConcurrency];
 
-            // Reload the table
-            [self.workflowStepsTable reloadData];
-        }
+        // Reload the table
+        [self.workflowStepsTable reloadData];
+    }
 }
 
 - (void)makeTaskNormal:(NSIndexPath *)indexPath
@@ -260,6 +262,8 @@
         // Form table
         self.formTable = [[UITableView alloc] initWithFrame:CGRectMake(formLabel.frame.origin.x,
                 formLabel.frame.origin.y + formLabel.frame.size.height + 10, self.nameTextField.frame.size.width, 330) style:UITableViewStylePlain];
+        self.formTable.allowsSelection = NO;
+        self.formTable.editing = YES;
         self.formTable.backgroundColor = [UIColor whiteColor];
         self.formTable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         self.formTable.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;

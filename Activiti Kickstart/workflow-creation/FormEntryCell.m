@@ -19,6 +19,7 @@
     {
         self.nameLabel = [[UILabel alloc] init];
         self.subscriptLabel = [[UILabel alloc] init];
+        self.showsReorderControl = YES;
     }
     return self;
 }
@@ -29,14 +30,14 @@
     [super layoutSubviews];
 
     // Name label
-    self.nameLabel.frame = CGRectMake(5, 5, self.contentView.frame.size.width, 20);
+    self.nameLabel.frame = CGRectMake(10, 5, self.contentView.frame.size.width, 20);
     self.nameLabel.font = [UIFont boldSystemFontOfSize:20];
     self.nameLabel.textColor = [[UIColor grayColor] colorWithAlphaComponent:0.7];
     [self.contentView addSubview:self.nameLabel];
 
     // Subscript label
-    self.subscriptLabel.frame = CGRectMake(5, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height,
-            self.nameLabel.frame.size.width, 20);
+    self.subscriptLabel.frame = CGRectMake(self.nameLabel.frame.origin.x,
+            self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height, self.nameLabel.frame.size.width, 20);
     self.subscriptLabel.font = [UIFont italicSystemFontOfSize:14];
     self.subscriptLabel.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     [self.contentView addSubview:self.subscriptLabel];
