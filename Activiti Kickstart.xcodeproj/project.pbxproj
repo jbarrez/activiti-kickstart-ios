@@ -37,6 +37,8 @@
 		FEF5D09015C022220073469A /* tabbar-tasks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C0222200734699 /* tabbar-tasks@2x.png */; };
 		FEF5D09015C02222007346A0 /* paperclip.png in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C022220073469F /* paperclip.png */; };
 		FEF5D09015C02222007346A2 /* paperclip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A1 /* paperclip@2x.png */; };
+		FEF5D09015C02222007346A4 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A3 /* UserView.m */; };
+		FEF5D09015C02222007346A7 /* joram.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A6 /* joram.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +91,9 @@
 		FEF5D09015C0222200734699 /* tabbar-tasks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-tasks@2x.png"; sourceTree = "<group>"; };
 		FEF5D09015C022220073469F /* paperclip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paperclip.png; sourceTree = "<group>"; };
 		FEF5D09015C02222007346A1 /* paperclip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paperclip@2x.png"; sourceTree = "<group>"; };
+		FEF5D09015C02222007346A3 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
+		FEF5D09015C02222007346A5 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
+		FEF5D09015C02222007346A6 /* joram.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = joram.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +167,8 @@
 		FEEC7F8015BD94870063D7B9 /* workflow-creation */ = {
 			isa = PBXGroup;
 			children = (
+				FEF5D09015C02222007346A5 /* UserView.h */,
+				FEF5D09015C02222007346A3 /* UserView.m */,
 				FEF5D09015C0222200734685 /* FormController.h */,
 				FEF5D09015C0222200734683 /* FormController.m */,
 				FEF5D09015C022220073467E /* FormEntryCell.h */,
@@ -211,6 +218,7 @@
 		FEF5D09015C0222200734686 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				FEF5D09015C02222007346A6 /* joram.jpg */,
 				FEF5D09015C02222007346A1 /* paperclip@2x.png */,
 				FEF5D09015C022220073469F /* paperclip.png */,
 				FEF5D09015C0222200734699 /* tabbar-tasks@2x.png */,
@@ -286,6 +294,7 @@
 				FEF5D09015C022220073469A /* tabbar-tasks@2x.png in Resources */,
 				FEF5D09015C02222007346A0 /* paperclip.png in Resources */,
 				FEF5D09015C02222007346A2 /* paperclip@2x.png in Resources */,
+				FEF5D09015C02222007346A7 /* joram.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +321,7 @@
 				FEF5D09015C022220073467D /* FormEntryCell.m in Sources */,
 				FEF5D09015C0222200734681 /* FormEntry.m in Sources */,
 				FEF5D09015C0222200734684 /* FormController.m in Sources */,
+				FEF5D09015C02222007346A4 /* UserView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

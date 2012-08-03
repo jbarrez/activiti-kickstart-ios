@@ -15,6 +15,7 @@
 #import "FormController.h"
 #import "FormEntry.h"
 #import "FormTableDelegate.h"
+#import "UserView.h"
 
 
 @interface CreateWorkflowViewController ()
@@ -235,9 +236,21 @@
 
         [self.view addSubview:self.nameTextField];
 
+        // User picture
+        UserView *userView = [[UserView alloc] initWithFrame:CGRectMake(self.nameTextField.frame.origin.x + self.nameTextField.frame.size.width + 2*margin,
+                nameLabel.frame.origin.y - 8, 70, 70)];
+        userView.userPicture.image = [UIImage imageNamed:@"joram.jpg"];
+        userView.transform = CGAffineTransformMakeRotation(10.0 / 180.0 * M_PI);
+        [self.view addSubview:userView];
+
+        // Paperclip
+        UIImageView *paperclipImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paperclip.png"]];
+        paperclipImageView.frame = CGRectMake(906, 19, paperclipImageView.image.size.width, paperclipImageView.image.size.height);
+        [self.view addSubview:paperclipImageView];
+
         // Description label
         UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
-                self.nameTextField.frame.origin.y + self.nameTextField.frame.size.height + 10, nameLabel.frame.size.width, 20)];
+                self.nameTextField.frame.origin.y + self.nameTextField.frame.size.height + 10, self.nameTextField.frame.size.width, 20)];
         descriptionLabel.font = nameLabel.font;
         descriptionLabel.text = @"Description";
         [self.view addSubview:descriptionLabel];
