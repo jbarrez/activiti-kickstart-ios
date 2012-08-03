@@ -37,18 +37,18 @@
     // Home
     self.homeViewController = [[UIViewController alloc] init];
     self.homeViewController.title = @"Home";
-    self.homeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:nil tag:TAG_HOME];
+    self.homeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"tabbar-home.png"] tag:TAG_HOME];
 
     // Tasks
     self.tasksViewController = [[UIViewController alloc] init];
     self.tasksViewController.title = @"Tasks";
-    self.tasksViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tasks" image:nil tag:TAG_TASKS];
+    self.tasksViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tasks" image:[UIImage imageNamed:@"tabbar-tasks.png"] tag:TAG_TASKS];
     self.tasksViewController.tabBarItem.badgeValue = @"4";
 
     // Create workflow
     self.createWorkflowNavigationController = [[UINavigationController alloc] init];
     self.createWorkflowNavigationController.title = @"Create Workflow";
-    self.createWorkflowNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Create workflow" image:nil tag:TAG_CREATE_WORKFLOW];
+    self.createWorkflowNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Create workflow" image:[UIImage imageNamed:@"tabbar-add-process.png"] tag:TAG_CREATE_WORKFLOW];
     self.createWorkflowNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 
     // Configure Tab bar to contain all view controllers

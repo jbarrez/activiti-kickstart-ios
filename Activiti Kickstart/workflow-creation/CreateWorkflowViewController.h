@@ -7,7 +7,7 @@
 #import "WorkflowCreationDelegate.h"
 
 
-@interface CreateWorkflowViewController : UIViewController <WorkflowCreationDelegate, UITextViewDelegate>
+@interface CreateWorkflowViewController : UIViewController <WorkflowCreationDelegate, UITextViewDelegate, UIPopoverControllerDelegate>
 
 
 @end

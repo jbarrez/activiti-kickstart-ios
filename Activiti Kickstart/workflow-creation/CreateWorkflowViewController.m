@@ -12,25 +12,34 @@
 #import "Workflow.h"
 #import "WorkflowTask.h"
 #import "WorkflowStepTableCell.h"
+#import "FormController.h"
+#import "FormEntry.h"
+#import "FormTableDelegate.h"
 
 
 @interface CreateWorkflowViewController ()
 
-    // Model
-    @property (nonatomic, strong) Workflow *workflow;
+// Model
+@property(nonatomic, strong) Workflow *workflow;
 
-    // Workflow steps table
-    @property (nonatomic, strong) UITableView *workflowStepsTable;
-    @property (nonatomic, strong) WorkflowStepsTableDelegate *workflowStepsTableDelegate;
+// Workflow steps table
+@property(nonatomic, strong) UITableView *workflowStepsTable;
+@property(nonatomic, strong) WorkflowStepsTableDelegate *workflowStepsTableDelegate;
 
-    @property (nonatomic, strong) UIButton *launchButton;
+@property(nonatomic, strong) UIButton *launchButton;
 
-    // Task detail
-    @property NSUInteger currentSelectedStepIndex;
-    @property (nonatomic, strong) UIView *taskDetailsView;
-    @property (nonatomic, strong) UITextField *nameTextField;
-    @property (nonatomic, strong) WorkflowStepNameTextFieldHandler *nameTextFieldDelegate;
-    @property (nonatomic, strong) UITextView *descriptionTextView;
+// Task detail
+@property NSInteger currentlySelectedIndex;
+@property WorkflowTask *currentlySelectedTask;
+@property(nonatomic, strong) UIView *taskDetailsView;
+@property(nonatomic, strong) UITextField *nameTextField;
+@property(nonatomic, strong) WorkflowStepNameTextFieldHandler *nameTextFieldDelegate;
+@property(nonatomic, strong) UITextView *descriptionTextView;
+@property(nonatomic, strong) UIButton *createFormEntryButton;
+@property(nonatomic, strong) FormController *formController;
+@property(nonatomic, strong) UIPopoverController *formPopoverController;
+@property(nonatomic, strong) UITableView *formTable;
+@property(nonatomic, strong) FormTableDelegate *formTableDelegate;
 
 @end
 
@@ -44,8 +53,14 @@
 @synthesize taskDetailsView = _taskDetailsView;
 @synthesize nameTextField = _nameTextField;
 @synthesize nameTextFieldDelegate = _nameTextFieldDelegate;
-@synthesize currentSelectedStepIndex = _currentSelectedStepIndex;
+@synthesize currentlySelectedIndex = _currentlySelectedIndex;
+@synthesize currentlySelectedTask = _currentlySelectedTask;
 @synthesize descriptionTextView = _descriptionTextView;
+@synthesize createFormEntryButton = _createFormEntryButton;
+@synthesize formPopoverController = _formPopoverController;
+@synthesize formController = _formController;
+@synthesize formTable = _formTable;
+@synthesize formTableDelegate = _formTableDelegate;
 
 
 - (id)init
@@ -173,7 +188,8 @@
 
 - (void)showDetailsForWorkflowStep:(NSUInteger)stepIndex
 {
-    self.currentSelectedStepIndex = stepIndex;
+    self.currentlySelectedIndex = stepIndex;
+    self.currentlySelectedTask = [self.workflow taskAtIndex:stepIndex];
 
     // Create view if not yet created
     if (self.taskDetailsView == nil)
@@ -228,30 +244,76 @@
 
         // Form label
         UILabel *formLabel = [[UILabel alloc] initWithFrame:CGRectMake(descriptionLabel.frame.origin.x,
-                self.descriptionTextView.frame.origin.y + self.descriptionTextView.frame.size.height + 10, nameLabel.frame.size.width, 20)];
+                self.descriptionTextView.frame.origin.y + self.descriptionTextView.frame.size.height + 20, nameLabel.frame.size.width, 20)];
         formLabel.font = nameLabel.font;
         formLabel.text = @"Form";
         [self.view addSubview:formLabel];
+
+        // Add icon
+        UIImage *createFormEntryImage = [UIImage imageNamed:@"add.png"];
+        self.createFormEntryButton = [[UIButton alloc] initWithFrame:CGRectMake(formLabel.frame.origin.x + 455,
+                formLabel.frame.origin.y, createFormEntryImage.size.width, createFormEntryImage.size.height)];
+        [self.createFormEntryButton setImage:createFormEntryImage forState:UIControlStateNormal];
+        [self.createFormEntryButton addTarget:self action:@selector(createFormEntryButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.createFormEntryButton];
+
+        // Form table
+        self.formTable = [[UITableView alloc] initWithFrame:CGRectMake(formLabel.frame.origin.x,
+                formLabel.frame.origin.y + formLabel.frame.size.height + 10, self.nameTextField.frame.size.width, 330) style:UITableViewStylePlain];
+        self.formTable.backgroundColor = [UIColor whiteColor];
+        self.formTable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.formTable.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
+        self.formTable.layer.borderWidth = 1.0;
+        self.formTable.layer.cornerRadius = 5.0;
+        self.formTable.layer.masksToBounds = YES;
+        [self.view addSubview:self.formTable];
+
+        self.formTableDelegate = [[FormTableDelegate alloc] init];
+        self.formTable.dataSource = self.formTableDelegate;
+        self.formTable.delegate = self.formTableDelegate;
     }
 
     // Change to details of selected task
     self.nameTextField.text = [self.workflow taskAtIndex:stepIndex].name;
     self.descriptionTextView.text = [self.workflow taskAtIndex:stepIndex].description;
+    self.formTableDelegate.workflowTask = self.currentlySelectedTask;
+    [self.formTable reloadData];
 }
 
 // Handling of description input field
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    [self.workflow taskAtIndex:self.currentSelectedStepIndex].description = textView.text;
+    self.currentlySelectedTask.description = textView.text;
 }
 
-
-- (void)createLaunchButton
+- (void)createFormEntryButtonTapped
 {
-    self.launchButton = [[UIButton alloc] initWithFrame:CGRectMake(450, 300, 100, 100)];
-    [self.launchButton setTitle:@"Launch" forState:UIControlStateNormal];
-    [self.launchButton addTarget:self action:@selector(launchWorkflow) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.launchButton];
+    self.formController = [[FormController alloc] init];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+         style:UIBarButtonItemStyleBordered target:self action:@selector(saveNewFormEntry)];
+    saveButton.tintColor = [UIColor colorWithRed:0.44 green:0.66 blue:0.99 alpha:0.18];
+    self.formController.navigationItem.rightBarButtonItem = saveButton;
+
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.formController];
+
+    self.formPopoverController = [[UIPopoverController alloc] initWithContentViewController:navigationController];
+    [self.formPopoverController setPopoverContentSize:CGSizeMake(400, 180)];
+
+    [self.formPopoverController presentPopoverFromRect:self.createFormEntryButton.frame
+                          inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+}
+
+- (void)saveNewFormEntry
+{
+    [self.currentlySelectedTask addFormEntry:[self.formController generateFormEntry]];
+    [self.formTable reloadData];
+    [self.formPopoverController dismissPopoverAnimated:YES];
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.formController = nil;
+    self.formPopoverController = nil;
 }
 
 - (void)launchWorkflow
@@ -314,11 +376,10 @@
 - (void)workflowStepNameChanged
 {
     // Update the model
-    WorkflowTask *workflowTask = [self.workflow taskAtIndex:self.currentSelectedStepIndex];
-    workflowTask.name = self.nameTextField.text;
+    self.currentlySelectedTask.name = self.nameTextField.text;
 
     // Update the name of the workflow step in the steps table
-    [self.workflowStepsTable reloadSections:[NSIndexSet indexSetWithIndex:self.currentSelectedStepIndex]
+    [self.workflowStepsTable reloadSections:[NSIndexSet indexSetWithIndex:self.currentlySelectedIndex]
             withRowAnimation:UITableViewRowAnimationFade];
 }
 

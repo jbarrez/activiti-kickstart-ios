@@ -6,7 +6,6 @@
 #import "WorkflowStepsTableDelegate.h"
 #import "WorkflowStepTableCell.h"
 #import "WorkflowCreationDelegate.h"
-#import "Workflow.h"
 #import "WorkflowTask.h"
 
 
@@ -58,7 +57,7 @@
     }
     else if ([self isLastCell:indexPath]) // Cell to create new step
     {
-        cell.nameLabel.text = @"Click to create new task";
+        cell.nameLabel.text = @"Tap to create new task";
     }
 
     return cell;
