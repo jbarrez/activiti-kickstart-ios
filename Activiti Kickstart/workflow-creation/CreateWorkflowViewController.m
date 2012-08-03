@@ -215,11 +215,19 @@
         [self.view addSubview:nameLabel];
 
         // Name text field
-        self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
-                nameLabel.frame.origin.y + nameLabel.frame.size.height + 4, nameLabel.frame.size.width - margin, 30)];
-        self.nameTextField.layer.cornerRadius = 5;
-        self.nameTextField.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
-        self.nameTextField.layer.borderWidth = 1.0;
+
+        UIView *nameTextFieldBg = [[UIView alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
+                        nameLabel.frame.origin.y + nameLabel.frame.size.height + 4, nameLabel.frame.size.width - 100, 30)]; // See http://stackoverflow.com/questions/2694411/text-inset-for-uitextfield
+        nameTextFieldBg.layer.cornerRadius = 5;
+        nameTextFieldBg.layer.masksToBounds = YES;
+        nameTextFieldBg.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
+        nameTextFieldBg.layer.borderWidth = 1.0;
+        [self.view addSubview:nameTextFieldBg];
+
+        self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameTextFieldBg.frame.origin.x + 10,
+                nameTextFieldBg.frame.origin.y, nameTextFieldBg.frame.size.width - 20, nameTextFieldBg.frame.size.height)];
+        self.nameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        self.nameTextField.backgroundColor = [UIColor clearColor];
 
         self.nameTextFieldDelegate = [[WorkflowStepNameTextFieldHandler alloc] init];
         self.nameTextField.delegate = self.nameTextFieldDelegate;
@@ -236,7 +244,7 @@
 
         // Description text view
         self.descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(descriptionLabel.frame.origin.x,
-                descriptionLabel.frame.origin.y + descriptionLabel.frame.size.height + 4, self.nameTextField.frame.size.width, 80)];
+                descriptionLabel.frame.origin.y + descriptionLabel.frame.size.height + 4, nameLabel.frame.size.width, 80)];
         self.descriptionTextView.layer.masksToBounds = YES;
         self.descriptionTextView.layer.cornerRadius = 5;
         self.descriptionTextView.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
@@ -261,7 +269,7 @@
 
         // Form table
         self.formTable = [[UITableView alloc] initWithFrame:CGRectMake(formLabel.frame.origin.x,
-                formLabel.frame.origin.y + formLabel.frame.size.height + 10, self.nameTextField.frame.size.width, 330) style:UITableViewStylePlain];
+                formLabel.frame.origin.y + formLabel.frame.size.height + 10, nameLabel.frame.size.width, 330) style:UITableViewStylePlain];
         self.formTable.allowsSelection = NO;
         self.formTable.editing = YES;
         self.formTable.backgroundColor = [UIColor whiteColor];

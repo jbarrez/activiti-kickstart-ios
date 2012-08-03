@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="252f87b2-0ea4-478d-bc98-cb30a9d0d910" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/paperclip.png" afterPath="$PROJECT_DIR$/resources/paperclip@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/add.png" afterPath="$PROJECT_DIR$/resources/add.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/paperclip.png" afterPath="$PROJECT_DIR$/resources/paperclip.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/tabbar-add-process.png" afterPath="$PROJECT_DIR$/resources/tabbar-add-process.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/tabbar-add-process@2x.png" afterPath="$PROJECT_DIR$/resources/tabbar-add-process@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/tabbar-home.png" afterPath="$PROJECT_DIR$/resources/tabbar-home.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/tabbar-home@2x.png" afterPath="$PROJECT_DIR$/resources/tabbar-home@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/tabbar-tasks.png" afterPath="$PROJECT_DIR$/resources/tabbar-tasks.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/tabbar-tasks@2x.png" afterPath="$PROJECT_DIR$/resources/tabbar-tasks@2x.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Activiti Kickstart.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m" afterPath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m" />
     </list>
     <ignored path="Activiti Kickstart.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +24,19 @@
     <favorites_list name="Activiti Kickstart" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="CreateWorkflowViewController.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="229" column="66" selection-start="9359" selection-end="9359" vertical-scroll-proportion="0.3519914">
+              <folding>
+                <element signature="e#1598#1631#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -131,6 +134,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Activiti Kickstart" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Activiti Kickstart" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frameworks" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UIKit.framework" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Headers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeFrameworkHeadersNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -268,17 +293,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="22" width="2507" height="1418" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32613724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13612352" sideWeight="0.73014647" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13774888" sideWeight="0.73014647" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2698535" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13612352" sideWeight="0.7370856" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13774888" sideWeight="0.7370856" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2698535" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26291442" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26291442" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -344,11 +369,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/WorkflowTask.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="6" selection-start="606" selection-end="606" vertical-scroll-proportion="0.45209903" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="26" selection-start="143" selection-end="165" vertical-scroll-proportion="0.0" />
@@ -433,13 +453,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="314" column="1" selection-start="13832" selection-end="13832" vertical-scroll-proportion="0.4173913">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/paperclip@2x.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -448,6 +461,22 @@
     <entry file="file://$PROJECT_DIR$/resources/paperclip.png">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextField.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="52" selection-start="4804" selection-end="4804" vertical-scroll-proportion="0.3326157">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="229" column="66" selection-start="9359" selection-end="9359" vertical-scroll-proportion="0.3519914">
+          <folding>
+            <element signature="e#1598#1631#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
