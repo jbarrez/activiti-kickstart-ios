@@ -7,9 +7,9 @@
 #import "Workflow.h"
 #import "KickstartRestService.h"
 
-@interface LaunchWorkflowAlertViewDelegate()
+@interface LaunchWorkflowAlertViewDelegate ()
 
-@property (nonatomic, strong) Workflow *workflow;
+@property(nonatomic, strong) Workflow *workflow;
 
 @end
 
@@ -38,15 +38,20 @@
     {
         KickstartRestService *kickstartRestService = [[KickstartRestService alloc] init];
         [kickstartRestService deployWorkflow:[self.workflow generateJson]
-            withCompletionBlock:^(NSDictionary *jsonResponse)
-            {
-                NSLog(@"Deploy done");
-            }
-            withFailureBlock:^(NSError *error)
-            {
-                // TODO: nice error handling
-                NSLog(@"Error while deploying workflow: %@", error.localizedDescription);
-            }];
+                withCompletionBlock:^(NSDictionary *jsonResponse)
+                {
+                    NSLog(@"Deploy done");
+                }
+                   withFailureBlock:^(NSError *error)
+                   {
+                       UIAlertView *errorAlertView = [[UIAlertView alloc]
+                               initWithTitle:@"Something went wrong..."
+                               message:[NSString stringWithFormat:@"Error while deploying workflow: %@", error.localizedDescription]
+                               delegate:nil
+                               cancelButtonTitle:@"OK"
+                               otherButtonTitles:nil];
+                       [errorAlertView show];
+                   }];
     }
 }
 
