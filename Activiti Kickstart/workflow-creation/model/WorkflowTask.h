@@ -15,6 +15,7 @@
 @property(nonatomic, strong) NSString *description;
 @property BOOL isConcurrent;
 @property ConcurrencyType concurrencyType;
+@property (nonatomic, strong) NSString *assignee;
 @property NSMutableArray *formEntries;
 
 - (void)addFormEntry:(FormEntry *)formEntry;

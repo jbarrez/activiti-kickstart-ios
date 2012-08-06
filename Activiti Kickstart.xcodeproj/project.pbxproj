@@ -40,6 +40,14 @@
 		FEF5D09015C02222007346A4 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A3 /* UserView.m */; };
 		FEF5D09015C02222007346A7 /* joram.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A6 /* joram.jpg */; };
 		FEF5D09015C02222007346A9 /* LaunchWorkflowAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */; };
+		FEF5D09015C02222007346AC /* UserSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346AB /* UserSelectionViewController.m */; };
+		FEF5D09015C02222007346AF /* arthur.png in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346AE /* arthur.png */; };
+		FEF5D09015C02222007346B1 /* david.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346B0 /* david.jpg */; };
+		FEF5D09015C02222007346B3 /* fred.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346B2 /* fred.jpg */; };
+		FEF5D09015C02222007346B5 /* john_newton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346B4 /* john_newton.jpg */; };
+		FEF5D09015C02222007346B7 /* paul.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346B6 /* paul.jpg */; };
+		FEF5D09015C02222007346B9 /* tijs.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346B8 /* tijs.jpg */; };
+		FEF5D09015C02222007346BB /* tom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346BA /* tom.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +105,15 @@
 		FEF5D09015C02222007346A6 /* joram.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = joram.jpg; sourceTree = "<group>"; };
 		FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchWorkflowAlertViewDelegate.m; sourceTree = "<group>"; };
 		FEF5D09015C02222007346AA /* LaunchWorkflowAlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchWorkflowAlertViewDelegate.h; sourceTree = "<group>"; };
+		FEF5D09015C02222007346AB /* UserSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSelectionViewController.m; sourceTree = "<group>"; };
+		FEF5D09015C02222007346AD /* UserSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSelectionViewController.h; sourceTree = "<group>"; };
+		FEF5D09015C02222007346AE /* arthur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arthur.png; sourceTree = "<group>"; };
+		FEF5D09015C02222007346B0 /* david.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = david.jpg; sourceTree = "<group>"; };
+		FEF5D09015C02222007346B2 /* fred.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fred.jpg; sourceTree = "<group>"; };
+		FEF5D09015C02222007346B4 /* john_newton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = john_newton.jpg; sourceTree = "<group>"; };
+		FEF5D09015C02222007346B6 /* paul.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = paul.jpg; sourceTree = "<group>"; };
+		FEF5D09015C02222007346B8 /* tijs.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tijs.jpg; sourceTree = "<group>"; };
+		FEF5D09015C02222007346BA /* tom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tom.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +187,8 @@
 		FEEC7F8015BD94870063D7B9 /* workflow-creation */ = {
 			isa = PBXGroup;
 			children = (
+				FEF5D09015C02222007346AD /* UserSelectionViewController.h */,
+				FEF5D09015C02222007346AB /* UserSelectionViewController.m */,
 				FEF5D09015C02222007346AA /* LaunchWorkflowAlertViewDelegate.h */,
 				FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */,
 				FEF5D09015C02222007346A5 /* UserView.h */,
@@ -223,6 +242,13 @@
 		FEF5D09015C0222200734686 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				FEF5D09015C02222007346BA /* tom.jpg */,
+				FEF5D09015C02222007346B8 /* tijs.jpg */,
+				FEF5D09015C02222007346B6 /* paul.jpg */,
+				FEF5D09015C02222007346B4 /* john_newton.jpg */,
+				FEF5D09015C02222007346B2 /* fred.jpg */,
+				FEF5D09015C02222007346B0 /* david.jpg */,
+				FEF5D09015C02222007346AE /* arthur.png */,
 				FEF5D09015C02222007346A6 /* joram.jpg */,
 				FEF5D09015C02222007346A1 /* paperclip@2x.png */,
 				FEF5D09015C022220073469F /* paperclip.png */,
@@ -300,6 +326,13 @@
 				FEF5D09015C02222007346A0 /* paperclip.png in Resources */,
 				FEF5D09015C02222007346A2 /* paperclip@2x.png in Resources */,
 				FEF5D09015C02222007346A7 /* joram.jpg in Resources */,
+				FEF5D09015C02222007346AF /* arthur.png in Resources */,
+				FEF5D09015C02222007346B1 /* david.jpg in Resources */,
+				FEF5D09015C02222007346B3 /* fred.jpg in Resources */,
+				FEF5D09015C02222007346B5 /* john_newton.jpg in Resources */,
+				FEF5D09015C02222007346B7 /* paul.jpg in Resources */,
+				FEF5D09015C02222007346B9 /* tijs.jpg in Resources */,
+				FEF5D09015C02222007346BB /* tom.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +361,7 @@
 				FEF5D09015C0222200734684 /* FormController.m in Sources */,
 				FEF5D09015C02222007346A4 /* UserView.m in Sources */,
 				FEF5D09015C02222007346A9 /* LaunchWorkflowAlertViewDelegate.m in Sources */,
+				FEF5D09015C02222007346AC /* UserSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,8 @@
 @synthesize isConcurrent = isConcurrent;
 @synthesize concurrencyType = _concurrencyType;
 @synthesize formEntries = _formEntries;
+@synthesize assignee = _assignee;
+
 
 - (id)init
 {

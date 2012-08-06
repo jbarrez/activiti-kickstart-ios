@@ -47,7 +47,7 @@
         WorkflowTask *task = [self.workflow taskAtIndex:indexPath.section];
         cell.isLastStep = NO;
         cell.nameLabel.text = task.name;
-        cell.userView.userPicture.image = [UIImage imageNamed:@"joram.jpg"];
+        cell.userView.userPicture.image = [UIImage imageNamed:task.assignee];
 
         cell.indentationLevel = 0;
         cell.indentationWidth = 40;

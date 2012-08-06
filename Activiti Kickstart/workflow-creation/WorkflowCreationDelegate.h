@@ -9,4 +9,6 @@
 
 - (void)workflowStepSelected:(NSUInteger)stepIndex;
 
+- (void)workflowStepUpdated:(NSUInteger)stepIndex;
+
 @end

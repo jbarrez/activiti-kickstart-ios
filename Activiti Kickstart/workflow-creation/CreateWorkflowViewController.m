@@ -17,6 +17,7 @@
 #import "FormTableDelegate.h"
 #import "UserView.h"
 #import "LaunchWorkflowAlertViewDelegate.h"
+#import "UserSelectionViewController.h"
 
 
 @interface CreateWorkflowViewController ()
@@ -35,12 +36,13 @@
 @property NSInteger currentlySelectedIndex;
 @property WorkflowTask *currentlySelectedTask;
 @property(nonatomic, strong) UIView *taskDetailsView;
+@property (nonatomic, strong) UserView *userView;
 @property(nonatomic, strong) UITextField *nameTextField;
 @property(nonatomic, strong) WorkflowStepNameTextFieldHandler *nameTextFieldDelegate;
 @property(nonatomic, strong) UITextView *descriptionTextView;
 @property(nonatomic, strong) UIButton *createFormEntryButton;
 @property(nonatomic, strong) FormController *formController;
-@property(nonatomic, strong) UIPopoverController *formPopoverController;
+@property(nonatomic, strong) UIPopoverController *currentPopoverController;
 @property(nonatomic, strong) UITableView *formTable;
 @property(nonatomic, strong) FormTableDelegate *formTableDelegate;
 @property(nonatomic, strong) UILabel *swipeHelpLabel;
@@ -60,12 +62,13 @@
 @synthesize currentlySelectedTask = _currentlySelectedTask;
 @synthesize descriptionTextView = _descriptionTextView;
 @synthesize createFormEntryButton = _createFormEntryButton;
-@synthesize formPopoverController = _formPopoverController;
+@synthesize currentPopoverController = _formPopoverController;
 @synthesize formController = _formController;
 @synthesize formTable = _formTable;
 @synthesize formTableDelegate = _formTableDelegate;
 @synthesize swipeHelpLabel = _swipeHelpLabel;
 @synthesize launchWorkflowDelegate = _launchWorkflowDelegate;
+@synthesize userView = _userView;
 
 
 - (id)init
@@ -244,12 +247,14 @@
         [self.view addSubview:self.nameTextField];
 
         // User picture
-        UserView *userView = [[UserView alloc] initWithFrame:CGRectMake(
+        self.userView = [[UserView alloc] initWithFrame:CGRectMake(
                 self.nameTextField.frame.origin.x + self.nameTextField.frame.size.width + 2*margin - 5,
                 nameLabel.frame.origin.y - 8, 70, 70)];
-        userView.userPicture.image = [UIImage imageNamed:@"joram.jpg"];
-        userView.transform = CGAffineTransformMakeRotation(10.0 / 180.0 * M_PI);
-        [self.view addSubview:userView];
+        self.userView.transform = CGAffineTransformMakeRotation(10.0 / 180.0 * M_PI);
+        [self.view addSubview:self.userView];
+
+        UIGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userTapped)];
+        [self.userView addGestureRecognizer:userTapRecognizer];
 
         // Paperclip
         UIImageView *paperclipImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paperclip.png"]];
@@ -308,8 +313,9 @@
     }
 
     // Change to details of selected task
-    self.nameTextField.text = [self.workflow taskAtIndex:stepIndex].name;
-    self.descriptionTextView.text = [self.workflow taskAtIndex:stepIndex].description;
+    self.nameTextField.text = self.currentlySelectedTask.name;
+    self.userView.userPicture.image = [UIImage imageNamed:self.currentlySelectedTask.assignee];
+    self.descriptionTextView.text = self.currentlySelectedTask.description;
     self.formTableDelegate.workflowTask = self.currentlySelectedTask;
     [self.formTable reloadData];
 }
@@ -330,10 +336,10 @@
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.formController];
 
-    self.formPopoverController = [[UIPopoverController alloc] initWithContentViewController:navigationController];
-    [self.formPopoverController setPopoverContentSize:CGSizeMake(400, 180)];
+    self.currentPopoverController = [[UIPopoverController alloc] initWithContentViewController:navigationController];
+    [self.currentPopoverController setPopoverContentSize:CGSizeMake(400, 180)];
 
-    [self.formPopoverController presentPopoverFromRect:self.createFormEntryButton.frame
+    [self.currentPopoverController presentPopoverFromRect:self.createFormEntryButton.frame
                           inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
@@ -341,13 +347,28 @@
 {
     [self.currentlySelectedTask addFormEntry:[self.formController generateFormEntry]];
     [self.formTable reloadData];
-    [self.formPopoverController dismissPopoverAnimated:YES];
+    [self.currentPopoverController dismissPopoverAnimated:YES];
 }
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     self.formController = nil;
-    self.formPopoverController = nil;
+    self.currentPopoverController = nil;
+}
+
+- (void)userTapped
+{
+    UserSelectionViewController *userSelectionViewController = [[UserSelectionViewController alloc] init];
+    userSelectionViewController.workflowTaskIndex = self.currentlySelectedIndex;
+    userSelectionViewController.workflowTask = self.currentlySelectedTask;
+    userSelectionViewController.workflowCreationDelegate = self;
+
+    self.currentPopoverController = [[UIPopoverController alloc] initWithContentViewController:userSelectionViewController];
+    [self.currentPopoverController setPopoverContentSize:CGSizeMake(380, 160)];
+    self.currentPopoverController.delegate = self;
+
+    [self.currentPopoverController presentPopoverFromRect:self.userView.frame
+                          inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (void)launchWorkflow
@@ -390,5 +411,20 @@
     [self.workflowStepsTable reloadSections:[NSIndexSet indexSetWithIndex:self.currentlySelectedIndex]
             withRowAnimation:UITableViewRowAnimationFade];
 }
+
+- (void)workflowStepUpdated:(NSUInteger)stepIndex
+{
+    // Close any popover currently showing
+    [self.currentPopoverController dismissPopoverAnimated:YES];
+
+    // Reload the changed workflow step
+    [self.workflowStepsTable reloadRowsAtIndexPaths:
+            [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:stepIndex]]
+            withRowAnimation:UITableViewRowAnimationFade];
+
+    // Reload the task details
+    [self showDetailsForWorkflowStep:stepIndex];
+}
+
 
 @end
