@@ -5,6 +5,7 @@
 
 #import "Workflow.h"
 #import "WorkflowTask.h"
+#import "FormEntry.h"
 
 @implementation Workflow
 
@@ -89,6 +90,55 @@
             [((NSMutableArray *)self.tasks) removeObjectAtIndex:(srcIndex + 1)];
         }
     }
+}
+
+- (NSMutableDictionary *)generateJson
+{
+    NSMutableDictionary *workflowDict = [[NSMutableDictionary alloc] init];
+    [workflowDict setObject:self.name forKey:@"name"];
+
+    NSMutableArray *tasks = [[NSMutableArray alloc] init];
+    [workflowDict setObject:tasks forKey:@"tasks"];
+    for (uint i = 0; i < self.tasks.count; i++)
+    {
+        WorkflowTask *workflowTask = [self.tasks objectAtIndex:i];
+        NSMutableDictionary *taskDict = [[NSMutableDictionary alloc] init];
+        [tasks addObject:taskDict];
+
+        [taskDict setObject:workflowTask.name forKey:@"name"];
+        [taskDict setObject:workflowTask.description forKey:@"description"];
+        [taskDict setObject:(workflowTask.isConcurrent && [self isConcurrentTaskAtIndex:i - 1] ? @"true" : @"false") forKey:@"startWithPrevious"];
+
+        NSMutableArray *formProperties = [[NSMutableArray alloc] init];
+        [taskDict setObject:formProperties forKey:@"form"];
+
+        for (uint j = 0; j < workflowTask.formEntries.count; j++)
+        {
+            FormEntry *formEntry = [workflowTask.formEntries objectAtIndex:j];
+            NSMutableDictionary *formEntryDict = [[NSMutableDictionary alloc] init];
+            [formProperties addObject:formEntryDict];
+
+            [formEntryDict setObject:formEntry.name forKey:@"name"];
+            [formEntryDict setObject:(formEntry.isRequired ? @"true" : @"false") forKey:@"isRequired"];
+            NSString *type = nil;
+            switch (formEntry.type)
+            {
+                case FORM_ENTRY_TYPE_STRING:
+                    type = @"text";
+                    break;
+                case FORM_ENTRY_TYPE_INTEGER:
+                    type = @"number";
+                    break;
+                case FORM_ENTRY_TYPE_DATE:
+                    type = @"date";
+                    break;
+            }
+
+            [formEntryDict setObject:type forKey:@"type"];
+        }
+    }
+
+    return workflowDict;
 }
 
 @end

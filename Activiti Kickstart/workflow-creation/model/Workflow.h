@@ -31,4 +31,6 @@ typedef enum {
 
 - (void)moveTaskFromIndex:(NSUInteger)srcIndex afterTaskAtIndex:(NSUInteger)dstIndex;
 
+- (NSMutableDictionary *)generateJson;
+
 @end

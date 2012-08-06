@@ -16,6 +16,7 @@
 #import "FormEntry.h"
 #import "FormTableDelegate.h"
 #import "UserView.h"
+#import "LaunchWorkflowAlertViewDelegate.h"
 
 
 @interface CreateWorkflowViewController ()
@@ -27,7 +28,8 @@
 @property(nonatomic, strong) UITableView *workflowStepsTable;
 @property(nonatomic, strong) WorkflowStepsTableDelegate *workflowStepsTableDelegate;
 
-@property(nonatomic, strong) UIButton *launchButton;
+// Launching workflow
+@property (nonatomic, strong) LaunchWorkflowAlertViewDelegate *launchWorkflowDelegate;
 
 // Task detail
 @property NSInteger currentlySelectedIndex;
@@ -51,7 +53,6 @@
 @synthesize workflow = _workflow;
 @synthesize workflowStepsTable = _workflowStepsTable;
 @synthesize workflowStepsTableDelegate = _workflowStepsTableDelegate;
-@synthesize launchButton = _launchButton;
 @synthesize taskDetailsView = _taskDetailsView;
 @synthesize nameTextField = _nameTextField;
 @synthesize nameTextFieldDelegate = _nameTextFieldDelegate;
@@ -64,6 +65,7 @@
 @synthesize formTable = _formTable;
 @synthesize formTableDelegate = _formTableDelegate;
 @synthesize swipeHelpLabel = _swipeHelpLabel;
+@synthesize launchWorkflowDelegate = _launchWorkflowDelegate;
 
 
 - (id)init
@@ -80,8 +82,13 @@
 {
     [super loadView];
 
-    self.title = @"My Workflow";
+    self.title = @"New Workflow";
     self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+
+    UIBarButtonItem *launchButton = [[UIBarButtonItem alloc] initWithTitle:@"Launch"
+            style:UIBarButtonItemStyleBordered target:self action:@selector(launchWorkflow)];
+    launchButton.tintColor = [UIColor colorWithRed:0.44 green:0.66 blue:0.99 alpha:0.18];
+    self.navigationItem.rightBarButtonItem = launchButton;
 
     [self createWorkflowStepsTable];
 }
@@ -259,6 +266,7 @@
         // Description text view
         self.descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(descriptionLabel.frame.origin.x,
                 descriptionLabel.frame.origin.y + descriptionLabel.frame.size.height + 4, nameLabel.frame.size.width, 80)];
+        self.descriptionTextView.font = [UIFont systemFontOfSize:14];
         self.descriptionTextView.layer.masksToBounds = YES;
         self.descriptionTextView.layer.cornerRadius = 5;
         self.descriptionTextView.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
@@ -344,41 +352,15 @@
 
 - (void)launchWorkflow
 {
-    // Temporary
-    [self.launchButton setTitle:@"Deploying..." forState:UIControlStateNormal];
-
-    // Create json representation of workflow
-    NSMutableDictionary *workflowDict = [[NSMutableDictionary alloc] init];
-    [workflowDict setObject:@"Test Process from iPad" forKey:@"name"];
-    [workflowDict setObject:@"Test description" forKey:@"description"];
-
-    NSMutableArray *tasks = [[NSMutableArray alloc] init];
-    [workflowDict setObject:tasks forKey:@"tasks"];
-    for (uint i = 0; i < self.workflow.tasks.count; i++)
-    {
-        NSString *workflowStep = [self.workflow.tasks objectAtIndex:i];
-        NSMutableDictionary *task = [[NSMutableDictionary alloc] init];
-        [task setObject:workflowStep forKey:@"name"];
-        [task setObject:@"Test description" forKey:@"description"];
-        [task setObject:@"false" forKey:@"startWithPrevious"];
-
-        [tasks addObject:task];
-    }
-
-    // Call Rest service
-    KickstartRestService *kickstartRestService = [[KickstartRestService alloc] init];
-    __weak CreateWorkflowViewController *weakSelf = self;
-    [kickstartRestService deployWorkflow:workflowDict
-        withCompletionBlock:^(NSDictionary *jsonResponse)
-        {
-            NSLog(@"Deploy done");
-            [weakSelf.launchButton setTitle:@"Launch" forState:UIControlStateNormal];
-        }
-        withFailureBlock:^(NSError *error)
-        {
-            // TODO: nice error handling
-            NSLog(@"Error while deploying workflow: %@", error.localizedDescription);
-        }];
+    // First show UIAlertView to give a name to this workflow
+    self.launchWorkflowDelegate = [[LaunchWorkflowAlertViewDelegate alloc] initWithWorkflow:self.workflow];
+    UIAlertView *launchWorkflowAlertView = [[UIAlertView alloc] initWithTitle:@"Launch workflow"
+                                                                      message:@"How would you like to call this workflow?"
+                                                                     delegate:self.launchWorkflowDelegate
+                                                            cancelButtonTitle:@"Cancel"
+                                                            otherButtonTitles:@"Launch", nil];
+    launchWorkflowAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [launchWorkflowAlertView show];
 }
 
 #pragma mark WorkflowCreationDelegate

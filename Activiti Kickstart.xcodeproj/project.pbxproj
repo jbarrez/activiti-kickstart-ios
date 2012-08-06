@@ -39,6 +39,7 @@
 		FEF5D09015C02222007346A2 /* paperclip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A1 /* paperclip@2x.png */; };
 		FEF5D09015C02222007346A4 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A3 /* UserView.m */; };
 		FEF5D09015C02222007346A7 /* joram.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A6 /* joram.jpg */; };
+		FEF5D09015C02222007346A9 /* LaunchWorkflowAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,8 @@
 		FEF5D09015C02222007346A3 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		FEF5D09015C02222007346A5 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		FEF5D09015C02222007346A6 /* joram.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = joram.jpg; sourceTree = "<group>"; };
+		FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchWorkflowAlertViewDelegate.m; sourceTree = "<group>"; };
+		FEF5D09015C02222007346AA /* LaunchWorkflowAlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchWorkflowAlertViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 		FEEC7F8015BD94870063D7B9 /* workflow-creation */ = {
 			isa = PBXGroup;
 			children = (
+				FEF5D09015C02222007346AA /* LaunchWorkflowAlertViewDelegate.h */,
+				FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */,
 				FEF5D09015C02222007346A5 /* UserView.h */,
 				FEF5D09015C02222007346A3 /* UserView.m */,
 				FEF5D09015C0222200734685 /* FormController.h */,
@@ -322,6 +327,7 @@
 				FEF5D09015C0222200734681 /* FormEntry.m in Sources */,
 				FEF5D09015C0222200734684 /* FormController.m in Sources */,
 				FEF5D09015C02222007346A4 /* UserView.m in Sources */,
+				FEF5D09015C02222007346A9 /* LaunchWorkflowAlertViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
