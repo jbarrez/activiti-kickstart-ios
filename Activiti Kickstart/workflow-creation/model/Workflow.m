@@ -106,7 +106,10 @@
         [tasks addObject:taskDict];
 
         [taskDict setObject:workflowTask.name forKey:@"name"];
-        [taskDict setObject:workflowTask.description forKey:@"description"];
+        if (workflowTask.description != nil)
+        {
+            [taskDict setObject:workflowTask.description forKey:@"description"];
+        }
         [taskDict setObject:(workflowTask.isConcurrent && [self isConcurrentTaskAtIndex:i - 1] ? @"true" : @"false") forKey:@"startWithPrevious"];
 
         NSMutableArray *formProperties = [[NSMutableArray alloc] init];
