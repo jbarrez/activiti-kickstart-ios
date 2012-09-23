@@ -375,6 +375,7 @@
 {
     // First show UIAlertView to give a name to this workflow
     self.launchWorkflowDelegate = [[LaunchWorkflowAlertViewDelegate alloc] initWithWorkflow:self.workflow];
+    self.launchWorkflowDelegate.viewToBlockDuringLaunch = self.view;
     UIAlertView *launchWorkflowAlertView = [[UIAlertView alloc] initWithTitle:@"Launch workflow"
                                                                       message:@"How would you like to call this workflow?"
                                                                      delegate:self.launchWorkflowDelegate

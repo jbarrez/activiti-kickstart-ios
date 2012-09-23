@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		941BE7A822C2A51F37996217 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BEB71E130624FA06BF906 /* MBProgressHUD.m */; };
 		FEEC7F6215BD94870063D7B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6115BD94870063D7B2 /* UIKit.framework */; };
 		FEEC7F6415BD94870063D7B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6315BD94870063D7B2 /* Foundation.framework */; };
 		FEEC7F6615BD94870063D7B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6515BD94870063D7B2 /* CoreGraphics.framework */; };
@@ -51,6 +52,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		941BE048A5A95B846072BB09 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		941BEB71E130624FA06BF906 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FEEC7F5D15BD94870063D7B2 /* Activiti Kickstart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Activiti Kickstart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEEC7F6115BD94870063D7B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FEEC7F6315BD94870063D7B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,6 +133,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		941BE158D2324B7FE1ECA5D0 /* MBProgessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				941BEB71E130624FA06BF906 /* MBProgressHUD.m */,
+				941BE048A5A95B846072BB09 /* MBProgressHUD.h */,
+			);
+			path = MBProgessHUD;
+			sourceTree = "<group>";
+		};
+		941BEB529DA9B07623F4A4C1 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				941BE158D2324B7FE1ECA5D0 /* MBProgessHUD */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
 		FEEC7F5215BD94870063D7B2 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +157,7 @@
 				FEEC7F6015BD94870063D7B2 /* Frameworks */,
 				FEEC7F5E15BD94870063D7B2 /* Products */,
 				FEF5D09015C0222200734686 /* resources */,
+				941BEB529DA9B07623F4A4C1 /* ThirdParty */,
 			);
 			sourceTree = "<group>";
 		};
@@ -362,6 +383,7 @@
 				FEF5D09015C02222007346A4 /* UserView.m in Sources */,
 				FEF5D09015C02222007346A9 /* LaunchWorkflowAlertViewDelegate.m in Sources */,
 				FEF5D09015C02222007346AC /* UserSelectionViewController.m in Sources */,
+				941BE7A822C2A51F37996217 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

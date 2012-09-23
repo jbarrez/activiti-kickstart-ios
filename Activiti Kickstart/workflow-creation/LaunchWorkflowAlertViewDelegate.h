@@ -10,6 +10,8 @@
 
 @interface LaunchWorkflowAlertViewDelegate : NSObject <UIAlertViewDelegate>
 
+@property (nonatomic, retain) UIView *viewToBlockDuringLaunch;
+
 - (id)initWithWorkflow:(Workflow *)workflow;
 
 @end

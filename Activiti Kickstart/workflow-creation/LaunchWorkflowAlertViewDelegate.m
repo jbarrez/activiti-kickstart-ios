@@ -6,6 +6,7 @@
 #import "LaunchWorkflowAlertViewDelegate.h"
 #import "Workflow.h"
 #import "KickstartRestService.h"
+#import "MBProgressHUD.h"
 
 @interface LaunchWorkflowAlertViewDelegate ()
 
@@ -14,7 +15,9 @@
 @end
 
 @implementation LaunchWorkflowAlertViewDelegate
+
 @synthesize workflow = _workflow;
+@synthesize viewToBlockDuringLaunch = _viewToBlockDuringLaunch;
 
 
 - (id)initWithWorkflow:(Workflow *)workflow
@@ -36,22 +39,28 @@
     // Deploy workflow
     if (buttonIndex == 1) // There is only one button, besides the cancel button
     {
+        [MBProgressHUD showHUDAddedTo:self.viewToBlockDuringLaunch animated:YES];
+
+        // Kickstart service is async
         KickstartRestService *kickstartRestService = [[KickstartRestService alloc] init];
         [kickstartRestService deployWorkflow:[self.workflow generateJson]
-                withCompletionBlock:^(NSDictionary *jsonResponse)
-                {
-                    NSLog(@"Deploy done");
-                }
-                   withFailureBlock:^(NSError *error)
-                   {
-                       UIAlertView *errorAlertView = [[UIAlertView alloc]
-                               initWithTitle:@"Something went wrong..."
-                               message:[NSString stringWithFormat:@"Error while deploying workflow: %@", error.localizedDescription]
-                               delegate:nil
-                               cancelButtonTitle:@"OK"
-                               otherButtonTitles:nil];
-                       [errorAlertView show];
-                   }];
+            withCompletionBlock:^(NSDictionary *jsonResponse)
+            {
+                NSLog(@"Process deployment done.");
+                [MBProgressHUD hideHUDForView:self.viewToBlockDuringLaunch animated:YES];
+            }
+            withFailureBlock:^(NSError *error)
+            {
+                [MBProgressHUD hideHUDForView:self.viewToBlockDuringLaunch animated:YES];
+
+                UIAlertView *errorAlertView = [[UIAlertView alloc]
+                    initWithTitle:@"Something went wrong..."
+                    message:[NSString stringWithFormat:@"Error while deploying workflow: %@", error.localizedDescription]
+                    delegate:nil
+                    cancelButtonTitle:@"OK"
+                    otherButtonTitles:nil];
+                [errorAlertView show];
+            }];
     }
 }
 
