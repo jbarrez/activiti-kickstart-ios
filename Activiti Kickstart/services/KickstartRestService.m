@@ -18,6 +18,30 @@
             withFailureBlock:failureBlock];
 }
 
+- (void)retrieveWorkflowsWithCompletionBlock:(HttpCompletionBlock)completionBlock
+                            withFailureBlock:(HttpFailureBlock)failureBlock
+{
+    [HttpUtil executeGET:[self createRestCallFor:@"/workflows"] withCompletionBlock:completionBlock withFailureBlock:failureBlock];
+}
+
+- (void)uploadWorkflowImage:(NSString *)workflowId
+                      image:(NSData *)imageData
+        withCompletionBlock:(HttpCompletionBlock)completionBlock
+           withFailureBlock:(HttpFailureBlock)failureBlock;
+{
+
+    [HttpUtil uploadImageDataWithPostTo:[self createRestCallFor:[NSString stringWithFormat:@"/workflow/%@/image", workflowId]]
+                           withBodyData:imageData withCompletionBlock:completionBlock withFailureBlock:failureBlock];
+}
+
+- (void)retrieveWorkflowImage:(NSString *)workflowId withCompletionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
+{
+//    [HttpUtil executeGET:[self createRestCallFor:[NSString stringWithFormat:@"/workflow/%@/image", workflowId]] withCompletionBlock:completionBlock withFailureBlock:failureBlock];
+    [HttpUtil executeGETAndReturnRawData:[self createRestCallFor:[NSString stringWithFormat:@"/workflow/%@/image", workflowId]]
+                     withCompletionBlock:completionBlock withFailureBlock:failureBlock cacheResult:YES];
+}
+
+
 #pragma mark Helper methods
 
 

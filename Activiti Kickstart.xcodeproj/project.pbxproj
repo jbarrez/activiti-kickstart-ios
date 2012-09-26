@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		941BE709429525707BC8E56B /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BE747044FF358544F40BD /* ProcessViewController.m */; };
 		941BE7A822C2A51F37996217 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BEB71E130624FA06BF906 /* MBProgressHUD.m */; };
 		FEEC7F6215BD94870063D7B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6115BD94870063D7B2 /* UIKit.framework */; };
 		FEEC7F6415BD94870063D7B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6315BD94870063D7B2 /* Foundation.framework */; };
@@ -53,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		941BE048A5A95B846072BB09 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		941BE747044FF358544F40BD /* ProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessViewController.m; sourceTree = "<group>"; };
+		941BE7805C4453F5230C9630 /* ProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessViewController.h; sourceTree = "<group>"; };
 		941BEB71E130624FA06BF906 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FEEC7F5D15BD94870063D7B2 /* Activiti Kickstart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Activiti Kickstart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEEC7F6115BD94870063D7B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -150,6 +153,15 @@
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};
+		941BED8756F1995C94FC7AEE /* process */ = {
+			isa = PBXGroup;
+			children = (
+				941BE7805C4453F5230C9630 /* ProcessViewController.h */,
+				941BE747044FF358544F40BD /* ProcessViewController.m */,
+			);
+			path = process;
+			sourceTree = "<group>";
+		};
 		FEEC7F5215BD94870063D7B2 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +201,7 @@
 				FEEC7F6815BD94870063D7B2 /* Supporting Files */,
 				FEEC7F8015BD94870063D7B9 /* workflow-creation */,
 				FEEC7F8015BD94870063D7BD /* services */,
+				941BED8756F1995C94FC7AEE /* process */,
 			);
 			path = "Activiti Kickstart";
 			sourceTree = "<group>";
@@ -384,6 +397,7 @@
 				FEF5D09015C02222007346A9 /* LaunchWorkflowAlertViewDelegate.m in Sources */,
 				FEF5D09015C02222007346AC /* UserSelectionViewController.m in Sources */,
 				941BE7A822C2A51F37996217 /* MBProgressHUD.m in Sources */,
+				941BE709429525707BC8E56B /* ProcessViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

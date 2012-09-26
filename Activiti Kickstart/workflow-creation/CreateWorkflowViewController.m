@@ -85,7 +85,7 @@
 {
     [super loadView];
 
-    self.title = @"New Workflow";
+    self.title = @"Create Workflow";
     self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 
     UIBarButtonItem *launchButton = [[UIBarButtonItem alloc] initWithTitle:@"Launch"
@@ -373,6 +373,13 @@
 
 - (void)launchWorkflow
 {
+    // A screenshot will be taken. So we select the first step always for consistency
+    if ([self.workflowStepsTable numberOfRowsInSection:0] > 0)
+    {
+        [self.workflowStepsTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                             animated:NO scrollPosition:UITableViewScrollPositionTop];
+    }
+
     // First show UIAlertView to give a name to this workflow
     self.launchWorkflowDelegate = [[LaunchWorkflowAlertViewDelegate alloc] initWithWorkflow:self.workflow];
     self.launchWorkflowDelegate.viewToBlockDuringLaunch = self.view;

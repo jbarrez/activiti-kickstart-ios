@@ -9,16 +9,19 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "RootTabBarViewController.h"
 #import "CreateWorkflowViewController.h"
+#import "ProcessViewController.h"
 
 #define TAG_HOME 0
-#define TAG_TASKS 1
+#define TAG_PROCESSES 1
 #define TAG_CREATE_WORKFLOW 2
 
 @interface RootTabBarViewController ()
 
     @property (nonatomic, strong) UIViewController *homeViewController;
-    @property (nonatomic, strong) UIViewController *tasksViewController;
+    @property (nonatomic, strong) UINavigationController *tasksViewController;
     @property (nonatomic, strong) UINavigationController *createWorkflowNavigationController;
+
+    @property (nonatomic) NSInteger activeTabTag;
 
 @end
 
@@ -40,14 +43,12 @@
     self.homeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"tabbar-home.png"] tag:TAG_HOME];
 
     // Tasks
-    self.tasksViewController = [[UIViewController alloc] init];
-    self.tasksViewController.title = @"Tasks";
-    self.tasksViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Tasks" image:[UIImage imageNamed:@"tabbar-tasks.png"] tag:TAG_TASKS];
-    self.tasksViewController.tabBarItem.badgeValue = @"4";
+    self.tasksViewController = [[UINavigationController alloc] init];
+    self.tasksViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Workflows" image:[UIImage imageNamed:@"tabbar-tasks.png"] tag:TAG_PROCESSES];
+    self.tasksViewController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 
     // Create workflow
     self.createWorkflowNavigationController = [[UINavigationController alloc] init];
-    self.createWorkflowNavigationController.title = @"Create Workflow";
     self.createWorkflowNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Create workflow" image:[UIImage imageNamed:@"tabbar-add-process.png"] tag:TAG_CREATE_WORKFLOW];
     self.createWorkflowNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 
@@ -58,10 +59,21 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    if (viewController.tabBarItem.tag == TAG_CREATE_WORKFLOW)
+    NSInteger tag = viewController.tabBarItem.tag;
+    if (self.activeTabTag != tag)
     {
-        CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] init];
-        [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
+        if (tag == TAG_CREATE_WORKFLOW)
+        {
+            CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] init];
+            [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
+        }
+        else if (tag == TAG_PROCESSES)
+        {
+            ProcessViewController *processViewController = [[ProcessViewController alloc] init];
+            [self.tasksViewController pushViewController:processViewController animated:NO];
+        }
+
+        self.activeTabTag = tag;
     }
 }
 

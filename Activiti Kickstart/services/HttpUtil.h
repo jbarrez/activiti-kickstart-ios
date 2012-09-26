@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^HttpCompletionBlock)(NSDictionary *jsonResponse);
+typedef void (^HttpCompletionBlock)(id jsonResponse);
 typedef void (^HttpFailureBlock)(NSError *error);
 
 @interface HttpUtil : NSObject
@@ -14,11 +14,23 @@ typedef void (^HttpFailureBlock)(NSError *error);
         withCompletionBlock:(HttpCompletionBlock)completionBlock
         withFailureBlock:(HttpFailureBlock)failureBlock;
 
++ (void)uploadImageDataWithPostTo:(NSURL *)url withBodyData:(NSData *)bodyData
+              withCompletionBlock:(HttpCompletionBlock)completionBlock
+                 withFailureBlock:(HttpFailureBlock)failureBlock;
+
++ (void)executeGET:(NSURL *)url withCompletionBlock:(HttpCompletionBlock)completionBlock
+  withFailureBlock:(HttpFailureBlock)failureBlock;
+
++ (void)executeGETAndReturnRawData:(NSURL *)url
+                   withCompletionBlock:(HttpCompletionBlock)completionBlock
+                      withFailureBlock:(HttpFailureBlock)failureBlock
+                           cacheResult:(BOOL)cacheResult;
 @end
 
 @interface BlockBasedURLConnectionDataDelegate : NSObject<NSURLConnectionDataDelegate>
 
 @property (nonatomic, strong) HttpCompletionBlock completionBlock;
 @property (nonatomic, strong) HttpFailureBlock failureBlock;
+@property (nonatomic) BOOL parseToJson;
 
 @end

@@ -12,4 +12,16 @@
   withCompletionBlock:(HttpCompletionBlock)completionBlock
        withFailureBlock:(HttpFailureBlock)failureBlock;
 
+- (void)retrieveWorkflowsWithCompletionBlock:(HttpCompletionBlock)completionBlock
+                                 withFailureBlock:(HttpFailureBlock)failureBlock;
+
+- (void)uploadWorkflowImage:(NSString *)workflowId
+                      image:(NSData *)imageData
+        withCompletionBlock:(HttpCompletionBlock)completionBlock
+           withFailureBlock:(HttpFailureBlock)failureBlock;
+
+- (void)retrieveWorkflowImage:(NSString *)workflowId
+                   withCompletionBlock:(HttpCompletionBlock)completionBlock
+                      withFailureBlock:(HttpFailureBlock)failureBlock;
+
 @end
