@@ -81,6 +81,24 @@
     [connection start];
 }
 
++ (void)executeDELETE:(NSURL *)url withCompletionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:60];
+    [request setHTTPMethod:@"DELETE"];
+
+    BlockBasedURLConnectionDataDelegate *delegate = [[BlockBasedURLConnectionDataDelegate alloc] init];
+    delegate.completionBlock = completionBlock;
+    delegate.failureBlock = failureBlock;
+
+    NSLog(@"Executing HTTP DELETE to %@", url);
+
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:delegate];
+    [connection start];
+}
+
+
 + (void)executeGETAndReturnRawData:(NSURL *)url
                    withCompletionBlock:(HttpCompletionBlock)completionBlock
                       withFailureBlock:(HttpFailureBlock)failureBlock

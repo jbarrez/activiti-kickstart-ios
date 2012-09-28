@@ -65,16 +65,18 @@
         if (tag == TAG_CREATE_WORKFLOW)
         {
             CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] init];
+            [self.createWorkflowNavigationController popViewControllerAnimated:NO];
             [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
         }
         else if (tag == TAG_PROCESSES)
         {
             ProcessViewController *processViewController = [[ProcessViewController alloc] init];
+            [self.tasksViewController popViewControllerAnimated:NO];
             [self.tasksViewController pushViewController:processViewController animated:NO];
         }
 
-        self.activeTabTag = tag;
     }
+    self.activeTabTag = tag;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

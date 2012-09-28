@@ -24,6 +24,16 @@
     [HttpUtil executeGET:[self createRestCallFor:@"/workflows"] withCompletionBlock:completionBlock withFailureBlock:failureBlock];
 }
 
+- (void)retrieveWorkflowInfo:(NSString *)workflowId completionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
+{
+    [HttpUtil executeGET:[self createRestCallFor:[NSString stringWithFormat:@"/workflow/%@", workflowId]] withCompletionBlock:completionBlock withFailureBlock:failureBlock];
+}
+
+- (void)deleteWorkflow:(NSString *)workflowId completionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
+{
+    [HttpUtil executeDELETE:[self createRestCallFor:[NSString stringWithFormat:@"/workflow/%@", workflowId]] withCompletionBlock:completionBlock withFailureBlock:failureBlock];
+}
+
 - (void)uploadWorkflowImage:(NSString *)workflowId
                       image:(NSData *)imageData
         withCompletionBlock:(HttpCompletionBlock)completionBlock

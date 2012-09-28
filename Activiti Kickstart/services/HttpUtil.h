@@ -21,6 +21,9 @@ typedef void (^HttpFailureBlock)(NSError *error);
 + (void)executeGET:(NSURL *)url withCompletionBlock:(HttpCompletionBlock)completionBlock
   withFailureBlock:(HttpFailureBlock)failureBlock;
 
++ (void)executeDELETE:(NSURL *)url withCompletionBlock:(HttpCompletionBlock)completionBlock
+  withFailureBlock:(HttpFailureBlock)failureBlock;
+
 + (void)executeGETAndReturnRawData:(NSURL *)url
                    withCompletionBlock:(HttpCompletionBlock)completionBlock
                       withFailureBlock:(HttpFailureBlock)failureBlock

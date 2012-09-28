@@ -8,8 +8,7 @@
 #import "Workflow.h"
 #import "KickstartRestService.h"
 #import "MBProgressHUD.h"
-
-#define SCREENSHOT_FILE_NAME @"screenshot.png"
+#import "CreateWorkflowViewController.h"
 
 @interface LaunchWorkflowAlertViewDelegate ()
 
@@ -18,9 +17,6 @@
 @end
 
 @implementation LaunchWorkflowAlertViewDelegate
-
-@synthesize workflow = _workflow;
-@synthesize viewToBlockDuringLaunch = _viewToBlockDuringLaunch;
 
 
 - (id)initWithWorkflow:(Workflow *)workflow
@@ -42,11 +38,12 @@
     if (buttonIndex == 1) // There is only one button, besides the cancel button
     {
         // Set workflow name
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewToBlockDuringLaunch animated:YES];
-        hud.labelText = @"Deploying process";
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.createWorkflowViewController.view animated:YES];
 
         UITextField *textField = [alertView textFieldAtIndex:0];
         self.workflow.name = textField.text;
+        self.createWorkflowViewController.title = self.workflow.name;
+        hud.labelText = [NSString stringWithFormat:@"Deploying %@", self.workflow.name];
 
         // Kickstart service is async
         KickstartRestService *kickstartRestService = [[KickstartRestService alloc] init];
@@ -60,18 +57,18 @@
                 KickstartRestService *innerService = [[KickstartRestService alloc] init];
                 [innerService uploadWorkflowImage:workflowId image:screenshotData withCompletionBlock:^(id response)
                 {
-                    [MBProgressHUD hideHUDForView:self.viewToBlockDuringLaunch animated:YES];
+                    [MBProgressHUD hideHUDForView:self.createWorkflowViewController.view animated:YES];
                 }
-                                 withFailureBlock:^(NSError *error)
-                                 {
-                                     NSLog(@"Couldn't upload image: %@", error.localizedDescription);
-                                     [MBProgressHUD hideHUDForView:self.viewToBlockDuringLaunch animated:YES];
-                                 }];
+                withFailureBlock:^(NSError *error)
+                {
+                    NSLog(@"Couldn't upload image: %@", error.localizedDescription);
+                    [MBProgressHUD hideHUDForView:self.createWorkflowViewController.view animated:YES];
+                }];
 
             }
             withFailureBlock:^(NSError *error)
             {
-                [MBProgressHUD hideHUDForView:self.viewToBlockDuringLaunch animated:YES];
+                [MBProgressHUD hideHUDForView:self.createWorkflowViewController.view animated:YES];
 
                 UIAlertView *errorAlertView = [[UIAlertView alloc]
                     initWithTitle:@"Something went wrong..."
@@ -87,10 +84,10 @@
 - (NSData *)takeScreenshot
 {
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(self.viewToBlockDuringLaunch.window.bounds.size, NO, [UIScreen mainScreen].scale);
+        UIGraphicsBeginImageContextWithOptions(self.createWorkflowViewController.view.window.bounds.size, NO, [UIScreen mainScreen].scale);
     else
-        UIGraphicsBeginImageContext(self.viewToBlockDuringLaunch.window.bounds.size);
-    [self.viewToBlockDuringLaunch.window.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIGraphicsBeginImageContext(self.createWorkflowViewController.view.window.bounds.size);
+    [self.createWorkflowViewController.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *portraitImage = UIGraphicsGetImageFromCurrentImageContext();
 
     // Hack: screenshot is taken in portrait mode, but we assume we're always in landscape

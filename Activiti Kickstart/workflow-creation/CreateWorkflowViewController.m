@@ -373,7 +373,7 @@
 
 - (void)launchWorkflow
 {
-    // A screenshot will be taken. So we select the first step always for consistency
+    // A screenshot will be taken. So we select the first step always for consistent screenshots
     if ([self.workflowStepsTable numberOfRowsInSection:0] > 0)
     {
         [self.workflowStepsTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
@@ -382,7 +382,7 @@
 
     // First show UIAlertView to give a name to this workflow
     self.launchWorkflowDelegate = [[LaunchWorkflowAlertViewDelegate alloc] initWithWorkflow:self.workflow];
-    self.launchWorkflowDelegate.viewToBlockDuringLaunch = self.view;
+    self.launchWorkflowDelegate.createWorkflowViewController = self;
     UIAlertView *launchWorkflowAlertView = [[UIAlertView alloc] initWithTitle:@"Launch workflow"
                                                                       message:@"How would you like to call this workflow?"
                                                                      delegate:self.launchWorkflowDelegate

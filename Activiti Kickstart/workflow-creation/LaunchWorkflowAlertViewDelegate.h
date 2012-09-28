@@ -6,11 +6,12 @@
 #import <Foundation/Foundation.h>
 
 @class Workflow;
+@class CreateWorkflowViewController;
 
 
 @interface LaunchWorkflowAlertViewDelegate : NSObject <UIAlertViewDelegate>
 
-@property (nonatomic, retain) UIView *viewToBlockDuringLaunch;
+@property (nonatomic, weak) CreateWorkflowViewController *createWorkflowViewController;
 
 - (id)initWithWorkflow:(Workflow *)workflow;
 

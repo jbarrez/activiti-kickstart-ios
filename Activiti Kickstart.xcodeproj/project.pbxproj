@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		941BE4804CDB0734B3BAE3C1 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 941BE6269785EFE662AE5891 /* trash.png */; };
+		941BE4FB7C205A2E9E7ABDAD /* UIActionSheet+BlockExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BE754052AABC6C6CBACD6 /* UIActionSheet+BlockExtensions.m */; };
+		941BE537DBE3435D049F24D1 /* trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 941BEEB9C556A8109A9C5341 /* trash@2x.png */; };
 		941BE709429525707BC8E56B /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BE747044FF358544F40BD /* ProcessViewController.m */; };
 		941BE7A822C2A51F37996217 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BEB71E130624FA06BF906 /* MBProgressHUD.m */; };
+		941BEF90BECEFDC651B969B5 /* UIAlertView+BlockExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BE0658516051FCFE74B1F /* UIAlertView+BlockExtensions.m */; };
 		FEEC7F6215BD94870063D7B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6115BD94870063D7B2 /* UIKit.framework */; };
 		FEEC7F6415BD94870063D7B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6315BD94870063D7B2 /* Foundation.framework */; };
 		FEEC7F6615BD94870063D7B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6515BD94870063D7B2 /* CoreGraphics.framework */; };
@@ -54,9 +58,15 @@
 
 /* Begin PBXFileReference section */
 		941BE048A5A95B846072BB09 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		941BE0658516051FCFE74B1F /* UIAlertView+BlockExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+BlockExtensions.m"; sourceTree = "<group>"; };
+		941BE5AA8ADDA35F74AD5678 /* UIActionSheet+BlockExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+BlockExtensions.h"; sourceTree = "<group>"; };
+		941BE6269785EFE662AE5891 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		941BE747044FF358544F40BD /* ProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessViewController.m; sourceTree = "<group>"; };
+		941BE754052AABC6C6CBACD6 /* UIActionSheet+BlockExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+BlockExtensions.m"; sourceTree = "<group>"; };
 		941BE7805C4453F5230C9630 /* ProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessViewController.h; sourceTree = "<group>"; };
 		941BEB71E130624FA06BF906 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		941BEDBEB85B9BB27CB01428 /* UIAlertView+BlockExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+BlockExtensions.h"; sourceTree = "<group>"; };
+		941BEEB9C556A8109A9C5341 /* trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash@2x.png"; sourceTree = "<group>"; };
 		FEEC7F5D15BD94870063D7B2 /* Activiti Kickstart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Activiti Kickstart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEEC7F6115BD94870063D7B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FEEC7F6315BD94870063D7B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,15 +159,27 @@
 			isa = PBXGroup;
 			children = (
 				941BE158D2324B7FE1ECA5D0 /* MBProgessHUD */,
+				941BED685F99B2955E9CA894 /* BlockExtensions */,
 			);
 			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		941BED685F99B2955E9CA894 /* BlockExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				941BE0658516051FCFE74B1F /* UIAlertView+BlockExtensions.m */,
+				941BEDBEB85B9BB27CB01428 /* UIAlertView+BlockExtensions.h */,
+				941BE754052AABC6C6CBACD6 /* UIActionSheet+BlockExtensions.m */,
+				941BE5AA8ADDA35F74AD5678 /* UIActionSheet+BlockExtensions.h */,
+			);
+			path = BlockExtensions;
 			sourceTree = "<group>";
 		};
 		941BED8756F1995C94FC7AEE /* process */ = {
 			isa = PBXGroup;
 			children = (
-				941BE7805C4453F5230C9630 /* ProcessViewController.h */,
 				941BE747044FF358544F40BD /* ProcessViewController.m */,
+				941BE7805C4453F5230C9630 /* ProcessViewController.h */,
 			);
 			path = process;
 			sourceTree = "<group>";
@@ -276,6 +298,8 @@
 		FEF5D09015C0222200734686 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				941BEEB9C556A8109A9C5341 /* trash@2x.png */,
+				941BE6269785EFE662AE5891 /* trash.png */,
 				FEF5D09015C02222007346BA /* tom.jpg */,
 				FEF5D09015C02222007346B8 /* tijs.jpg */,
 				FEF5D09015C02222007346B6 /* paul.jpg */,
@@ -367,6 +391,8 @@
 				FEF5D09015C02222007346B7 /* paul.jpg in Resources */,
 				FEF5D09015C02222007346B9 /* tijs.jpg in Resources */,
 				FEF5D09015C02222007346BB /* tom.jpg in Resources */,
+				941BE4804CDB0734B3BAE3C1 /* trash.png in Resources */,
+				941BE537DBE3435D049F24D1 /* trash@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +424,8 @@
 				FEF5D09015C02222007346AC /* UserSelectionViewController.m in Sources */,
 				941BE7A822C2A51F37996217 /* MBProgressHUD.m in Sources */,
 				941BE709429525707BC8E56B /* ProcessViewController.m in Sources */,
+				941BE4FB7C205A2E9E7ABDAD /* UIActionSheet+BlockExtensions.m in Sources */,
+				941BEF90BECEFDC651B969B5 /* UIAlertView+BlockExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
