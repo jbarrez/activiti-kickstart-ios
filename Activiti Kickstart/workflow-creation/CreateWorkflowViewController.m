@@ -81,14 +81,11 @@
     return self;
 }
 
-- (id)initWithWorkflow:(Workflow *)workflow
+- (void)editWorkflow:(Workflow *)workflow
 {
-    self = [super init];
-    if (self)
-    {
-        self.workflow = workflow;
-    }
-    return self;
+    self.workflow = workflow;
+    self.workflowStepsTableDelegate.workflow = workflow;
+    [self.workflowStepsTable reloadData];
 }
 
 - (void)loadView

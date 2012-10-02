@@ -19,8 +19,8 @@
 @interface RootTabBarViewController ()
 
     @property (nonatomic, strong) UIViewController *homeViewController;
-    @property (nonatomic, strong) UINavigationController *tasksViewController;
-    @property (nonatomic, strong) UINavigationController *createWorkflowNavigationController;
+    @property (nonatomic, strong) ProcessViewController *processesOverviewController;
+    @property (nonatomic, strong) CreateWorkflowViewController *createWorkflowController;
 
     @property (nonatomic) NSInteger activeTabTag;
 
@@ -29,8 +29,8 @@
 @implementation RootTabBarViewController
 
 @synthesize homeViewController = _homeViewController;
-@synthesize tasksViewController = _tasksViewController;
-@synthesize createWorkflowNavigationController = _createWorkflowNavigationController;
+@synthesize processesOverviewController = _processesOverviewController;
+@synthesize createWorkflowController = _createWorkflowController;
 
 - (void)loadView
 {
@@ -44,40 +44,20 @@
     self.homeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"tabbar-home.png"] tag:TAG_HOME];
 
     // Tasks
-    self.tasksViewController = [[UINavigationController alloc] init];
-    self.tasksViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Workflows" image:[UIImage imageNamed:@"tabbar-tasks.png"] tag:TAG_PROCESSES];
-    self.tasksViewController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.processesOverviewController = [[ProcessViewController alloc] init];
+    self.processesOverviewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Workflows" image:[UIImage imageNamed:@"tabbar-tasks.png"] tag:TAG_PROCESSES];
 
     // Create workflow
-    self.createWorkflowNavigationController = [[UINavigationController alloc] init];
-    self.createWorkflowNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Create workflow" image:[UIImage imageNamed:@"tabbar-add-process.png"] tag:TAG_CREATE_WORKFLOW];
-    self.createWorkflowNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.createWorkflowController = [[CreateWorkflowViewController alloc] init];
+    self.createWorkflowController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Create workflow" image:[UIImage imageNamed:@"tabbar-add-process.png"] tag:TAG_CREATE_WORKFLOW];
+
+    // Need to wrap the view controller in a navigation controller to show the buttons
+    UINavigationController *createWorkflowNavigationController = [[UINavigationController alloc] initWithRootViewController:self.createWorkflowController];
+    createWorkflowNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 
     // Configure Tab bar to contain all view controllers
     [self setViewControllers:[NSArray arrayWithObjects:self.homeViewController,
-                    self.tasksViewController, self.createWorkflowNavigationController, nil] animated:NO];
-}
-
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-    NSInteger tag = viewController.tabBarItem.tag;
-    if (self.activeTabTag != tag)
-    {
-        if (tag == TAG_CREATE_WORKFLOW)
-        {
-            CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] init];
-            [self.createWorkflowNavigationController popViewControllerAnimated:NO];
-            [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
-        }
-        else if (tag == TAG_PROCESSES)
-        {
-            ProcessViewController *processViewController = [[ProcessViewController alloc] init];
-            [self.tasksViewController popViewControllerAnimated:NO];
-            [self.tasksViewController pushViewController:processViewController animated:NO];
-        }
-
-    }
-    self.activeTabTag = tag;
+                                                       self.processesOverviewController, createWorkflowNavigationController, nil] animated:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -108,9 +88,10 @@
     [self setSelectedIndex:TAG_CREATE_WORKFLOW];
 
     // Push new view controller
-    CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] initWithWorkflow:workflow];
-    [self.createWorkflowNavigationController popViewControllerAnimated:NO];
-    [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
+//    CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] initWithWorkflow:workflow];
+//    [self.createWorkflowNavigationController popViewControllerAnimated:NO];
+//    [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
+    [self.createWorkflowController editWorkflow:workflow];
 }
 
 @end

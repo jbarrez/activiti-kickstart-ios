@@ -349,6 +349,7 @@
         withCompletionBlock:^ (NSDictionary *json)
         {
             Workflow *workflow = [[Workflow alloc] initWithJson:json];
+            [workflow verifyAndFixTaskConcurrency];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
 
             // Show createWorkflowViewController with this workflow

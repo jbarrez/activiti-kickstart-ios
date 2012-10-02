@@ -10,6 +10,6 @@
 
 @interface CreateWorkflowViewController : UIViewController <WorkflowCreationDelegate, UITextViewDelegate, UIPopoverControllerDelegate>
 
-- (id)initWithWorkflow:(Workflow *)workflow;
+- (void)editWorkflow:(Workflow *)workflow;
 
 @end
