@@ -81,6 +81,16 @@
     return self;
 }
 
+- (id)initWithWorkflow:(Workflow *)workflow
+{
+    self = [super init];
+    if (self)
+    {
+        self.workflow = workflow;
+    }
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];

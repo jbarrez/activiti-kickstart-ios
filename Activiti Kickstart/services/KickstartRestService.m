@@ -46,10 +46,16 @@
 
 - (void)retrieveWorkflowImage:(NSString *)workflowId withCompletionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
 {
-//    [HttpUtil executeGET:[self createRestCallFor:[NSString stringWithFormat:@"/workflow/%@/image", workflowId]] withCompletionBlock:completionBlock withFailureBlock:failureBlock];
     [HttpUtil executeGETAndReturnRawData:[self createRestCallFor:[NSString stringWithFormat:@"/workflow/%@/image", workflowId]]
                      withCompletionBlock:completionBlock withFailureBlock:failureBlock cacheResult:YES];
 }
+
+- (void)retrieveWorkflowJson:(NSString *)workflowId withCompletionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
+{
+    [HttpUtil executeGET:[self createRestCallFor:[NSString stringWithFormat:@"/workflow/%@/metadata/json-source", workflowId]]
+                     withCompletionBlock:completionBlock withFailureBlock:failureBlock];
+}
+
 
 
 #pragma mark Helper methods

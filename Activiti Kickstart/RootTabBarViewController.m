@@ -10,6 +10,7 @@
 #import "RootTabBarViewController.h"
 #import "CreateWorkflowViewController.h"
 #import "ProcessViewController.h"
+#import "Workflow.h"
 
 #define TAG_HOME 0
 #define TAG_PROCESSES 1
@@ -82,6 +83,34 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
+}
+
+#pragma mark NSNotification handling
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWorkflowCreationNotification:) name:@"showWorkflowCreation" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)handleWorkflowCreationNotification:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    Workflow *workflow = [userInfo valueForKey:@"workflow"];
+
+    // Switch selected tab
+    [self setSelectedIndex:TAG_CREATE_WORKFLOW];
+
+    // Push new view controller
+    CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] initWithWorkflow:workflow];
+    [self.createWorkflowNavigationController popViewControllerAnimated:NO];
+    [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
 }
 
 @end

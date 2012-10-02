@@ -17,7 +17,9 @@ typedef enum {
 @interface Workflow : NSObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSArray *tasks;
+@property (nonatomic, strong) NSMutableArray *tasks;
+
+- (id)initWithJson:(NSDictionary *)jsonDictionary;
 
 - (void)addTask:(WorkflowTask *)workflowTask;
 
@@ -31,6 +33,6 @@ typedef enum {
 
 - (void)moveTaskFromIndex:(NSUInteger)srcIndex afterTaskAtIndex:(NSUInteger)dstIndex;
 
-- (NSMutableDictionary *)generateJson;
+- (NSMutableDictionary *)toJson;
 
 @end

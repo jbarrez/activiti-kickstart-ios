@@ -7,6 +7,9 @@
 #import "WorkflowTask.h"
 #import "FormEntry.h"
 
+#define WORKFLOW_NAME @"name"
+#define WORKFLOW_TASKS @"tasks"
+
 @implementation Workflow
 
 @synthesize name = _name;
@@ -19,7 +22,7 @@
         self.tasks = [[NSMutableArray alloc] init];
     }
 
-    [((NSMutableArray *)self.tasks) addObject:workflowTask];
+    [self.tasks addObject:workflowTask];
 }
 
 - (WorkflowTask *)taskAtIndex:(NSUInteger)index
@@ -81,64 +84,48 @@
 
         if (srcIndex < dstIndex && (dstIndex != self.tasks.count) ) // Moving to the end of row
         {
-            [((NSMutableArray *)self.tasks) insertObject:srcTask atIndex:(dstIndex + 1)];
-            [((NSMutableArray *)self.tasks) removeObjectAtIndex:srcIndex];
+            [self.tasks insertObject:srcTask atIndex:(dstIndex + 1)];
+            [self.tasks removeObjectAtIndex:srcIndex];
         }
         else if (dstIndex != self.tasks.count)// Moving to the front of the row
         {
-            [((NSMutableArray *)self.tasks) insertObject:srcTask atIndex:dstIndex];
-            [((NSMutableArray *)self.tasks) removeObjectAtIndex:(srcIndex + 1)];
+            [self.tasks insertObject:srcTask atIndex:dstIndex];
+            [self.tasks removeObjectAtIndex:(srcIndex + 1)];
         }
     }
 }
 
-- (NSMutableDictionary *)generateJson
+- (id)initWithJson:(NSDictionary *)json
+{
+    self = [super init];
+    if (self)
+    {
+        self.name = [json valueForKey:WORKFLOW_NAME];
+
+        NSArray *jsonTasks = [json valueForKey:WORKFLOW_TASKS];
+        self.tasks = [NSMutableArray array];
+        if (jsonTasks != nil && jsonTasks.count > 0)
+        {
+            for (NSDictionary *jsonTask in jsonTasks)
+            {
+                [self.tasks addObject:[[WorkflowTask alloc] initWithJson:jsonTask]];
+            }
+        }
+    }
+    return self;
+}
+
+- (NSMutableDictionary *)toJson
 {
     NSMutableDictionary *workflowDict = [[NSMutableDictionary alloc] init];
-    [workflowDict setObject:self.name forKey:@"name"];
+    [workflowDict setObject:self.name forKey:WORKFLOW_NAME];
 
     NSMutableArray *tasks = [[NSMutableArray alloc] init];
-    [workflowDict setObject:tasks forKey:@"tasks"];
+    [workflowDict setObject:tasks forKey:WORKFLOW_TASKS];
     for (uint i = 0; i < self.tasks.count; i++)
     {
         WorkflowTask *workflowTask = [self.tasks objectAtIndex:i];
-        NSMutableDictionary *taskDict = [[NSMutableDictionary alloc] init];
-        [tasks addObject:taskDict];
-
-        [taskDict setObject:workflowTask.name forKey:@"name"];
-        if (workflowTask.description != nil)
-        {
-            [taskDict setObject:workflowTask.description forKey:@"description"];
-        }
-        [taskDict setObject:(workflowTask.isConcurrent && [self isConcurrentTaskAtIndex:i - 1] ? @"true" : @"false") forKey:@"startWithPrevious"];
-
-        NSMutableArray *formProperties = [[NSMutableArray alloc] init];
-        [taskDict setObject:formProperties forKey:@"form"];
-
-        for (uint j = 0; j < workflowTask.formEntries.count; j++)
-        {
-            FormEntry *formEntry = [workflowTask.formEntries objectAtIndex:j];
-            NSMutableDictionary *formEntryDict = [[NSMutableDictionary alloc] init];
-            [formProperties addObject:formEntryDict];
-
-            [formEntryDict setObject:formEntry.name forKey:@"name"];
-            [formEntryDict setObject:(formEntry.isRequired ? @"true" : @"false") forKey:@"isRequired"];
-            NSString *type = nil;
-            switch (formEntry.type)
-            {
-                case FORM_ENTRY_TYPE_STRING:
-                    type = @"text";
-                    break;
-                case FORM_ENTRY_TYPE_INTEGER:
-                    type = @"number";
-                    break;
-                case FORM_ENTRY_TYPE_DATE:
-                    type = @"date";
-                    break;
-            }
-
-            [formEntryDict setObject:type forKey:@"type"];
-        }
+        [tasks addObject:[workflowTask toJson]];
     }
 
     return workflowDict;

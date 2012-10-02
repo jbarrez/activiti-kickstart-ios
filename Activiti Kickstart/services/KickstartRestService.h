@@ -30,4 +30,8 @@
                    withCompletionBlock:(HttpCompletionBlock)completionBlock
                       withFailureBlock:(HttpFailureBlock)failureBlock;
 
+- (void)retrieveWorkflowJson:(NSString *)workflowId
+         withCompletionBlock:(HttpCompletionBlock)completionBlock
+            withFailureBlock:(HttpFailureBlock)failureBlock;
+
 @end

@@ -6,8 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "WorkflowCreationDelegate.h"
 
+@class Workflow;
 
 @interface CreateWorkflowViewController : UIViewController <WorkflowCreationDelegate, UITextViewDelegate, UIPopoverControllerDelegate>
 
+- (id)initWithWorkflow:(Workflow *)workflow;
 
 @end

@@ -28,6 +28,8 @@
 #import "KickstartRestService.h"
 #import "MBProgressHUD.h"
 #import "UIAlertView+BlockExtensions.h"
+#import "Workflow.h"
+#import "CreateWorkflowViewController.h"
 
 #define CELL_HEIGHT 60.0
 
@@ -36,7 +38,7 @@
 @property (nonatomic, strong) NSArray *workflows;
 @property (nonatomic, strong) UITableView *workflowTable;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
-@property (nonatomic, strong) UIImageView *previewImageView;
+@property (nonatomic, strong) UIButton *editButton;
 @property (nonatomic, strong) UIView *previewBackground;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
@@ -75,9 +77,10 @@
     self.previewBackground.layer.cornerRadius = 10;
     [self.view addSubview:self.previewBackground];
 
-    self.previewImageView = [[UIImageView alloc] init];
-    self.previewImageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view addSubview:self.previewImageView];
+    self.editButton = [[UIButton alloc] init];
+    self.editButton.contentMode = UIViewContentModeScaleAspectFit;
+    [self.editButton addTarget:self action:@selector(editButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.editButton];
 
     // Name label
     self.nameLabel = [[UILabel alloc] init];
@@ -120,7 +123,7 @@
     self.selectedWorkflow = nil;
     self.dateLabel.text = nil;
     self.nameLabel.text = nil;
-    self.previewImageView.image = nil;
+    [self.editButton setImage:nil forState:UIControlStateNormal];
     self.trashButton.hidden = YES;
 
     // Fetch workflows
@@ -148,7 +151,7 @@
 
     // Preview image
     CGRect previewImageFrame = CGRectMake(workflowTableFrame.origin.x + workflowTableFrame.size.width + 60.0, 137, 500.0, 375);
-    self.previewImageView.frame = previewImageFrame;
+    self.editButton.frame = previewImageFrame;
 
     // Preview background
     CGFloat previewMarginX = 30.0;
@@ -246,7 +249,7 @@
             {
                 [self.hud hide:NO];
             }
-            self.hud = [MBProgressHUD showHUDAddedTo:self.previewImageView animated:YES];
+            self.hud = [MBProgressHUD showHUDAddedTo:self.editButton animated:YES];
 
             // Switch details label
             self.selectedWorkflow = [self.workflows objectAtIndex:indexPath.row];
@@ -264,7 +267,7 @@
                 withCompletionBlock:^ (NSData *data)
                 {
                     UIImage *image = [[UIImage alloc] initWithData:data];
-                    self.previewImageView.image = image;
+                    [self.editButton setImage:image forState:UIControlStateNormal];
                     [self.hud hide:YES];
                     self.hud = nil;
                 }
@@ -334,6 +337,28 @@
                 }
             } cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure", nil];
     [alertView show];
+}
+
+#pragma mark Button targets
+
+- (void)editButtonTapped
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    KickstartRestService *kickstartRestService = [[KickstartRestService alloc] init];
+    [kickstartRestService retrieveWorkflowJson:[self.selectedWorkflow valueForKey:@"id"]
+        withCompletionBlock:^ (NSDictionary *json)
+        {
+            Workflow *workflow = [[Workflow alloc] initWithJson:json];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+            // Show createWorkflowViewController with this workflow
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"showWorkflowCreation" object:nil userInfo:[NSDictionary dictionaryWithObject:workflow forKey:@"workflow"]];
+        }
+        withFailureBlock:^ (NSError *error)
+        {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self showAlert:[NSString stringWithFormat:@"Error while retrieving workflow: %@", error.localizedDescription]];
+        }];
 }
 
 #pragma mark Helpers

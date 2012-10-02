@@ -47,7 +47,7 @@
 
         // Kickstart service is async
         KickstartRestService *kickstartRestService = [[KickstartRestService alloc] init];
-        [kickstartRestService deployWorkflow:[self.workflow generateJson]
+        [kickstartRestService deployWorkflow:[self.workflow toJson]
             withCompletionBlock:^(NSDictionary *response)
             {
                 NSString *workflowId = [response valueForKey:@"id"];

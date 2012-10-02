@@ -18,4 +18,7 @@ typedef enum
 @property FormEntryType type;
 @property BOOL isRequired;
 
+- (id)initWithJson:(NSDictionary *)json;
+- (NSDictionary *)toJson;
+
 @end

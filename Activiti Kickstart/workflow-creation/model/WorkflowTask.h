@@ -18,8 +18,11 @@
 @property (nonatomic, strong) NSString *assignee;
 @property NSMutableArray *formEntries;
 
-- (void)addFormEntry:(FormEntry *)formEntry;
+- (id)initWithJson:(NSDictionary *)json;
 
+- (void)addFormEntry:(FormEntry *)formEntry;
 - (FormEntry *)formEntryAt:(NSInteger)index;
+
+- (NSDictionary *)toJson;
 
 @end
