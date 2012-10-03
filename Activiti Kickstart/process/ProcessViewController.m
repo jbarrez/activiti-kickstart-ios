@@ -29,7 +29,6 @@
 #import "MBProgressHUD.h"
 #import "UIAlertView+BlockExtensions.h"
 #import "Workflow.h"
-#import "CreateWorkflowViewController.h"
 
 #define CELL_HEIGHT 60.0
 
@@ -78,6 +77,7 @@
     [self.view addSubview:self.previewBackground];
 
     self.editButton = [[UIButton alloc] init];
+    self.editButton.enabled = NO;
     self.editButton.contentMode = UIViewContentModeScaleAspectFit;
     [self.editButton addTarget:self action:@selector(editButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.editButton];
@@ -134,7 +134,7 @@
         [self.workflowTable reloadData];
         [self calculateFrames];
         [hud hide:NO];
-    } withFailureBlock:^(NSError *error)
+    } withFailureBlock:^(NSError *error, NSInteger statusCode)
     {
         [hud hide:NO];
         [self showAlert:[NSString stringWithFormat:@"Error while retrieving workflows: %@", error.localizedDescription]];
@@ -255,6 +255,7 @@
             self.selectedWorkflow = [self.workflows objectAtIndex:indexPath.row];
             self.nameLabel.text = [self.selectedWorkflow valueForKey:@"name"];
             self.trashButton.hidden = NO;
+            self.editButton.enabled = YES;
 
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"dd MMMM yyyy HH:mm"];
@@ -271,7 +272,7 @@
                     [self.hud hide:YES];
                     self.hud = nil;
                 }
-                withFailureBlock:^ (NSError *error)
+                withFailureBlock:^ (NSError *error, NSInteger statusCode)
                 {
                     NSLog(@"Could not retrieve workflow image: %@", error.localizedDescription);
                     [self.hud hide:YES];
@@ -301,7 +302,7 @@
         // Show warning
         [self showWorkflowDeletionAlertView:workflowId nrOfInstances:numberOfRuntimeInstances];
     }
-    withFailureBlock:^(NSError *error)
+    withFailureBlock:^(NSError *error, NSInteger statusCode)
     {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self showAlert:[NSString stringWithFormat:@"Error while retrieving workflow: %@", error.localizedDescription]];
@@ -329,7 +330,7 @@
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self loadWorkflows];
                     }
-                    withFailureBlock:^(NSError *error)
+                    withFailureBlock:^(NSError *error, NSInteger statusCode)
                     {
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self showAlert:[NSString stringWithFormat:@"Error while removing workflow: %@", error.localizedDescription]];
@@ -349,13 +350,12 @@
         withCompletionBlock:^ (NSDictionary *json)
         {
             Workflow *workflow = [[Workflow alloc] initWithJson:json];
-            [workflow verifyAndFixTaskConcurrency];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
 
             // Show createWorkflowViewController with this workflow
             [[NSNotificationCenter defaultCenter] postNotificationName:@"showWorkflowCreation" object:nil userInfo:[NSDictionary dictionaryWithObject:workflow forKey:@"workflow"]];
         }
-        withFailureBlock:^ (NSError *error)
+        withFailureBlock:^ (NSError *error, NSInteger statusCode)
         {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self showAlert:[NSString stringWithFormat:@"Error while retrieving workflow: %@", error.localizedDescription]];

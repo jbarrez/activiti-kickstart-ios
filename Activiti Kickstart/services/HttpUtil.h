@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 typedef void (^HttpCompletionBlock)(id jsonResponse);
-typedef void (^HttpFailureBlock)(NSError *error);
+typedef void (^HttpFailureBlock)(NSError *error, NSInteger statusCode);
 
 @interface HttpUtil : NSObject
 

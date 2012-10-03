@@ -105,7 +105,6 @@
                            cacheResult:(BOOL)cacheResult
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-//         cachePolicy:(cacheResult) ? NSURLRequestReturnCacheDataDontLoad : NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
         cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
     [request setHTTPMethod:@"GET"];
 
@@ -160,7 +159,7 @@
 {
     if (self.failureBlock != nil)
     {
-        self.failureBlock(error);
+        self.failureBlock(error, 0);
     }
 }
 
@@ -169,7 +168,10 @@
     NSString *resultString = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
     NSLog(@"Response: [%d] %@", self.statusCode, resultString);
 
-    if (self.completionBlock != nil && self.parseToJson)
+    if (self.statusCode != 200) {
+        self.failureBlock([NSError errorWithDomain:@"kickstart" code:self.statusCode userInfo:nil], self.statusCode);
+    }
+    else if (self.completionBlock != nil && self.parseToJson)
     {
         NSString *jsonString = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
         self.completionBlock([JsonUtil parseJSONString:jsonString]);

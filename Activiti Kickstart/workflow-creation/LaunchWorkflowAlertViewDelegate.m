@@ -59,15 +59,20 @@
                 {
                     [MBProgressHUD hideHUDForView:self.createWorkflowViewController.view animated:YES];
                 }
-                withFailureBlock:^(NSError *error)
+                withFailureBlock:^(NSError *error, NSInteger statusCode)
                 {
                     NSLog(@"Couldn't upload image: %@", error.localizedDescription);
                     [MBProgressHUD hideHUDForView:self.createWorkflowViewController.view animated:YES];
                 }];
 
             }
-            withFailureBlock:^(NSError *error)
+            withFailureBlock:^(NSError *error, NSInteger statusCode)
             {
+                if (statusCode == 209)
+                {
+                    NSLog(@"Process already exists!");
+                }
+
                 [MBProgressHUD hideHUDForView:self.createWorkflowViewController.view animated:YES];
 
                 UIAlertView *errorAlertView = [[UIAlertView alloc]
@@ -135,6 +140,18 @@
     }
     return NO;
 }
+
+#pragma mark Helpers
+
+- (void)showAlert:(NSString *)alertMessage
+{
+    UIAlertView *errorAlertView = [[UIAlertView alloc]
+                initWithTitle:nil message:alertMessage
+                     delegate:nil cancelButtonTitle:@"OK"
+            otherButtonTitles:nil];
+        [errorAlertView show];
+}
+
 
 
 @end

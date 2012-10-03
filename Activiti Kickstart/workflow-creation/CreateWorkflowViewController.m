@@ -36,6 +36,7 @@
 @property NSInteger currentlySelectedIndex;
 @property WorkflowTask *currentlySelectedTask;
 @property(nonatomic, strong) UIView *taskDetailsView;
+@property (nonatomic, strong) UIImageView *paperclipImageView;
 @property (nonatomic, strong) UserView *userView;
 @property(nonatomic, strong) UITextField *nameTextField;
 @property(nonatomic, strong) WorkflowStepNameTextFieldHandler *nameTextFieldDelegate;
@@ -45,31 +46,10 @@
 @property(nonatomic, strong) UIPopoverController *currentPopoverController;
 @property(nonatomic, strong) UITableView *formTable;
 @property(nonatomic, strong) FormTableDelegate *formTableDelegate;
-@property(nonatomic, strong) UILabel *swipeHelpLabel;
 
 @end
 
 @implementation CreateWorkflowViewController
-
-
-@synthesize workflow = _workflow;
-@synthesize workflowStepsTable = _workflowStepsTable;
-@synthesize workflowStepsTableDelegate = _workflowStepsTableDelegate;
-@synthesize taskDetailsView = _taskDetailsView;
-@synthesize nameTextField = _nameTextField;
-@synthesize nameTextFieldDelegate = _nameTextFieldDelegate;
-@synthesize currentlySelectedIndex = _currentlySelectedIndex;
-@synthesize currentlySelectedTask = _currentlySelectedTask;
-@synthesize descriptionTextView = _descriptionTextView;
-@synthesize createFormEntryButton = _createFormEntryButton;
-@synthesize currentPopoverController = _formPopoverController;
-@synthesize formController = _formController;
-@synthesize formTable = _formTable;
-@synthesize formTableDelegate = _formTableDelegate;
-@synthesize swipeHelpLabel = _swipeHelpLabel;
-@synthesize launchWorkflowDelegate = _launchWorkflowDelegate;
-@synthesize userView = _userView;
-
 
 - (id)init
 {
@@ -83,9 +63,15 @@
 
 - (void)editWorkflow:(Workflow *)workflow
 {
+    // Update workflow for table
     self.workflow = workflow;
     self.workflowStepsTableDelegate.workflow = workflow;
     [self.workflowStepsTable reloadData];
+
+    // Remove right side detail panel
+    [self.taskDetailsView removeFromSuperview];
+    self.taskDetailsView = nil;
+    [self.paperclipImageView removeFromSuperview]; // It is silly I have to do this. But it was thwe quickest solution.
 }
 
 - (void)loadView
@@ -100,6 +86,11 @@
     launchButton.tintColor = [UIColor colorWithRed:0.44 green:0.66 blue:0.99 alpha:0.18];
     self.navigationItem.rightBarButtonItem = launchButton;
 
+    [self createViews];
+}
+
+- (void)createViews
+{
     [self createWorkflowStepsTable];
 }
 
@@ -214,11 +205,8 @@
     // Create view if not yet created
     if (self.taskDetailsView == nil)
     {
-        CGFloat detailX = 450;
-        CGFloat detailY = 25;
-
         // Background
-        self.taskDetailsView = [[UIView alloc] initWithFrame:CGRectMake(detailX, detailY, 540, 610)];
+        self.taskDetailsView = [[UIView alloc] initWithFrame:CGRectMake(450, 25, 540, 610)];
         self.taskDetailsView.backgroundColor = [UIColor whiteColor];
         self.taskDetailsView.layer.cornerRadius = 30.f;
         self.taskDetailsView.layer.masksToBounds = YES;
@@ -226,11 +214,11 @@
 
         // Name Label
         CGFloat margin = 20;
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(detailX + margin, detailY + margin,
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(margin, margin,
                 self.taskDetailsView.frame.size.width - 2*margin, 20)];
         nameLabel.font = [UIFont systemFontOfSize:18];
         nameLabel.text = @"Name";
-        [self.view addSubview:nameLabel];
+        [self.taskDetailsView addSubview:nameLabel];
 
         // Name text field
 
@@ -240,7 +228,7 @@
         nameTextFieldBg.layer.masksToBounds = YES;
         nameTextFieldBg.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
         nameTextFieldBg.layer.borderWidth = 1.0;
-        [self.view addSubview:nameTextFieldBg];
+        [self.taskDetailsView addSubview:nameTextFieldBg];
 
         self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameTextFieldBg.frame.origin.x + 10,
                 nameTextFieldBg.frame.origin.y, nameTextFieldBg.frame.size.width - 20, nameTextFieldBg.frame.size.height)];
@@ -251,29 +239,29 @@
         self.nameTextField.delegate = self.nameTextFieldDelegate;
         [self.nameTextField addTarget:self action:@selector(workflowStepNameChanged) forControlEvents:UIControlEventEditingChanged];
 
-        [self.view addSubview:self.nameTextField];
+        [self.taskDetailsView addSubview:self.nameTextField];
 
         // User picture
         self.userView = [[UserView alloc] initWithFrame:CGRectMake(
                 self.nameTextField.frame.origin.x + self.nameTextField.frame.size.width + 2*margin - 5,
                 nameLabel.frame.origin.y - 8, 70, 70)];
         self.userView.transform = CGAffineTransformMakeRotation(10.0 / 180.0 * M_PI);
-        [self.view addSubview:self.userView];
+        [self.taskDetailsView addSubview:self.userView];
 
         UIGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userTapped)];
         [self.userView addGestureRecognizer:userTapRecognizer];
 
         // Paperclip
-        UIImageView *paperclipImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paperclip.png"]];
-        paperclipImageView.frame = CGRectMake(900, 19, paperclipImageView.image.size.width, paperclipImageView.image.size.height);
-        [self.view addSubview:paperclipImageView];
+        self.paperclipImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paperclip.png"]];
+        self.paperclipImageView.frame = CGRectMake(900, 19, self.paperclipImageView.image.size.width, self.paperclipImageView.image.size.height);
+        [self.view addSubview:self.paperclipImageView];
 
         // Description label
         UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabel.frame.origin.x,
                 self.nameTextField.frame.origin.y + self.nameTextField.frame.size.height + 10, self.nameTextField.frame.size.width, 20)];
         descriptionLabel.font = nameLabel.font;
         descriptionLabel.text = @"Description";
-        [self.view addSubview:descriptionLabel];
+        [self.taskDetailsView addSubview:descriptionLabel];
 
         // Description text view
         self.descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(descriptionLabel.frame.origin.x,
@@ -284,14 +272,14 @@
         self.descriptionTextView.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
         self.descriptionTextView.layer.borderWidth = 1.0;
         self.descriptionTextView.delegate = self;
-        [self.view addSubview:self.descriptionTextView];
+        [self.taskDetailsView addSubview:self.descriptionTextView];
 
         // Form label
         UILabel *formLabel = [[UILabel alloc] initWithFrame:CGRectMake(descriptionLabel.frame.origin.x,
                 self.descriptionTextView.frame.origin.y + self.descriptionTextView.frame.size.height + 20, nameLabel.frame.size.width, 20)];
         formLabel.font = nameLabel.font;
         formLabel.text = @"Form";
-        [self.view addSubview:formLabel];
+        [self.taskDetailsView addSubview:formLabel];
 
         // Add icon
         UIImage *createFormEntryImage = [UIImage imageNamed:@"add.png"];
@@ -299,7 +287,7 @@
                 formLabel.frame.origin.y, createFormEntryImage.size.width, createFormEntryImage.size.height)];
         [self.createFormEntryButton setImage:createFormEntryImage forState:UIControlStateNormal];
         [self.createFormEntryButton addTarget:self action:@selector(createFormEntryButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:self.createFormEntryButton];
+        [self.taskDetailsView addSubview:self.createFormEntryButton];
 
         // Form table
         self.formTable = [[UITableView alloc] initWithFrame:CGRectMake(formLabel.frame.origin.x,
@@ -312,7 +300,7 @@
         self.formTable.layer.borderWidth = 1.0;
         self.formTable.layer.cornerRadius = 5.0;
         self.formTable.layer.masksToBounds = YES;
-        [self.view addSubview:self.formTable];
+        [self.taskDetailsView addSubview:self.formTable];
 
         self.formTableDelegate = [[FormTableDelegate alloc] init];
         self.formTable.dataSource = self.formTableDelegate;
