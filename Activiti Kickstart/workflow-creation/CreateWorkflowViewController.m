@@ -16,11 +16,14 @@
 #import "FormEntry.h"
 #import "FormTableDelegate.h"
 #import "UserView.h"
-#import "LaunchWorkflowAlertViewDelegate.h"
 #import "UserSelectionViewController.h"
+#import "LaunchWorkflowViewController.h"
+#import "MBProgressHUD.h"
 
 
 @interface CreateWorkflowViewController ()
+
+@property (nonatomic) BOOL isEditingExistingWorkflow;
 
 // Model
 @property(nonatomic, strong) Workflow *workflow;
@@ -28,9 +31,6 @@
 // Workflow steps table
 @property(nonatomic, strong) UITableView *workflowStepsTable;
 @property(nonatomic, strong) WorkflowStepsTableDelegate *workflowStepsTableDelegate;
-
-// Launching workflow
-@property (nonatomic, strong) LaunchWorkflowAlertViewDelegate *launchWorkflowDelegate;
 
 // Task detail
 @property NSInteger currentlySelectedIndex;
@@ -57,12 +57,15 @@
     if (self)
     {
         self.workflow = [[Workflow alloc] init];
+        self.isEditingExistingWorkflow = NO;
     }
     return self;
 }
 
 - (void)editWorkflow:(Workflow *)workflow
 {
+    self.isEditingExistingWorkflow = YES;
+
     // Update workflow for table
     self.workflow = workflow;
     self.workflowStepsTableDelegate.workflow = workflow;
@@ -375,16 +378,21 @@
                                              animated:NO scrollPosition:UITableViewScrollPositionTop];
     }
 
-    // First show UIAlertView to give a name to this workflow
-    self.launchWorkflowDelegate = [[LaunchWorkflowAlertViewDelegate alloc] initWithWorkflow:self.workflow];
-    self.launchWorkflowDelegate.createWorkflowViewController = self;
-    UIAlertView *launchWorkflowAlertView = [[UIAlertView alloc] initWithTitle:@"Launch workflow"
-                                                                      message:@"How would you like to call this workflow?"
-                                                                     delegate:self.launchWorkflowDelegate
-                                                            cancelButtonTitle:@"Cancel"
-                                                            otherButtonTitles:@"Launch", nil];
-    launchWorkflowAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [launchWorkflowAlertView show];
+    // Launch screen
+    LaunchWorkflowViewController *launchWorkflowViewController = [[LaunchWorkflowViewController alloc] initWithWorkflow:self.workflow];
+    launchWorkflowViewController.screenshotData = [self takeScreenshot];
+    launchWorkflowViewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    launchWorkflowViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentModalViewController:launchWorkflowViewController animated:YES];
+
+    launchWorkflowViewController.view.superview.autoresizingMask =
+        UIViewAutoresizingFlexibleTopMargin |
+        UIViewAutoresizingFlexibleBottomMargin;
+    launchWorkflowViewController.view.superview.frame = CGRectMake(
+            launchWorkflowViewController.view.superview.frame.origin.x,
+            launchWorkflowViewController.view.superview.frame.origin.y,
+            600, 400);
+    launchWorkflowViewController.view.superview.center = self.view.center;
 }
 
 #pragma mark WorkflowCreationDelegate
@@ -427,6 +435,53 @@
 
     // Reload the task details
     [self showDetailsForWorkflowStep:stepIndex];
+}
+
+#pragma mark Capturing screenshot
+
+- (NSData *)takeScreenshot
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(self.view.window.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(self.view.window.bounds.size);
+    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *portraitImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    // Hack: screenshot is taken in portrait mode, but we assume we're always in landscape
+    // Correct solution would be to use the image rotation property
+    UIImage *image = [self image:portraitImage rotatedByDegrees:90.0];
+
+    UIGraphicsEndImageContext();
+    return UIImagePNGRepresentation(image);
+}
+
+- (UIImage *)image:(UIImage *)image rotatedByDegrees:(CGFloat)degrees
+{
+   // calculate the size of the rotated view's containing box for our drawing space
+   UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0,0,image.size.width, image.size.height)];
+   CGAffineTransform t = CGAffineTransformMakeRotation(degrees * M_PI / 180);
+   rotatedViewBox.transform = t;
+   CGSize rotatedSize = rotatedViewBox.frame.size;
+
+   // Create the bitmap context
+   UIGraphicsBeginImageContext(rotatedSize);
+   CGContextRef bitmap = UIGraphicsGetCurrentContext();
+
+   // Move the origin to the middle of the image so we will rotate and scale around the center.
+   CGContextTranslateCTM(bitmap, rotatedSize.width/2, rotatedSize.height/2);
+
+   //   // Rotate the image context
+   CGContextRotateCTM(bitmap, degrees * M_PI / 180);
+
+   // Now, draw the rotated/scaled image into the context
+   CGContextScaleCTM(bitmap, 1.0, -1.0);
+   CGContextDrawImage(bitmap, CGRectMake(-image.size.width / 2, -image.size.height / 2, image.size.width, image.size.height), [image CGImage]);
+
+   UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+   UIGraphicsEndImageContext();
+   return newImage;
+
 }
 
 

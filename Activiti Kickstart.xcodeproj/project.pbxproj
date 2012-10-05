@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		941BE0E6322C46C92454C3A5 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 941BEB0B1A4AAC9C993FB6D1 /* close@2x.png */; };
+		941BE1F9CB28E5EFEC4C8F05 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 941BE4900D642EA02A008575 /* close.png */; };
 		941BE4804CDB0734B3BAE3C1 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 941BE6269785EFE662AE5891 /* trash.png */; };
 		941BE4FB7C205A2E9E7ABDAD /* UIActionSheet+BlockExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BE754052AABC6C6CBACD6 /* UIActionSheet+BlockExtensions.m */; };
 		941BE537DBE3435D049F24D1 /* trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 941BEEB9C556A8109A9C5341 /* trash@2x.png */; };
 		941BE709429525707BC8E56B /* ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BE747044FF358544F40BD /* ProcessViewController.m */; };
 		941BE7A822C2A51F37996217 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BEB71E130624FA06BF906 /* MBProgressHUD.m */; };
+		941BEC40100F63B3917E36A3 /* createWorkflowBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 941BEDD9B571A598B20D4F74 /* createWorkflowBig@2x.png */; };
+		941BED45FF65A86F13E30EA1 /* LaunchWorkflowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BE52DD548E20F0AFBC832 /* LaunchWorkflowViewController.m */; };
+		941BEEEC343785D6F1108E62 /* createWorkflowBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 941BEECB7B3CF40601B6FB88 /* createWorkflowBig.png */; };
 		941BEF90BECEFDC651B969B5 /* UIAlertView+BlockExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 941BE0658516051FCFE74B1F /* UIAlertView+BlockExtensions.m */; };
 		FEEC7F6215BD94870063D7B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6115BD94870063D7B2 /* UIKit.framework */; };
 		FEEC7F6415BD94870063D7B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7F6315BD94870063D7B2 /* Foundation.framework */; };
@@ -45,7 +50,6 @@
 		FEF5D09015C02222007346A2 /* paperclip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A1 /* paperclip@2x.png */; };
 		FEF5D09015C02222007346A4 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A3 /* UserView.m */; };
 		FEF5D09015C02222007346A7 /* joram.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A6 /* joram.jpg */; };
-		FEF5D09015C02222007346A9 /* LaunchWorkflowAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */; };
 		FEF5D09015C02222007346AC /* UserSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346AB /* UserSelectionViewController.m */; };
 		FEF5D09015C02222007346AF /* arthur.png in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346AE /* arthur.png */; };
 		FEF5D09015C02222007346B1 /* david.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEF5D09015C02222007346B0 /* david.jpg */; };
@@ -59,14 +63,20 @@
 /* Begin PBXFileReference section */
 		941BE048A5A95B846072BB09 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		941BE0658516051FCFE74B1F /* UIAlertView+BlockExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+BlockExtensions.m"; sourceTree = "<group>"; };
+		941BE4900D642EA02A008575 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		941BE52DD548E20F0AFBC832 /* LaunchWorkflowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchWorkflowViewController.m; sourceTree = "<group>"; };
 		941BE5AA8ADDA35F74AD5678 /* UIActionSheet+BlockExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+BlockExtensions.h"; sourceTree = "<group>"; };
 		941BE6269785EFE662AE5891 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		941BE747044FF358544F40BD /* ProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessViewController.m; sourceTree = "<group>"; };
 		941BE754052AABC6C6CBACD6 /* UIActionSheet+BlockExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+BlockExtensions.m"; sourceTree = "<group>"; };
 		941BE7805C4453F5230C9630 /* ProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessViewController.h; sourceTree = "<group>"; };
+		941BEB0B1A4AAC9C993FB6D1 /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
 		941BEB71E130624FA06BF906 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		941BED28105A230216D06D77 /* LaunchWorkflowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchWorkflowViewController.h; sourceTree = "<group>"; };
 		941BEDBEB85B9BB27CB01428 /* UIAlertView+BlockExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+BlockExtensions.h"; sourceTree = "<group>"; };
+		941BEDD9B571A598B20D4F74 /* createWorkflowBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createWorkflowBig@2x.png"; sourceTree = "<group>"; };
 		941BEEB9C556A8109A9C5341 /* trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash@2x.png"; sourceTree = "<group>"; };
+		941BEECB7B3CF40601B6FB88 /* createWorkflowBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createWorkflowBig.png; sourceTree = "<group>"; };
 		FEEC7F5D15BD94870063D7B2 /* Activiti Kickstart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Activiti Kickstart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEEC7F6115BD94870063D7B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FEEC7F6315BD94870063D7B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -119,8 +129,6 @@
 		FEF5D09015C02222007346A3 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		FEF5D09015C02222007346A5 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		FEF5D09015C02222007346A6 /* joram.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = joram.jpg; sourceTree = "<group>"; };
-		FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchWorkflowAlertViewDelegate.m; sourceTree = "<group>"; };
-		FEF5D09015C02222007346AA /* LaunchWorkflowAlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchWorkflowAlertViewDelegate.h; sourceTree = "<group>"; };
 		FEF5D09015C02222007346AB /* UserSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSelectionViewController.m; sourceTree = "<group>"; };
 		FEF5D09015C02222007346AD /* UserSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSelectionViewController.h; sourceTree = "<group>"; };
 		FEF5D09015C02222007346AE /* arthur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arthur.png; sourceTree = "<group>"; };
@@ -243,10 +251,10 @@
 		FEEC7F8015BD94870063D7B9 /* workflow-creation */ = {
 			isa = PBXGroup;
 			children = (
+				941BED28105A230216D06D77 /* LaunchWorkflowViewController.h */,
+				941BE52DD548E20F0AFBC832 /* LaunchWorkflowViewController.m */,
 				FEF5D09015C02222007346AD /* UserSelectionViewController.h */,
 				FEF5D09015C02222007346AB /* UserSelectionViewController.m */,
-				FEF5D09015C02222007346AA /* LaunchWorkflowAlertViewDelegate.h */,
-				FEF5D09015C02222007346A8 /* LaunchWorkflowAlertViewDelegate.m */,
 				FEF5D09015C02222007346A5 /* UserView.h */,
 				FEF5D09015C02222007346A3 /* UserView.m */,
 				FEF5D09015C0222200734685 /* FormController.h */,
@@ -298,6 +306,10 @@
 		FEF5D09015C0222200734686 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				941BEB0B1A4AAC9C993FB6D1 /* close@2x.png */,
+				941BE4900D642EA02A008575 /* close.png */,
+				941BEDD9B571A598B20D4F74 /* createWorkflowBig@2x.png */,
+				941BEECB7B3CF40601B6FB88 /* createWorkflowBig.png */,
 				941BEEB9C556A8109A9C5341 /* trash@2x.png */,
 				941BE6269785EFE662AE5891 /* trash.png */,
 				FEF5D09015C02222007346BA /* tom.jpg */,
@@ -393,6 +405,10 @@
 				FEF5D09015C02222007346BB /* tom.jpg in Resources */,
 				941BE4804CDB0734B3BAE3C1 /* trash.png in Resources */,
 				941BE537DBE3435D049F24D1 /* trash@2x.png in Resources */,
+				941BEEEC343785D6F1108E62 /* createWorkflowBig.png in Resources */,
+				941BEC40100F63B3917E36A3 /* createWorkflowBig@2x.png in Resources */,
+				941BE1F9CB28E5EFEC4C8F05 /* close.png in Resources */,
+				941BE0E6322C46C92454C3A5 /* close@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,12 +436,12 @@
 				FEF5D09015C0222200734681 /* FormEntry.m in Sources */,
 				FEF5D09015C0222200734684 /* FormController.m in Sources */,
 				FEF5D09015C02222007346A4 /* UserView.m in Sources */,
-				FEF5D09015C02222007346A9 /* LaunchWorkflowAlertViewDelegate.m in Sources */,
 				FEF5D09015C02222007346AC /* UserSelectionViewController.m in Sources */,
 				941BE7A822C2A51F37996217 /* MBProgressHUD.m in Sources */,
 				941BE709429525707BC8E56B /* ProcessViewController.m in Sources */,
 				941BE4FB7C205A2E9E7ABDAD /* UIActionSheet+BlockExtensions.m in Sources */,
 				941BEF90BECEFDC651B969B5 /* UIAlertView+BlockExtensions.m in Sources */,
+				941BED45FF65A86F13E30EA1 /* LaunchWorkflowViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
