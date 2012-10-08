@@ -6,9 +6,11 @@
 #import <Foundation/Foundation.h>
 #import "HttpUtil.h"
 
+@class Workflow;
+
 @interface KickstartRestService : NSObject
 
--(void)deployWorkflow:(NSDictionary *)workflowDictionary
+-(void)deployWorkflow:(Workflow *)workflow
   withCompletionBlock:(HttpCompletionBlock)completionBlock
        withFailureBlock:(HttpFailureBlock)failureBlock;
 

@@ -14,6 +14,10 @@ typedef void (^HttpFailureBlock)(NSError *error, NSInteger statusCode);
         withCompletionBlock:(HttpCompletionBlock)completionBlock
         withFailureBlock:(HttpFailureBlock)failureBlock;
 
++ (void)executePUT:(NSURL *)url withBody:(NSDictionary *)bodyDictionary
+        withCompletionBlock:(HttpCompletionBlock)completionBlock
+        withFailureBlock:(HttpFailureBlock)failureBlock;
+
 + (void)uploadImageDataWithPostTo:(NSURL *)url withBodyData:(NSData *)bodyData
               withCompletionBlock:(HttpCompletionBlock)completionBlock
                  withFailureBlock:(HttpFailureBlock)failureBlock;

@@ -16,8 +16,10 @@ typedef enum {
 
 @interface Workflow : NSObject
 
+@property (nonatomic, strong) NSString *id; // Only filled when it is a
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableArray *tasks;
+@property (nonatomic) BOOL isExistingWorkflow;
 
 - (id)initWithJson:(NSDictionary *)jsonDictionary;
 

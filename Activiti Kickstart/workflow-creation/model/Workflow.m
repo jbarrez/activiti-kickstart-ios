@@ -100,6 +100,8 @@
     self = [super init];
     if (self)
     {
+        self.isExistingWorkflow = YES;
+
         self.name = [json valueForKey:WORKFLOW_NAME];
 
         NSArray *jsonTasks = [json valueForKey:WORKFLOW_TASKS];

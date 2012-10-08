@@ -28,7 +28,6 @@
 #import "Workflow.h"
 #import "MBProgressHUD.h"
 #import "KickstartRestService.h"
-#import "CreateWorkflowViewController.h"
 
 #define COLOR_ENABLED [UIColor colorWithRed:0.16 green:0.43 blue:0.83 alpha:1.0]
 #define COLOR_DISABLED [UIColor colorWithRed:0.63 green:0.63 blue:0.63 alpha:1.0]
@@ -146,7 +145,7 @@
 
     // Kickstart service is async
     KickstartRestService *kickstartRestService = [[KickstartRestService alloc] init];
-    [kickstartRestService deployWorkflow:[self.workflow toJson]
+    [kickstartRestService deployWorkflow:self.workflow
                      withCompletionBlock:^(NSDictionary *response)
                      {
                          NSString *workflowId = [response valueForKey:@"id"];

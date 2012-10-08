@@ -346,10 +346,12 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     KickstartRestService *kickstartRestService = [[KickstartRestService alloc] init];
-    [kickstartRestService retrieveWorkflowJson:[self.selectedWorkflow valueForKey:@"id"]
+    NSString *workflowId = [self.selectedWorkflow valueForKey:@"id"];
+    [kickstartRestService retrieveWorkflowJson:workflowId
         withCompletionBlock:^ (NSDictionary *json)
         {
             Workflow *workflow = [[Workflow alloc] initWithJson:json];
+
             [MBProgressHUD hideHUDForView:self.view animated:YES];
 
             // Show createWorkflowViewController with this workflow

@@ -29,6 +29,28 @@
     [connection start];
 }
 
+
++ (void)executePUT:(NSURL *)url withBody:(NSDictionary *)bodyDictionary
+    withCompletionBlock:(HttpCompletionBlock)completionBlock
+       withFailureBlock:(HttpFailureBlock)failureBlock
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                        cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                        timeoutInterval:60];
+    [request setHTTPMethod:@"PUT"];
+    [request setHTTPBody:[JsonUtil writeToJSONData:bodyDictionary]];
+
+    BlockBasedURLConnectionDataDelegate *delegate = [[BlockBasedURLConnectionDataDelegate alloc] init];
+    delegate.completionBlock = completionBlock;
+    delegate.failureBlock = failureBlock;
+
+    NSLog(@"Executing HTTP PUT to %@", url);
+
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:delegate];
+    [connection start];
+}
+
+
 + (void)uploadImageDataWithPostTo:(NSURL *)url withBodyData:(NSData *)bodyData
               withCompletionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
 {

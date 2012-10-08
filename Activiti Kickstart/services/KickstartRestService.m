@@ -5,17 +5,30 @@
 
 #import "KickstartRestService.h"
 #import "JsonUtil.h"
+#import "Workflow.h"
 
 @implementation KickstartRestService
 
-- (void)deployWorkflow:(NSDictionary *)workflowDictionary
+- (void)deployWorkflow:(Workflow *)workflow
    withCompletionBlock:(HttpCompletionBlock)completionBlock
       withFailureBlock:(HttpFailureBlock)failureBlock
 {
-    [HttpUtil executePOST:[self createRestCallFor:@"/workflow"]
+    NSDictionary *workflowDictionary = [workflow toJson];
+
+    if (workflow.isExistingWorkflow)
+    {
+        [HttpUtil executePUT:[self createRestCallFor:@"/workflow"]
+                   withBody:workflowDictionary
+                   withCompletionBlock:completionBlock
+                   withFailureBlock:failureBlock];
+    }
+    else
+    {
+        [HttpUtil executePOST:[self createRestCallFor:@"/workflow"]
             withBody:workflowDictionary
             withCompletionBlock:completionBlock
             withFailureBlock:failureBlock];
+    }
 }
 
 - (void)retrieveWorkflowsWithCompletionBlock:(HttpCompletionBlock)completionBlock

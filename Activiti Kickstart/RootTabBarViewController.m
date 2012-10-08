@@ -88,9 +88,6 @@
     [self setSelectedIndex:TAG_CREATE_WORKFLOW];
 
     // Push new view controller
-//    CreateWorkflowViewController *createWorkflowViewController = [[CreateWorkflowViewController alloc] initWithWorkflow:workflow];
-//    [self.createWorkflowNavigationController popViewControllerAnimated:NO];
-//    [self.createWorkflowNavigationController pushViewController:createWorkflowViewController animated:NO];
     [self.createWorkflowController editWorkflow:workflow];
 }
 
