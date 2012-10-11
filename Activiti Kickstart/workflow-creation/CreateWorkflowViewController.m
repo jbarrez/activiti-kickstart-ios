@@ -79,13 +79,16 @@
 {
     [super viewWillAppear:animated];
 
-     // Update workflow for table
-    self.workflow = nil;
-    self.workflowStepsTableDelegate.workflow = nil;
-    [self.workflowStepsTable reloadData];
+    if (!self.isEditingExistingWorkflow)
+    {
+         // Update workflow for table
+        self.workflow = [[Workflow alloc] init];
+        self.workflowStepsTableDelegate.workflow = self.workflow;
+        [self.workflowStepsTable reloadData];
+    }
 
     // Remove right side detail panel
-   [self clearRightSide];
+    [self clearRightSide];
 }
 
 - (void)clearRightSide

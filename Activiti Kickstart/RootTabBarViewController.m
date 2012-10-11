@@ -85,10 +85,8 @@
     NSDictionary *userInfo = notification.userInfo;
     Workflow *workflow = [userInfo valueForKey:@"workflow"];
 
-    // Switch selected tab
     [self setSelectedIndex:TAG_CREATE_WORKFLOW];
 
-    // Push new view controller
     [self.createWorkflowController editWorkflow:workflow];
 }
 

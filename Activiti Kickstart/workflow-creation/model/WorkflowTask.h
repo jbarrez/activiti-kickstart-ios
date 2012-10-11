@@ -13,7 +13,8 @@
 
 @property(nonatomic, strong) NSString *name;
 @property(nonatomic, strong) NSString *description;
-@property BOOL isConcurrent;
+@property BOOL startWithPrevious;
+@property BOOL isConcurrent; // Indicates that this task is part of a concurrent group of tasks
 @property ConcurrencyType concurrencyType;
 @property (nonatomic, strong) NSString *assignee;
 @property NSMutableArray *formEntries;

@@ -72,6 +72,13 @@
             {
                 task.isConcurrent = NO;
             }
+            else
+            {
+                if (previousTask != nil && previousTask.isConcurrent) {
+                    task.startWithPrevious = YES;
+                }
+            }
+
         }
     }
 }
@@ -113,6 +120,20 @@
                 [self.tasks addObject:[[WorkflowTask alloc] initWithJson:jsonTask]];
             }
         }
+
+        // Fix task concurrency
+        for (uint i=0; i<self.tasks.count; i++)
+        {
+            WorkflowTask *task = [self.tasks objectAtIndex:i];
+            if (task.startWithPrevious)
+            {
+                task.isConcurrent = YES;
+
+                WorkflowTask *previousTask = [self.tasks objectAtIndex:(i-1)];
+                previousTask.isConcurrent = YES;
+            }
+        }
+        [self verifyAndFixTaskConcurrency]; // Will set the concurrency type
     }
     return self;
 }

@@ -13,14 +13,6 @@
 
 @implementation WorkflowTask
 
-@synthesize name = _name;
-@synthesize description = _description;
-@synthesize isConcurrent = isConcurrent;
-@synthesize concurrencyType = _concurrencyType;
-@synthesize formEntries = _formEntries;
-@synthesize assignee = _assignee;
-
-
 - (id)init
 {
     self = [super init];
@@ -54,7 +46,7 @@
             self.description = [json valueForKey:TASK_DESCRIPTION];
         }
 
-        self.isConcurrent = [[json valueForKey:TASK_START_WITH_PREVIOUS] isEqualToString:@"true"];
+        self.startWithPrevious = [[json valueForKey:TASK_START_WITH_PREVIOUS] boolValue];
 
         NSArray *jsonFormEntries = [json valueForKey:TASK_FORM];
         self.formEntries = [NSMutableArray array];
@@ -78,7 +70,7 @@
     {
         [taskDict setObject:self.description forKey:TASK_DESCRIPTION];
     }
-    [taskDict setObject:(self.isConcurrent ? @"true" : @"false") forKey:TASK_START_WITH_PREVIOUS];
+    [taskDict setObject:(self.startWithPrevious ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]) forKey:TASK_START_WITH_PREVIOUS];
 
     NSMutableArray *form = [[NSMutableArray alloc] init];
     [taskDict setObject:form forKey:TASK_FORM];
