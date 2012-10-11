@@ -100,8 +100,6 @@
 
     UIButton *launchButton = [[UIButton alloc] initWithFrame:CGRectMake(275, 330, 200, 50)];
     [launchButton addTarget:self action:@selector(launchButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    launchButton.enabled = NO;
-    launchButton.backgroundColor = COLOR_DISABLED;
     [launchButton setTitle:@"Launch" forState:UIControlStateNormal];
     launchButton.layer.cornerRadius = 20;
     launchButton.layer.masksToBounds = YES;
@@ -117,6 +115,22 @@
     [closeButton setBackgroundImage:closeImage forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:closeButton];
+
+
+    if (self.workflow.isExistingWorkflow)
+    {
+        self.nameTextField.text = self.workflow.name;
+        self.nameTextField.enabled = NO;
+        self.nameTextField.alpha = 0.41;
+        self.nameTextField.backgroundColor = [UIColor lightGrayColor];
+
+        launchButton.backgroundColor = COLOR_ENABLED;
+    }
+    else
+    {
+        launchButton.enabled = NO;
+        launchButton.backgroundColor = COLOR_DISABLED;
+    }
 }
 
 - (void)closeButtonTapped
@@ -133,7 +147,7 @@
     self.launchButton.backgroundColor = self.launchButton.enabled ? COLOR_ENABLED : COLOR_DISABLED;
 }
 
-#pragma  mark Launch button
+#pragma mark Launch button
 
 - (void)launchButtonTapped
 {
@@ -157,6 +171,8 @@
                          {
                              [MBProgressHUD hideHUDForView:self.view animated:YES];
                              [self dismissModalViewControllerAnimated:NO];
+
+                             [[NSNotificationCenter defaultCenter] postNotificationName:@"workflowLaunched" object:nil userInfo:[NSDictionary dictionaryWithObject:self.workflow.name forKey:@"workflowName"]];
                          }
                          withFailureBlock:^(NSError *error, NSInteger statusCode)
                          {

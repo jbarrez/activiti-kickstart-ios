@@ -27,4 +27,7 @@
 
 
 @interface ProcessViewController : UIViewController
+
+@property (nonatomic, strong) NSString *nameOfWorkflowToSelect;
+
 @end

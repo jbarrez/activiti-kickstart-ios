@@ -71,6 +71,7 @@
 {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWorkflowCreationNotification:) name:@"showWorkflowCreation" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWorkflowLaunchNotification:) name:@"workflowLaunched" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -89,6 +90,16 @@
 
     // Push new view controller
     [self.createWorkflowController editWorkflow:workflow];
+}
+
+- (void)handleWorkflowLaunchNotification:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *workflowName = [userInfo valueForKey:@"workflowName"];
+    self.processesOverviewController.nameOfWorkflowToSelect = workflowName;
+
+    // Switch selected tab
+    [self setSelectedIndex:TAG_PROCESSES];
 }
 
 @end

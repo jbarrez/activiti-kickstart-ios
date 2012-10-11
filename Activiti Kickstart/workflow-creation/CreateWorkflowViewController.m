@@ -72,6 +72,24 @@
     [self.workflowStepsTable reloadData];
 
     // Remove right side detail panel
+   [self clearRightSide];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+     // Update workflow for table
+    self.workflow = nil;
+    self.workflowStepsTableDelegate.workflow = nil;
+    [self.workflowStepsTable reloadData];
+
+    // Remove right side detail panel
+   [self clearRightSide];
+}
+
+- (void)clearRightSide
+{
     [self.taskDetailsView removeFromSuperview];
     self.taskDetailsView = nil;
     [self.paperclipImageView removeFromSuperview]; // It is silly I have to do this. But it was thwe quickest solution.

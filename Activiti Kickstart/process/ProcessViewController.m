@@ -46,7 +46,6 @@
 
 @property (nonatomic, strong) NSDictionary *selectedWorkflow;
 
-
 @end
 
 @implementation ProcessViewController
@@ -133,6 +132,23 @@
         self.workflows = workflows;
         [self.workflowTable reloadData];
         [self calculateFrames];
+
+        if (self.nameOfWorkflowToSelect)
+        {
+            for (uint i=0; i<self.workflows.count; i++)
+            {
+                NSDictionary *workflowDict = [self.workflows objectAtIndex:i];
+                if ([[workflowDict valueForKey:@"name"] isEqual:self.nameOfWorkflowToSelect])
+                {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                    [self.workflowTable selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+                    [self tableView:self.workflowTable didSelectRowAtIndexPath:indexPath];
+                    break;
+                }
+            }
+            self.nameOfWorkflowToSelect = nil;
+        }
+
         [hud hide:NO];
     } withFailureBlock:^(NSError *error, NSInteger statusCode)
     {
