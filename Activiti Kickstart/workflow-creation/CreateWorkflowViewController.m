@@ -91,6 +91,13 @@
     [self clearRightSide];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.isEditingExistingWorkflow = NO;
+}
+
+
 - (void)clearRightSide
 {
     [self.taskDetailsView removeFromSuperview];
@@ -344,6 +351,12 @@
 {
     self.currentlySelectedTask.description = textView.text;
 }
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    [self textViewDidEndEditing:textView];
+}
+
 
 - (void)createFormEntryButtonTapped
 {
