@@ -30,7 +30,8 @@
     if (self)
     {
         self.title = @"Create Form Entry";
-        self.types = [NSArray arrayWithObjects:@"Text", @"Number", @"Date", nil];
+        self.types = [NSArray arrayWithObjects:@"Text", @"Number", @"Date", @"Docs", nil];
+        self.allowDocuments = YES; // Default
     }
     return self;
 }
@@ -61,10 +62,13 @@
 
     // Type choices
     self.typeSelection = [[UISegmentedControl alloc] initWithItems:self.types];
-    self.typeSelection.frame = CGRectMake(70, 55, 300, 30);
+    self.typeSelection.frame = CGRectMake(70, 55, 380, 30);
     self.typeSelection.segmentedControlStyle = UISegmentedControlStyleBordered;
     self.typeSelection.selectedSegmentIndex = 0;
     [self.view addSubview:self.typeSelection];
+
+    // Enabled/disable documents based on property
+    [self.typeSelection setEnabled:self.allowDocuments forSegmentAtIndex:3];
 
     // Required label
     UILabel *requiredLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 110, 100, 20)];
@@ -94,6 +98,9 @@
             break;
         case 2:
             formEntry.type = FORM_ENTRY_TYPE_DATE;
+            break;
+        case 3:
+            formEntry.type = FORM_ENTRY_TYPE_DOCUMENTS;
             break;
     }
 

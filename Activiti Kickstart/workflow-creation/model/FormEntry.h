@@ -9,7 +9,8 @@ typedef enum
 {
     FORM_ENTRY_TYPE_STRING,
     FORM_ENTRY_TYPE_INTEGER,
-    FORM_ENTRY_TYPE_DATE
+    FORM_ENTRY_TYPE_DATE,
+    FORM_ENTRY_TYPE_DOCUMENTS
 } FormEntryType;
 
 @interface FormEntry : NSObject

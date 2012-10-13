@@ -47,7 +47,9 @@
         case FORM_ENTRY_TYPE_DATE:
             type = @"date";
             break;
-
+        case FORM_ENTRY_TYPE_DOCUMENTS:
+            type = @"documents";
+            break;
     }
     cell.subscriptLabel.text = [NSString stringWithFormat:@"Type: '%@'  (%@)", type, formEntry.isRequired ? @"required" : @"optional"];
 

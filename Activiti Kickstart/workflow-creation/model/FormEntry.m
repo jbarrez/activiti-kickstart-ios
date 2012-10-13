@@ -11,6 +11,7 @@
 #define TYPE_TEXT @"text"
 #define TYPE_NUMBER @"number"
 #define TYPE_DATE @"date"
+#define TYPE_DOCUMENTS @"documents"
 
 @implementation FormEntry
 
@@ -39,6 +40,10 @@
         {
             self.type = FORM_ENTRY_TYPE_DATE;
         }
+        else if ([type isEqualToString:TYPE_DOCUMENTS])
+        {
+            self.type = FORM_ENTRY_TYPE_DOCUMENTS;
+        }
     }
     return self;
 }
@@ -61,6 +66,9 @@
             break;
         case FORM_ENTRY_TYPE_DATE:
             type = TYPE_DATE;
+            break;
+        case FORM_ENTRY_TYPE_DOCUMENTS:
+            type = TYPE_DOCUMENTS;
             break;
     }
 

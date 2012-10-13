@@ -361,6 +361,20 @@
 - (void)createFormEntryButtonTapped
 {
     self.formController = [[FormController alloc] init];
+
+    // If there is already a document field, it's not allowed to add another one
+    BOOL allowDocuments = YES;
+    for (FormEntry *formEntry in self.currentlySelectedTask.formEntries)
+    {
+        if (formEntry.type == FORM_ENTRY_TYPE_DOCUMENTS)
+        {
+            allowDocuments = NO;
+            break;
+        }
+    }
+    self.formController.allowDocuments = allowDocuments;
+
+    // Save button for form entry
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
          style:UIBarButtonItemStyleBordered target:self action:@selector(saveNewFormEntry)];
     saveButton.tintColor = [UIColor colorWithRed:0.44 green:0.66 blue:0.99 alpha:0.18];
@@ -369,7 +383,7 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.formController];
 
     self.currentPopoverController = [[UIPopoverController alloc] initWithContentViewController:navigationController];
-    [self.currentPopoverController setPopoverContentSize:CGSizeMake(400, 180)];
+    [self.currentPopoverController setPopoverContentSize:CGSizeMake(500, 180)];
 
     [self.currentPopoverController presentPopoverFromRect:self.createFormEntryButton.frame
                           inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];

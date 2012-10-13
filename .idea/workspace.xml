@@ -4,7 +4,11 @@
     <list default="true" id="252f87b2-0ea4-478d-bc98-cb30a9d0d910" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m" afterPath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/WorkflowStepsTableDelegate.m" afterPath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/WorkflowStepsTableDelegate.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.h" afterPath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.m" afterPath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormTableDelegate.m" afterPath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormTableDelegate.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.h" afterPath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.m" afterPath="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.m" />
     </list>
     <ignored path="Activiti Kickstart.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,10 +49,55 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="FormEntry.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="26" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="102" column="54" selection-start="3096" selection-end="3096" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="42" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormEntry.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="39" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormTableDelegate.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormTableDelegate.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="32" selection-start="1436" selection-end="1436" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CreateWorkflowViewController.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="351" column="59" selection-start="15147" selection-end="15147" vertical-scroll-proportion="0.412527">
+            <state line="365" column="0" selection-start="15426" selection-end="15426" vertical-scroll-proportion="0.33333334">
               <folding />
             </state>
           </provider>
@@ -67,11 +116,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/LaunchWorkflowViewController.h" />
-        <option value="$PROJECT_DIR$/Activiti Kickstart/services/KickstartRestService.h" />
-        <option value="$PROJECT_DIR$/Activiti Kickstart/services/HttpUtil.h" />
-        <option value="$PROJECT_DIR$/Activiti Kickstart/services/HttpUtil.m" />
-        <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/Workflow.h" />
         <option value="$PROJECT_DIR$/Activiti Kickstart/services/KickstartRestService.m" />
         <option value="$PROJECT_DIR$/Activiti Kickstart/process/ProcessViewController.h" />
         <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/LaunchWorkflowViewController.m" />
@@ -82,15 +126,20 @@
         <option value="$PROJECT_DIR$/Activiti Kickstart/RootTabBarViewController.m" />
         <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/WorkflowStepsTableDelegate.m" />
         <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/WorkflowStepTableCell.m" />
+        <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.h" />
+        <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.h" />
+        <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormTableDelegate.m" />
+        <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.m" />
         <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m" />
+        <option value="$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="48" />
     <option name="y" value="22" />
-    <option name="width" value="2512" />
-    <option name="height" value="1418" />
+    <option name="width" value="1392" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -179,23 +228,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="22" width="2512" height="1418" extended-state="0" />
+    <frame x="48" y="22" width="1392" height="878" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31968296" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2364597" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962743" sideWeight="0.54953766" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19985141" sideWeight="0.7344782" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44178873" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44121534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25950783" sideWeight="0.19550858" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26522744" sideWeight="0.9995945" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2642008" sideWeight="0.9995945" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2364597" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -252,45 +301,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="75" />
+      <option name="time" value="77" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/process/ProcessViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="63" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.85066164">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/LaunchWorkflowViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="6" selection-start="1528" selection-end="1528" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/WorkflowTask.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="30" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/process/ProcessViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="368" column="0" selection-start="15262" selection-end="15262" vertical-scroll-proportion="0.49784017">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/WorkflowStepTableCell.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="18" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/Workflow.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="2" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0">
@@ -300,9 +314,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/Workflow.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="76" selection-start="3798" selection-end="3798" vertical-scroll-proportion="0.562635">
-          <folding />
-        </state>
+        <state line="135" column="76" selection-start="3798" selection-end="3798" vertical-scroll-proportion="0.562635" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Activiti Kickstart/RootTabBarViewController.m">
@@ -335,16 +347,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/WorkflowStepNameTextFieldHandler.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="16" selection-start="210" selection-end="210" vertical-scroll-proportion="0.14578834">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/WorkflowStepNameTextFieldHandler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="10" column="16" selection-start="210" selection-end="210" vertical-scroll-proportion="0.14578834" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.h">
@@ -361,9 +364,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/WorkflowStepNameTextFieldHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="42" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="26" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormTableDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="32" selection-start="1436" selection-end="1436" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/model/FormEntry.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="39" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/FormController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="54" selection-start="3096" selection-end="3096" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Activiti Kickstart/workflow-creation/CreateWorkflowViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="351" column="59" selection-start="15147" selection-end="15147" vertical-scroll-proportion="0.412527">
+        <state line="365" column="0" selection-start="15426" selection-end="15426" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>

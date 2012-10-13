@@ -10,6 +10,8 @@
 
 @interface FormController : UIViewController
 
+@property (nonatomic) BOOL allowDocuments;
+
 - (FormEntry *)generateFormEntry;
 
 @end
