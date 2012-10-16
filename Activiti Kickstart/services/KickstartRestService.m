@@ -69,6 +69,15 @@
                      withCompletionBlock:completionBlock withFailureBlock:failureBlock];
 }
 
+- (void)retrieveUsersWithCompletionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
+{
+    [HttpUtil executeGET:[self createRestCallFor:@"/users"] withCompletionBlock:completionBlock withFailureBlock:failureBlock];
+}
+
+- (void)retrieveGroupsWithCompletionBlock:(HttpCompletionBlock)completionBlock withFailureBlock:(HttpFailureBlock)failureBlock
+{
+    [HttpUtil executeGET:[self createRestCallFor:@"/groups"] withCompletionBlock:completionBlock withFailureBlock:failureBlock];
+}
 
 
 #pragma mark Helper methods

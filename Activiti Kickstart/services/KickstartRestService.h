@@ -36,4 +36,10 @@
          withCompletionBlock:(HttpCompletionBlock)completionBlock
             withFailureBlock:(HttpFailureBlock)failureBlock;
 
+- (void)retrieveUsersWithCompletionBlock:(HttpCompletionBlock)completionBlock
+                        withFailureBlock:(HttpFailureBlock)failureBlock;
+
+- (void)retrieveGroupsWithCompletionBlock:(HttpCompletionBlock)completionBlock
+                        withFailureBlock:(HttpFailureBlock)failureBlock;
+
 @end

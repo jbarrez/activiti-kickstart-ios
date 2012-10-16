@@ -386,7 +386,7 @@
     [self.currentPopoverController setPopoverContentSize:CGSizeMake(500, 180)];
 
     [self.currentPopoverController presentPopoverFromRect:self.createFormEntryButton.frame
-                          inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+                          inView:self.taskDetailsView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
 - (void)saveNewFormEntry
@@ -410,11 +410,11 @@
     userSelectionViewController.workflowCreationDelegate = self;
 
     self.currentPopoverController = [[UIPopoverController alloc] initWithContentViewController:userSelectionViewController];
-    [self.currentPopoverController setPopoverContentSize:CGSizeMake(380, 160)];
+    [self.currentPopoverController setPopoverContentSize:CGSizeMake(400, 300)];
     self.currentPopoverController.delegate = self;
 
     [self.currentPopoverController presentPopoverFromRect:self.userView.frame
-                          inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+                          inView:self.taskDetailsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (void)launchWorkflow

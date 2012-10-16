@@ -47,7 +47,22 @@
         WorkflowTask *task = [self.workflow taskAtIndex:indexPath.section];
         cell.isLastStep = NO;
         cell.nameLabel.text = task.name;
-        cell.userView.userPicture.image = [UIImage imageNamed:task.assignee];
+
+        if (task.assigneeType == ASSIGNEE_TYPE_INITIATOR)
+        {
+            cell.userView.userPicture.image = [UIImage imageNamed:@"person_black.png"];
+            cell.userView.userPicture.contentMode = UIViewContentModeCenter;
+        }
+        else if (task.assigneeType == ASSIGNEE_TYPE_USER)
+        {
+            cell.userView.userPicture.image = nil;
+            cell.userView.userPicture.contentMode = UIViewContentModeScaleAspectFill;
+        }
+        else if (task.assigneeType == ASSIGNEE_TYPE_GROUP)
+        {
+            cell.userView.userPicture.image = [UIImage imageNamed:@"group_black.png"];
+            cell.userView.userPicture.contentMode = UIViewContentModeCenter;
+        }
 
         cell.indentationLevel = 0;
         cell.indentationWidth = 40;
