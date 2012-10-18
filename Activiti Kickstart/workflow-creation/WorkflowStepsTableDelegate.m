@@ -55,7 +55,15 @@
         }
         else if (task.assigneeType == ASSIGNEE_TYPE_USER)
         {
-            cell.userView.userPicture.image = nil;
+            UIImage *userPicture = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", task.assignee]];
+            if (userPicture)
+            {
+                cell.userView.userPicture.image = userPicture;
+            }
+            else
+            {
+                cell.userView.userPicture.image = [UIImage imageNamed:@"person_black.png"];
+            }
             cell.userView.userPicture.contentMode = UIViewContentModeScaleAspectFill;
         }
         else if (task.assigneeType == ASSIGNEE_TYPE_GROUP)

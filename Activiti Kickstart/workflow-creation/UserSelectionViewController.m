@@ -116,6 +116,17 @@ typedef enum {
             cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
             cell.detailTextLabel.text = [user objectForKey:@"email"];
             cell.textLabel.font = [UIFont systemFontOfSize:16];
+
+            UIImage *userPicture = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", [user objectForKey:@"userName"]]];
+            if (userPicture)
+            {
+                cell.imageView.image = userPicture;
+            }
+            else
+            {
+                cell.imageView.image = [UIImage imageNamed:@"person_black.png"];
+            }
+
             break;
         }
         case STATE_GROUP_SELECTION:

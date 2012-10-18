@@ -340,10 +340,30 @@
 
     // Change to details of selected task
     self.nameTextField.text = self.currentlySelectedTask.name;
-    self.userView.userPicture.image = [UIImage imageNamed:self.currentlySelectedTask.assignee];
     self.descriptionTextView.text = self.currentlySelectedTask.description;
     self.formTableDelegate.workflowTask = self.currentlySelectedTask;
     [self.formTable reloadData];
+
+    if (self.currentlySelectedTask.assigneeType == ASSIGNEE_TYPE_INITIATOR)
+    {
+        self.userView.userPicture.image = [UIImage imageNamed:@"paperclip_person.png"];
+    }
+    else if (self.currentlySelectedTask.assigneeType == ASSIGNEE_TYPE_GROUP)
+    {
+        self.userView.userPicture.image = [UIImage imageNamed:@"paperclip_group.png"];
+    }
+    else if (self.currentlySelectedTask.assigneeType == ASSIGNEE_TYPE_USER)
+    {
+        UIImage *userPicture = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", self.currentlySelectedTask.assignee]];
+        if (userPicture)
+        {
+            self.userView.userPicture.image = userPicture;
+        }
+        else
+        {
+            self.userView.userPicture.image = [UIImage imageNamed:@"paperclip_person.png"];
+        }
+    }
 }
 
 // Handling of description input field
