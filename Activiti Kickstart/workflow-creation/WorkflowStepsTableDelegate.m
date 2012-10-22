@@ -71,6 +71,10 @@
             cell.userView.userPicture.image = [UIImage imageNamed:@"group_black.png"];
             cell.userView.userPicture.contentMode = UIViewContentModeCenter;
         }
+        else
+        {
+            cell.userView.userPicture.image = nil;
+        }
 
         cell.indentationLevel = 0;
         cell.indentationWidth = 40;

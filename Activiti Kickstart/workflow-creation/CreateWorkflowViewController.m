@@ -364,6 +364,10 @@
             self.userView.userPicture.image = [UIImage imageNamed:@"paperclip_person.png"];
         }
     }
+    else
+    {
+        self.userView.userPicture.image = nil;
+    }
 }
 
 // Handling of description input field
